@@ -14,9 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var appDelegate: AppDelegate {
+        return (UIApplication.shared.delegate as? AppDelegate)!
+    }
+    
+    fileprivate var tabbarController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if tabbarController == nil {
+            tabbarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController
+            self.window?.rootViewController = tabbarController
+        } else {
+            self.window?.rootViewController = tabbarController
+        }
+        initTabar(false)
         return true
     }
 
@@ -46,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
+    @available(iOS 10.0, *)
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -88,6 +102,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
+    func initTabar(_ isAdmin: Bool) {
+        let selfCheckVC = UIStoryboard(name: "SelfCheck", bundle: nil).instantiateViewController(withIdentifier: "SelfCheckVC")
+        
+        let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "MessageVC")
+        
+        let reportVC = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportVC")
+        
+        let reportListVC = UIStoryboard(name: "ReportList", bundle: nil).instantiateViewController(withIdentifier: "ReportListVC")
+        
+        (tabbarController?.viewControllers.first as? UITabBarController)?.viewControllers = isAdmin ? [selfCheckVC, reportVC, messageVC, reportListVC]: [selfCheckVC, reportVC, messageVC]
+    }
 }
 
