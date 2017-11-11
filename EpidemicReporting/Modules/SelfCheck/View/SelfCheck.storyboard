@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8fA-gA-iEn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NZ5-ne-p78">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,21 +10,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--签到-->
-        <scene sceneID="Jni-4p-lYZ">
+        <!--Navigation Controller-->
+        <scene sceneID="jMB-8N-pop">
             <objects>
-                <viewController storyboardIdentifier="SelfCheckVC" id="8fA-gA-iEn" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uns-2P-3AZ">
+                <navigationController storyboardIdentifier="SelfCheckNav" id="NZ5-ne-p78" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5to-wQ-jlv">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zYu-h6-5ZR" kind="relationship" relationship="rootViewController" id="hAh-Uc-sqI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2YY-X0-bPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172" y="-242"/>
+        </scene>
+        <!--签到-->
+        <scene sceneID="klX-ix-fUH">
+            <objects>
+                <viewController id="zYu-h6-5ZR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dgT-lr-ked">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="idK-A5-8CM"/>
+                        <viewLayoutGuide key="safeArea" id="Bfe-iA-LdJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="签到" id="9lx-QD-jyD" userLabel="签到"/>
+                    <tabBarItem key="tabBarItem" title="签到" id="lSM-wF-Mdu"/>
+                    <navigationItem key="navigationItem" id="FNv-OO-ptw"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J0Z-n7-YtT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sd-J6-kqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-408"/>
+            <point key="canvasLocation" x="922" y="-242"/>
         </scene>
     </scenes>
 </document>
