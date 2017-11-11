@@ -15,12 +15,11 @@
 		A5E3C9661FB49989000FAD71 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C9641FB49989000FAD71 /* Report.storyboard */; };
 		A5E3C9701FB499F1000FAD71 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C96E1FB499F1000FAD71 /* Message.storyboard */; };
 		A5E3C9751FB49A34000FAD71 /* ReportList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */; };
+		A5E3C97D1FB524E0000FAD71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C9791FB524E0000FAD71 /* LaunchScreen.storyboard */; };
+		A5E3C97E1FB524E0000FAD71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C97B1FB524E0000FAD71 /* Main.storyboard */; };
 		A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */; };
-		A5F24B901FB471720012EAF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24B8F1FB471720012EAF6 /* ViewController.swift */; };
-		A5F24B931FB471720012EAF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F24B911FB471720012EAF6 /* Main.storyboard */; };
 		A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5F24B941FB471720012EAF6 /* EpidemicReporting.xcdatamodeld */; };
 		A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F24B971FB471720012EAF6 /* Assets.xcassets */; };
-		A5F24B9B1FB471720012EAF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F24B991FB471720012EAF6 /* LaunchScreen.storyboard */; };
 		A5F24BA61FB471720012EAF6 /* EpidemicReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24BA51FB471720012EAF6 /* EpidemicReportingTests.swift */; };
 		A5F24BB11FB471720012EAF6 /* EpidemicReportingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24BB01FB471720012EAF6 /* EpidemicReportingUITests.swift */; };
 /* End PBXBuildFile section */
@@ -52,13 +51,12 @@
 		A5E3C9641FB49989000FAD71 /* Report.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
 		A5E3C96E1FB499F1000FAD71 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReportList.storyboard; sourceTree = "<group>"; };
+		A5E3C97A1FB524E0000FAD71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5E3C97C1FB524E0000FAD71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		A5F24B8A1FB471720012EAF6 /* EpidemicReporting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpidemicReporting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5F24B8F1FB471720012EAF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A5F24B921FB471720012EAF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F24B951FB471720012EAF6 /* EpidemicReporting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EpidemicReporting.xcdatamodel; sourceTree = "<group>"; };
 		A5F24B971FB471720012EAF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5F24B9A1FB471720012EAF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5F24B9C1FB471720012EAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5F24BA11FB471720012EAF6 /* EpidemicReportingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpidemicReportingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F24BA51FB471720012EAF6 /* EpidemicReportingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpidemicReportingTests.swift; sourceTree = "<group>"; };
@@ -115,6 +113,7 @@
 		A5A902921FB47A6B00A6601F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A5E3C9771FB52436000FAD71 /* Application */,
 				A5E3C9581FB49446000FAD71 /* Login */,
 				A5E3C9551FB49430000FAD71 /* SelfCheck */,
 				A5E3C9541FB49430000FAD71 /* Message */,
@@ -243,6 +242,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A5E3C9771FB52436000FAD71 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A5E3C9791FB524E0000FAD71 /* LaunchScreen.storyboard */,
+				A5E3C97B1FB524E0000FAD71 /* Main.storyboard */,
+				A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		A5F24B811FB471720012EAF6 = {
 			isa = PBXGroup;
 			children = (
@@ -272,11 +281,7 @@
 				A5A902921FB47A6B00A6601F /* Modules */,
 				A5A902911FB47A6B00A6601F /* Networking */,
 				A5A902931FB47A6B00A6601F /* Utils */,
-				A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */,
-				A5F24B8F1FB471720012EAF6 /* ViewController.swift */,
-				A5F24B911FB471720012EAF6 /* Main.storyboard */,
 				A5F24B971FB471720012EAF6 /* Assets.xcassets */,
-				A5F24B991FB471720012EAF6 /* LaunchScreen.storyboard */,
 				A5F24B9C1FB471720012EAF6 /* Info.plist */,
 			);
 			path = EpidemicReporting;
@@ -427,11 +432,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F24B9B1FB471720012EAF6 /* LaunchScreen.storyboard in Resources */,
+				A5E3C97D1FB524E0000FAD71 /* LaunchScreen.storyboard in Resources */,
 				A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */,
-				A5F24B931FB471720012EAF6 /* Main.storyboard in Resources */,
 				A5E3C9621FB498B8000FAD71 /* SelfCheck.storyboard in Resources */,
 				A5E3C9661FB49989000FAD71 /* Report.storyboard in Resources */,
+				A5E3C97E1FB524E0000FAD71 /* Main.storyboard in Resources */,
 				A5E3C9701FB499F1000FAD71 /* Message.storyboard in Resources */,
 				A5E3C9751FB49A34000FAD71 /* ReportList.storyboard in Resources */,
 			);
@@ -506,7 +511,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F24B901FB471720012EAF6 /* ViewController.swift in Sources */,
 				A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
@@ -547,20 +551,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A5F24B911FB471720012EAF6 /* Main.storyboard */ = {
+		A5E3C9791FB524E0000FAD71 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A5F24B921FB471720012EAF6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A5F24B991FB471720012EAF6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5F24B9A1FB471720012EAF6 /* Base */,
+				A5E3C97A1FB524E0000FAD71 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A5E3C97B1FB524E0000FAD71 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5E3C97C1FB524E0000FAD71 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

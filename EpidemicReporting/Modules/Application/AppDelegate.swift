@@ -18,18 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return (UIApplication.shared.delegate as? AppDelegate)!
     }
     
-    fileprivate var tabbarController: UINavigationController?
+    fileprivate var tabbarController: UITabBarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let rooNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController
         if tabbarController == nil {
-            tabbarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController
-            self.window?.rootViewController = tabbarController
+            tabbarController = rooNav?.childViewControllers.first as? UITabBarController
+            self.window?.rootViewController = rooNav
         } else {
-            self.window?.rootViewController = tabbarController
+            self.window?.rootViewController = rooNav
         }
-        initTabar(false)
+        initTabar(true)
         return true
     }
 
@@ -104,15 +105,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initTabar(_ isAdmin: Bool) {
-        let selfCheckVC = UIStoryboard(name: "SelfCheck", bundle: nil).instantiateViewController(withIdentifier: "SelfCheckVC")
+        let selfCheckVC = UIStoryboard(name: "SelfCheck", bundle: nil).instantiateInitialViewController()!
+        selfCheckVC.tabBarItem.image = UIImage.init(named: "locate")
+        selfCheckVC.tabBarItem.title = "签到"
         
-        let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateViewController(withIdentifier: "MessageVC")
+        let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateInitialViewController()!
+        messageVC.tabBarItem.image = UIImage.init(named: "message")
+        messageVC.tabBarItem.title = "消息"
         
-        let reportVC = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportVC")
+        let reportVC = UIStoryboard(name: "Report", bundle: nil).instantiateInitialViewController()!
+        reportVC.tabBarItem.image = UIImage.init(named: "report")
+        reportVC.tabBarItem.title = "疫情上报"
         
-        let reportListVC = UIStoryboard(name: "ReportList", bundle: nil).instantiateViewController(withIdentifier: "ReportListVC")
+        let reportListVC = UIStoryboard(name: "ReportList", bundle: nil).instantiateInitialViewController()!
+        reportListVC.tabBarItem.image = UIImage.init(named: "reportList")
+        reportListVC.tabBarItem.title = "疫情汇总"
         
-        (tabbarController?.viewControllers.first as? UITabBarController)?.viewControllers = isAdmin ? [selfCheckVC, reportVC, messageVC, reportListVC]: [selfCheckVC, reportVC, messageVC]
+        tabbarController?.viewControllers = isAdmin ? [selfCheckVC, reportVC, messageVC, reportListVC]: [selfCheckVC, reportVC, messageVC]
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hMi-Wo-6SK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nLh-LG-HKn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,21 +10,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--疫情上报-->
-        <scene sceneID="O2p-mp-Hpm">
+        <!--Navigation Controller-->
+        <scene sceneID="zRQ-7v-aBS">
             <objects>
-                <viewController storyboardIdentifier="ReportVC" id="hMi-Wo-6SK" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oLz-Re-y2O">
+                <navigationController storyboardIdentifier="ReportNav" id="nLh-LG-HKn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="G9c-lH-T19">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="K5W-kU-KQe" kind="relationship" relationship="rootViewController" id="wfb-8a-vUi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e25-8k-hf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="495"/>
+        </scene>
+        <!--疫情上报-->
+        <scene sceneID="zwk-sp-hHw">
+            <objects>
+                <viewController id="K5W-kU-KQe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="csn-gF-nSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="026-w1-psO"/>
+                        <viewLayoutGuide key="safeArea" id="JAd-WH-3oc"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="疫情上报" id="O9a-fX-vTp" userLabel="疫情上报"/>
+                    <tabBarItem key="tabBarItem" title="疫情上报" id="aNA-Ts-1Jp"/>
+                    <navigationItem key="navigationItem" id="lBC-1s-qeb"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C32-JH-eyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D2E-NN-oW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="288"/>
+            <point key="canvasLocation" x="938" y="496"/>
         </scene>
     </scenes>
 </document>
