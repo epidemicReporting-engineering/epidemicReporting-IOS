@@ -30,7 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window?.rootViewController = rooNav
         }
+        
         initTabar(true)
+        
+        //map usage
+        AMapServices.shared().apiKey = "18b32346a4d880b4dc95e580c8850a1c"
         return true
     }
 

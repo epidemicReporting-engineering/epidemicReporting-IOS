@@ -12,10 +12,10 @@
         <!--Navigation Controller-->
         <scene sceneID="VUQ-ae-Lgx">
             <objects>
-                <navigationController storyboardIdentifier="tabbarNav" id="HFr-6n-5Yi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="tabbarNav" navigationBarHidden="YES" id="HFr-6n-5Yi" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ELs-oz-5la">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ELs-oz-5la">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
