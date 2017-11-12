@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
+		A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */; };
+		A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CD1FB70F7000E4ADDC /* SelfCheckProtocol.swift */; };
+		A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */; };
+		A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0D81FB72AEA00E4ADDC /* UIColor+Ext.swift */; };
+		A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DA1FB7E22C00E4ADDC /* Common.swift */; };
 		A5A902951FB47B1B00A6601F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902941FB47B1B00A6601F /* Networking.swift */; };
 		A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */; };
 		A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */; };
@@ -44,6 +49,15 @@
 /* Begin PBXFileReference section */
 		1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReporting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReporting.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting.release.xcconfig"; sourceTree = "<group>"; };
+		A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpidemicReporting-Bridging-Header.h"; sourceTree = "<group>"; };
+		A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
+		A529F0CD1FB70F7000E4ADDC /* SelfCheckProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckProtocol.swift; sourceTree = "<group>"; };
+		A529F0CF1FB7198D00E4ADDC /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapLocationKit.framework; path = Pods/AMapLocation/AMapLocationKit.framework; sourceTree = "<group>"; };
+		A529F0D11FB7199F00E4ADDC /* AMapFoundationKit */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = AMapFoundationKit; path = Pods/AMapFoundation/AMapFoundationKit.framework/AMapFoundationKit; sourceTree = "<group>"; };
+		A529F0D31FB719AE00E4ADDC /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = Pods/AMapFoundation/AMapFoundationKit.framework; sourceTree = "<group>"; };
+		A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController+Ext.swift"; sourceTree = "<group>"; };
+		A529F0D81FB72AEA00E4ADDC /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Ext.swift"; path = "EpidemicReporting/UIColor+Ext.swift"; sourceTree = SOURCE_ROOT; };
+		A529F0DA1FB7E22C00E4ADDC /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A5A902941FB47B1B00A6601F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPIMapping.swift; sourceTree = "<group>"; };
 		A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
@@ -93,6 +107,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A529F0CC1FB70F3300E4ADDC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A529F0CD1FB70F7000E4ADDC /* SelfCheckProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A529F0D51FB7281500E4ADDC /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +156,8 @@
 		A5A902931FB47A6B00A6601F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A529F0D81FB72AEA00E4ADDC /* UIColor+Ext.swift */,
+				A529F0DA1FB7E22C00E4ADDC /* Common.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -141,6 +173,7 @@
 		A5E3C9551FB49430000FAD71 /* SelfCheck */ = {
 			isa = PBXGroup;
 			children = (
+				A529F0CC1FB70F3300E4ADDC /* Protocols */,
 				A5E3C9601FB498B8000FAD71 /* View */,
 			);
 			path = SelfCheck;
@@ -214,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E3C9611FB498B8000FAD71 /* SelfCheck.storyboard */,
+				A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -248,6 +282,7 @@
 				A5E3C9791FB524E0000FAD71 /* LaunchScreen.storyboard */,
 				A5E3C97B1FB524E0000FAD71 /* Main.storyboard */,
 				A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */,
+				A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -277,6 +312,7 @@
 		A5F24B8C1FB471720012EAF6 /* EpidemicReporting */ = {
 			isa = PBXGroup;
 			children = (
+				A529F0D51FB7281500E4ADDC /* CommonUI */,
 				A5A902901FB47A6B00A6601F /* DataModel */,
 				A5A902921FB47A6B00A6601F /* Modules */,
 				A5A902911FB47A6B00A6601F /* Networking */,
@@ -308,6 +344,9 @@
 		B24806C2AD44BCE25C1A4048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A529F0D31FB719AE00E4ADDC /* AMapFoundationKit.framework */,
+				A529F0D11FB7199F00E4ADDC /* AMapFoundationKit */,
+				A529F0CF1FB7198D00E4ADDC /* AMapLocationKit.framework */,
 				1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */,
 			);
 			name = Frameworks;
@@ -512,9 +551,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */,
+				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
+				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
+				A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
+				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */,
 				A5A902951FB47B1B00A6601F /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,12 +727,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PETKK2G752;
+				DEVELOPMENT_TEAM = 8YGGJVPER8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/AMapLocation",
+					"$(PROJECT_DIR)/Pods/AMapFoundation",
+				);
 				INFOPLIST_FILE = EpidemicReporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/AMapFoundation/AMapFoundationKit.framework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = epidemic.reporting.com.EpidemicReporting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EpidemicReporting/Modules/Application/EpidemicReporting-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -700,12 +754,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PETKK2G752;
+				DEVELOPMENT_TEAM = 8YGGJVPER8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/AMapLocation",
+					"$(PROJECT_DIR)/Pods/AMapFoundation",
+				);
 				INFOPLIST_FILE = EpidemicReporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/AMapFoundation/AMapFoundationKit.framework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = epidemic.reporting.com.EpidemicReporting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EpidemicReporting/Modules/Application/EpidemicReporting-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
