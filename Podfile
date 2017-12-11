@@ -11,11 +11,12 @@ target ‘EpidemicReporting’ do
     pod 'STRegex', '~> 1.0'
     pod 'Sync', '~> 4'
     pod 'DATAStack', '~> 8.0.1'
-    pod 'SDWebImage', '~> 4.0'
+    pod 'SDWebImage', '~> 3.7'
     pod 'INSPhotoGallery'
     pod 'Charts'
     pod 'AMapLocation'
     pod 'AMap2DMap'
     pod 'AMapSearch'
     pod 'FSCalendar'
+    pod 'AssetsPickerViewController', '~> 2.0'
 end
