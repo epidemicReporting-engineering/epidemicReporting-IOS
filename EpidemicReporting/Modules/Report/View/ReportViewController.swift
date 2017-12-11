@@ -60,6 +60,10 @@ extension ReportViewController: AssetsPickerViewControllerDelegate {
     
     func assetsPicker(controller: AssetsPickerViewController, selected assets: [PHAsset]) {
         self.assets = assets
+        if let uploadVC = storyboard?.instantiateViewController(withIdentifier: "uploadVC") as? AssetsViewController {
+            present(uploadVC, animated: true, completion: nil)
+        }
+        
         print("you select the new asset")
         for uploadAsset in assets {
             let image = getUIImageFromAsset(uploadAsset)
