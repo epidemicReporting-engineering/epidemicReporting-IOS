@@ -29,6 +29,14 @@ class Networking {
             return "http://127.0.0.1:8000"
         }
     }
+    
+    func initialHeaders() -> [String : String]? {
+        let headers = [
+            "Allow": "POST,OPTIONS",
+            "Content-Type": "application/json"
+        ]
+        return headers
+    }
 }
 
 extension Networking {
@@ -93,7 +101,7 @@ extension Networking {
         }
     }
     
-    fileprivate func syncWithAppServer(_ apiMapping: String, httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
+    func syncWithAppServer(_ apiMapping: String, httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
         let url = baseURL! + apiMapping
         let request = Alamofire.request(url, method: httpMethod, parameters: params, encoding: JSONEncoding.default, headers: httpHeaders).responseJSON { (data) in
             //TODO: waiting for the status code

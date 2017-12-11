@@ -15,6 +15,7 @@
 		A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DA1FB7E22C00E4ADDC /* Common.swift */; };
 		A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */; };
 		A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */; };
+		A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */; };
 		A5A902951FB47B1B00A6601F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902941FB47B1B00A6601F /* Networking.swift */; };
 		A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */; };
 		A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */; };
@@ -62,6 +63,7 @@
 		A529F0DA1FB7E22C00E4ADDC /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewController.swift; sourceTree = "<group>"; };
+		A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPIs.swift; sourceTree = "<group>"; };
 		A5A902941FB47B1B00A6601F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPIMapping.swift; sourceTree = "<group>"; };
 		A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				A5A902941FB47B1B00A6601F /* Networking.swift */,
 				A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */,
+				A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */,
+				A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
 				A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */,
