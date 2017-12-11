@@ -112,4 +112,40 @@ extension Networking {
         }
         return request
     }
+    
+    //upload image to server
+    func uploadImageToServer(_ name: String?, desc: String?, uploadImage: UIImage?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->()), progessHandler: @escaping ((_ progress:Progress?)->())) {
+        let url  = baseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            if let image = uploadImage, let imageData = UIImageJPEGRepresentation(image,1){
+                multipartFormData.append(imageData, withName: "img", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+            }
+        }, usingThreshold: UInt64.init(), to: url, method: HTTPMethod.post, headers: nil, encodingCompletion: { encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (Progress) in
+                    print("Upload Progress: \(Progress.fractionCompleted)")
+                    progessHandler(Progress)
+                })
+                
+                upload.responseJSON { data in
+                    let response = data.response
+                    
+                    if response?.statusCode == 201 {
+                        if let value = data.result.value {
+                            let json = JSON(value)
+                            handler(true, json, nil)
+                        } else {
+                            handler(false, nil, data.result.error as NSError?)
+                        }
+                    } else {
+                        handler(false, nil, data.result.error as NSError?)
+                    }
+                }
+            case .failure(let encodingError):
+                handler(false, nil, encodingError as NSError?)
+            }
+        })
+    }
 }
