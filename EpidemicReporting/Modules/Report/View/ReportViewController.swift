@@ -15,6 +15,7 @@ class ReportViewController: UIViewController {
 
     @IBOutlet weak var addReportBut: UIView!
     fileprivate var assets = [PHAsset]()
+    fileprivate var assetVC: AssetsViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,10 @@ extension ReportViewController: AssetsPickerViewControllerDelegate {
     
     func assetsPicker(controller: AssetsPickerViewController, selected assets: [PHAsset]) {
         self.assets = assets
-        if let uploadVC = storyboard?.instantiateViewController(withIdentifier: "uploadVC") as? AssetsViewController {
-            present(uploadVC, animated: true, completion: nil)
+        if let uploadNav = storyboard?.instantiateViewController(withIdentifier: "sendReportNav") as? UINavigationController {
+            assetVC = uploadNav.childViewControllers.first as? AssetsViewController
+            assetVC?.assets = assets
+            present(uploadNav, animated: true, completion: nil)
         }
         
         print("you select the new asset")

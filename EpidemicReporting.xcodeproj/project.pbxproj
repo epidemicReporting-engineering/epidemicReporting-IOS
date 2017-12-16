@@ -16,6 +16,7 @@
 		A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */; };
 		A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */; };
 		A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */; };
+		A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */; };
 		A5A902951FB47B1B00A6601F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902941FB47B1B00A6601F /* Networking.swift */; };
 		A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */; };
 		A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */; };
@@ -64,6 +65,7 @@
 		A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewController.swift; sourceTree = "<group>"; };
 		A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPIs.swift; sourceTree = "<group>"; };
+		A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
 		A5A902941FB47B1B00A6601F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPIMapping.swift; sourceTree = "<group>"; };
 		A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		A5A902931FB47A6B00A6601F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */,
 				A529F0D81FB72AEA00E4ADDC /* UIColor+Ext.swift */,
 				A529F0DA1FB7E22C00E4ADDC /* Common.swift */,
 			);
@@ -569,6 +572,7 @@
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */,
 				A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */,
 				A5A902951FB47B1B00A6601F /* Networking.swift in Sources */,
 				A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */,
