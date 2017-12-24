@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
+		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
 		A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */; };
 		A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CD1FB70F7000E4ADDC /* SelfCheckProtocol.swift */; };
@@ -51,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		189BC41D1FE4FB3900838437 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReporting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReporting.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting.release.xcconfig"; sourceTree = "<group>"; };
 		A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpidemicReporting-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				189BC41B1FE4E50500838437 /* DataService.swift */,
 				A5F24B941FB471720012EAF6 /* EpidemicReporting.xcdatamodeld */,
 			);
 			path = DataModel;
@@ -340,6 +345,7 @@
 			children = (
 				A5F24BA51FB471720012EAF6 /* EpidemicReportingTests.swift */,
 				A5F24BA71FB471720012EAF6 /* Info.plist */,
+				189BC41D1FE4FB3900838437 /* DataServiceTest.swift */,
 			);
 			path = EpidemicReportingTests;
 			sourceTree = "<group>";
@@ -568,6 +574,7 @@
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
 				A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
+				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
@@ -584,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5F24BA61FB471720012EAF6 /* EpidemicReportingTests.swift in Sources */,
+				189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
