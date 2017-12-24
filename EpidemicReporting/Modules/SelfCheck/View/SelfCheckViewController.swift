@@ -30,6 +30,10 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate, AMapSearchDe
         
         navigationController?.setStyledNavigationBar()
         navigationItem.title = "我的足迹"
+        
+//        DataService.sharedInstance.changePassword("user001",oldPassword:  "123456", newPassword:  "aq1sw2de") { (success, error) in
+//            print("data")
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

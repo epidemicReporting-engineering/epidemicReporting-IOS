@@ -12,8 +12,13 @@ enum WebServiceAPIMapping: String {
     
     //login
     case UserRegistraion   = "/api/users/register/"
-    case UserLogin         = "/api/users/login/"
+    case UserLogin         = "/api/auth/login"
+    case PasswordChange    = "/api/password/change"
+    case GetProfile        = "/api/profile/get"
     
     //upload media
     case UploadMedia       = "/api/media/upload"
+    
+    //report
+    case DutyReport        = "/api/duty/report"
 }

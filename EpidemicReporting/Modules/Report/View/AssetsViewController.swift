@@ -14,6 +14,12 @@ class AssetsViewController: UIViewController {
     var assets: [PHAsset]?
     fileprivate var locationManager: AMapLocationManager?
     fileprivate var search: AMapSearchAPI?
+    fileprivate var location: String?
+    fileprivate var latitude: String?
+    fileprivate var longitude: String?
+    fileprivate var reportDescription: String?
+    fileprivate var multimedia: [String]?
+    
     @IBOutlet weak var commentsView: UITextView!
     @IBOutlet weak var imageList: UIImageView!
     @IBOutlet weak var numberView: UIView!
@@ -37,7 +43,7 @@ class AssetsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "取消", style: .plain, target: self, action: #selector(cancelWasPressed))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "发送", style: .done, target: self, action: #selector(cancelWasPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "发送", style: .done, target: self, action: #selector(sendReport))
         
         initUI()
     }
@@ -60,10 +66,29 @@ class AssetsViewController: UIViewController {
         commentsView.becomeFirstResponder()
         
         getCurrentLocation()
+        
+//        for uploadAsset in assets {
+//            let image = getUIImageFromAsset(uploadAsset)
+//            DataService.sharedInstance.uploadImageToServer("image", desc: "image", uploadImage: image, handler: { [weak self](success, json, error) in
+//                //
+//                print(success)
+//                }, progressHandler: { [weak self] (progress) in
+//                    //show the progress
+//                    print(progress?.fractionCompleted)
+//            })
+//        }
     }
     
     @objc func cancelWasPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func sendReport() {
+        DataService.sharedInstance.reportMessage("user001", location: "Ning Bo", latitude: "111", longitude: "222", description: "333", multimedia: ["111","222"]) { (success, error) in
+            if success {
+                
+            }
+        }
     }
     
     func getCurrentLocation() {

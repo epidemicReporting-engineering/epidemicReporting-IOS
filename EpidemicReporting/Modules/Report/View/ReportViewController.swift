@@ -66,28 +66,6 @@ extension ReportViewController: AssetsPickerViewControllerDelegate {
             assetVC?.assets = assets
             present(uploadNav, animated: true, completion: nil)
         }
-        
-        print("you select the new asset")
-        for uploadAsset in assets {
-            let image = getUIImageFromAsset(uploadAsset)
-            Networking.sharreInstance.uploadImageToServer("image", desc: "image", uploadImage: image, handler: { [weak self](success, json, error) in
-                //
-            }, progessHandler: { [weak self] (Progress) in
-                //show the progress
-            })
-//            let fileManager = FileManager.default
-//            let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
-//                                                            .userDomainMask, true)[0] as String
-//            let filePath = "\(rootPath)/pickedimage.jpg"
-//            if let processImage = image {
-//                let imageData = UIImageJPEGRepresentation(processImage, 1.0)
-//                fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
-//                if (fileManager.fileExists(atPath: filePath)){
-//                    let imageNSURL:NSURL = NSURL.init(fileURLWithPath: filePath)
-//                    //upload here
-//                }
-//            }
-        }
     }
     
     func assetsPicker(controller: AssetsPickerViewController, shouldSelect asset: PHAsset, at indexPath: IndexPath) -> Bool {

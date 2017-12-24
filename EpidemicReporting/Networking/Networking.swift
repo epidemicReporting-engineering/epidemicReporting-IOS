@@ -17,16 +17,21 @@ import Foundation
 
 class Networking {
     
-    static var sharreInstance: Networking {
+    static var shareInstance: Networking {
         struct Static {
             static let instance: Networking = Networking()
         }
         return Static.instance
     }
     
+    lazy var token: String? = {
+        let token = UserDefaults.standard.value(forKey: "token") as? String
+        return token
+    }()
+    
     var baseURL: String! {
         get {
-            return "http://127.0.0.1:8000"
+            return "http://9.115.93.131:9966"
         }
     }
     
@@ -34,6 +39,22 @@ class Networking {
         let headers = [
             "Allow": "POST,OPTIONS",
             "Content-Type": "application/json"
+        ]
+        return headers
+    }
+    
+    func loginHeaders() -> [String : String]? {
+        let headers = [
+            "X-Requested-With": "XMLHttpRequest",
+            "Content-Type": "application/json"
+        ]
+        return headers
+    }
+    
+    func getHeaders() -> [String : String]? {
+        guard let unwrapToken = token else { return nil }
+        let headers = [
+            "X-Authorization": "Bearer \(unwrapToken)"
         ]
         return headers
     }
@@ -102,7 +123,20 @@ extension Networking {
     }
     
     func syncWithAppServer(_ apiMapping: String, httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
-        let url = baseURL! + apiMapping
+        var url = baseURL! + apiMapping
+        
+        if let parameters = urlParams {
+            var urlParam = "?"
+            for (key, value) in parameters {
+                if let parameterValue = value {
+                    urlParam += "\(key)=\(parameterValue)&"
+                }
+            }
+            let index = urlParam.index(urlParam.endIndex, offsetBy: -1)
+            urlParam = urlParam.substring(to: index)
+            url += urlParam
+        }
+        
         let request = Alamofire.request(url, method: httpMethod, parameters: params, encoding: JSONEncoding.default, headers: httpHeaders).responseJSON { (data) in
             //TODO: waiting for the status code
             let response = data.response
@@ -124,11 +158,24 @@ extension Networking {
     //upload image to server
     func uploadImageToServer(_ name: String?, desc: String?, uploadImage: UIImage?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->()), progessHandler: @escaping ((_ progress:Progress?)->())) {
         let url  = baseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
+        
+        var params: Parameters = [String: Any]()
+        if let name = name, let desc = desc {
+            params = [
+                "user": "user001",
+            ]
+        }
+        
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             if let image = uploadImage, let imageData = UIImageJPEGRepresentation(image,1){
-                multipartFormData.append(imageData, withName: "img", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(imageData, withName: "file", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
             }
-        }, usingThreshold: UInt64.init(), to: url, method: HTTPMethod.post, headers: nil, encodingCompletion: { encodingResult in
+            
+            for (key, value) in params {
+                multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+            }
+            
+        }, usingThreshold: UInt64.init(), to: url, method: HTTPMethod.post, headers: getHeaders(), encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 
@@ -140,7 +187,7 @@ extension Networking {
                 upload.responseJSON { data in
                     let response = data.response
                     
-                    if response?.statusCode == 201 {
+                    if response?.statusCode == 200 {
                         if let value = data.result.value {
                             let json = JSON(value)
                             handler(true, json, nil)
