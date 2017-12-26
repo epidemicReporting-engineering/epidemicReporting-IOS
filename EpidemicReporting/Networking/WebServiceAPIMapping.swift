@@ -21,4 +21,14 @@ enum WebServiceAPIMapping: String {
     
     //report
     case DutyReport        = "/api/duty/report"
+    case DutyProcess       = "/api/duty/process"
+    case DutyConfirm       = "/api/duty/confirm"
+    case DutyLatestStatus  = "/api/duty/status/latest"
+    case DutyAllReports    = "/api/duty/status/latestall"
+    case DutyAllStatus     = "/api/duty/status"
+    
+    //admin
+    case DutyAssign        = "/api/duty/assign"
+    
+    
 }

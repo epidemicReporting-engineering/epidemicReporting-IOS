@@ -8,30 +8,44 @@
 
 import UIKit
 import CoreData
+import Sync
+
+var appDelegate: AppDelegate {
+    return (UIApplication.shared.delegate as? AppDelegate)!
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var appDelegate: AppDelegate {
-        return (UIApplication.shared.delegate as? AppDelegate)!
+    
+    public var currentUser: User? {
+        didSet {
+            //update User informaton
+            print("current user's id is: \(String(describing: currentUser?.userid))")
+        }
     }
+    
+    lazy var dataStack: DataStack = {
+        let dataStack = DataStack(modelName: "EpidemicReporting")
+        return dataStack
+    }()
     
     fileprivate var tabbarController: UITabBarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.loginSuccess), name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
         // Override point for customization after application launch.
         
-        let rooNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController
-        if tabbarController == nil {
-            tabbarController = rooNav?.childViewControllers.first as? UITabBarController
-            self.window?.rootViewController = rooNav
-        } else {
-            self.window?.rootViewController = rooNav
-        }
-        
-        initTabar(true)
+//        let rooNav = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController
+//        if tabbarController == nil {
+//            tabbarController = rooNav?.childViewControllers.first as? UITabBarController
+//            self.window?.rootViewController = rooNav
+//        } else {
+//            self.window?.rootViewController = rooNav
+//        }
+//
+//        initTabar(true)
         
         //map usage
         AMapServices.shared().apiKey = "18b32346a4d880b4dc95e580c8850a1c"
@@ -126,6 +140,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         reportListVC.tabBarItem.title = "疫情汇总"
         
         tabbarController?.viewControllers = isAdmin ? [selfCheckVC, reportVC, messageVC, reportListVC]: [selfCheckVC, reportVC, messageVC]
+    }
+    
+    @objc func loginSuccess() {
+        //TODO: mock up, need clean
+        let id = "user001"
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.sortDescriptors = [NSSortDescriptor(key: "userid", ascending: true)]
+        request.predicate = NSPredicate(format: "userid == %@", id)
+        let users = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [User])
+        guard let user = users?.first else { return }
+        currentUser = user
+        
+        
+        if tabbarController == nil {
+            tabbarController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController)?.childViewControllers.first as? UITabBarController
+            self.window?.rootViewController = tabbarController
+        }else{
+            self.window?.rootViewController = tabbarController
+        }
+        initTabar(true)
     }
 }
 

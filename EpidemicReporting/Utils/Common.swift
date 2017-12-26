@@ -25,3 +25,23 @@ func getUIImageFromAsset(_ asset: PHAsset) -> UIImage? {
     }
     return img
 }
+
+
+
+enum DutyStatus: String {
+    case UNASSIGN = "0"
+    case ASSIGNED = "1"
+    case START = "2"
+    case BLOCK = "3"
+    case FINISH = "4"
+    case SUCCESS = "5"
+    case CANTDO = "6"
+}
+
+enum PullDataType: String {
+    case LOAD = "load"
+    case REFRESH = "refresh"
+}
+
+
+

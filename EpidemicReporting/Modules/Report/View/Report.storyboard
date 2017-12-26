@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nLh-LG-HKn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nLh-LG-HKn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,69 +15,56 @@
         <scene sceneID="zRQ-7v-aBS">
             <objects>
                 <navigationController storyboardIdentifier="ReportNav" automaticallyAdjustsScrollViewInsets="NO" id="nLh-LG-HKn" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="G9c-lH-T19">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="G9c-lH-T19">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="K5W-kU-KQe" kind="relationship" relationship="rootViewController" id="wfb-8a-vUi"/>
+                        <segue destination="d9N-Jv-jt2" kind="relationship" relationship="rootViewController" id="AAS-K3-BwS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e25-8k-hf7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="188" y="495"/>
         </scene>
-        <!--疫情上报-->
-        <scene sceneID="zwk-sp-hHw">
+        <!--My Reports Table View Controller-->
+        <scene sceneID="zI6-hQ-ZPI">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="K5W-kU-KQe" customClass="ReportViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="csn-gF-nSJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="d9N-Jv-jt2" customClass="MyReportsTableViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bll-4l-InG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1U-hD-QgM">
-                                <rect key="frame" x="299" y="517" width="60" height="60"/>
-                                <subviews>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="CNA-y3-RJf">
-                                        <rect key="frame" x="6" y="6" width="48" height="48"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="4qe-1M-Qzq" appends="YES" id="yOe-dt-wTf"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.070588235289999995" green="0.58823529409999997" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="7d1-ho-bi9"/>
-                                    <constraint firstAttribute="height" constant="60" id="KIh-3I-s0d"/>
-                                    <constraint firstItem="CNA-y3-RJf" firstAttribute="width" secondItem="y1U-hD-QgM" secondAttribute="width" multiplier="0.8" id="R4v-Vv-KaM"/>
-                                    <constraint firstItem="CNA-y3-RJf" firstAttribute="centerX" secondItem="y1U-hD-QgM" secondAttribute="centerX" id="mKJ-ip-34s"/>
-                                    <constraint firstItem="CNA-y3-RJf" firstAttribute="centerY" secondItem="y1U-hD-QgM" secondAttribute="centerY" id="rON-Q9-045"/>
-                                    <constraint firstItem="CNA-y3-RJf" firstAttribute="height" secondItem="y1U-hD-QgM" secondAttribute="height" multiplier="0.8" id="z85-Z6-iT9"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="JAd-WH-3oc" firstAttribute="trailing" secondItem="y1U-hD-QgM" secondAttribute="trailing" constant="16" id="1nt-2p-beS"/>
-                            <constraint firstItem="JAd-WH-3oc" firstAttribute="bottom" secondItem="y1U-hD-QgM" secondAttribute="bottom" constant="90" id="tFL-uL-ilP"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="JAd-WH-3oc"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="疫情上报" id="aNA-Ts-1Jp"/>
-                    <navigationItem key="navigationItem" id="lBC-1s-qeb"/>
-                    <connections>
-                        <outlet property="addReportBut" destination="y1U-hD-QgM" id="bct-Re-bwz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D2E-NN-oW6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="4qe-1M-Qzq">
-                    <connections>
-                        <action selector="showAssets:" destination="K5W-kU-KQe" id="fgo-Fz-FbJ"/>
-                    </connections>
-                </tapGestureRecognizer>
+                        <connections>
+                            <outlet property="dataSource" destination="d9N-Jv-jt2" id="I1f-p7-Syv"/>
+                            <outlet property="delegate" destination="d9N-Jv-jt2" id="iJ2-np-3g8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mfo-va-ce9"/>
+                </tableViewController>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bM7-vJ-L1z">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    <subviews>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="OTc-ES-oqX">
+                            <rect key="frame" x="6" y="6" width="48" height="48"/>
+                            <gestureRecognizers/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.070588235289999995" green="0.58823529409999997" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="SsS-iN-vPd"/>
+                        <constraint firstItem="OTc-ES-oqX" firstAttribute="centerX" secondItem="bM7-vJ-L1z" secondAttribute="centerX" id="UmT-cx-XWt"/>
+                        <constraint firstAttribute="width" constant="60" id="nId-fg-jdU"/>
+                        <constraint firstItem="OTc-ES-oqX" firstAttribute="centerY" secondItem="bM7-vJ-L1z" secondAttribute="centerY" id="pIf-py-TTV"/>
+                        <constraint firstItem="OTc-ES-oqX" firstAttribute="height" secondItem="bM7-vJ-L1z" secondAttribute="height" multiplier="0.8" id="xEk-OT-WrH"/>
+                        <constraint firstItem="OTc-ES-oqX" firstAttribute="width" secondItem="bM7-vJ-L1z" secondAttribute="width" multiplier="0.8" id="xRG-qc-v4Q"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="1Xn-5Q-UJD"/>
+                </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GKT-gy-uNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936.79999999999995" y="495.20239880059972"/>
+            <point key="canvasLocation" x="1084" y="493.40329835082463"/>
         </scene>
         <!--Assets View Controller-->
         <scene sceneID="Yu8-Xl-mhD">
@@ -188,7 +175,6 @@
         <scene sceneID="zpw-B0-oHP">
             <objects>
                 <navigationController storyboardIdentifier="sendReportNav" id="LQB-Ay-bUJ" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="kd8-7N-kSH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

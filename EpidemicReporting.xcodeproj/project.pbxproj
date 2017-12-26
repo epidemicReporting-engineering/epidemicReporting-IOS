@@ -10,6 +10,7 @@
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
 		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
+		92C6B804B2760361DE9D9E37 /* Pods_EpidemicReportingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */; };
 		A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */; };
 		A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CD1FB70F7000E4ADDC /* SelfCheckProtocol.swift */; };
 		A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */; };
@@ -18,6 +19,11 @@
 		A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */; };
 		A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */; };
 		A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */; };
+		A56B8C481FEFBF3100303C02 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B8C471FEFBF3100303C02 /* LoginStoryboard.storyboard */; };
+		A56B8C4D1FEFD29900303C02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C4C1FEFD29900303C02 /* LoginViewController.swift */; };
+		A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C4E1FEFDE6C00303C02 /* ResetPasswordViewController.swift */; };
+		A56B8C511FF0B2D300303C02 /* OPLoadingHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */; };
+		A56B8C531FF0B35400303C02 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C521FF0B35400303C02 /* UIView+Ext.swift */; };
 		A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */; };
 		A5A902951FB47B1B00A6601F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902941FB47B1B00A6601F /* Networking.swift */; };
 		A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */; };
@@ -28,6 +34,18 @@
 		A5E3C9751FB49A34000FAD71 /* ReportList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */; };
 		A5E3C97D1FB524E0000FAD71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C9791FB524E0000FAD71 /* LaunchScreen.storyboard */; };
 		A5E3C97E1FB524E0000FAD71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E3C97B1FB524E0000FAD71 /* Main.storyboard */; };
+		A5EB7FFA1FF1D7C1005D41B9 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
+		A5EB7FFC1FF1EA0B005D41B9 /* MyReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB7FFB1FF1EA0B005D41B9 /* MyReportsTableViewController.swift */; };
+		A5EB7FFE1FF1ED19005D41B9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB7FFD1FF1ED19005D41B9 /* Utils.swift */; };
+		A5EB80021FF1F25C005D41B9 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB80001FF1F25C005D41B9 /* CoreDataTableViewController.swift */; };
+		A5EB80031FF1F25C005D41B9 /* CoreDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB80011FF1F25C005D41B9 /* CoreDataCollectionViewController.swift */; };
+		A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB80141FF21678005D41B9 /* ReportTableViewCell.swift */; };
+		A5EB80171FF21678005D41B9 /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EB80151FF21678005D41B9 /* ReportTableViewCell.xib */; };
+		A5EB80191FF2251C005D41B9 /* CoreDataUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB80181FF2251C005D41B9 /* CoreDataUITest.swift */; };
+		A5EB801C1FF23893005D41B9 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */; };
+		A5EB801D1FF23893005D41B9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */; };
+		A5EB80201FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */; };
+		A5EB80211FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */; };
 		A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */; };
 		A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5F24B941FB471720012EAF6 /* EpidemicReporting.xcdatamodeld */; };
 		A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F24B971FB471720012EAF6 /* Assets.xcassets */; };
@@ -69,6 +87,11 @@
 		A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewController.swift; sourceTree = "<group>"; };
 		A529F0E21FDEBDDE00E4ADDC /* NetworkingAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPIs.swift; sourceTree = "<group>"; };
+		A56B8C471FEFBF3100303C02 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		A56B8C4C1FEFD29900303C02 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A56B8C4E1FEFDE6C00303C02 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPLoadingHUD.swift; sourceTree = "<group>"; };
+		A56B8C521FF0B35400303C02 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
 		A5A902941FB47B1B00A6601F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPIMapping.swift; sourceTree = "<group>"; };
@@ -79,6 +102,32 @@
 		A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReportList.storyboard; sourceTree = "<group>"; };
 		A5E3C97A1FB524E0000FAD71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5E3C97C1FB524E0000FAD71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		A5EB7FDD1FF1D64D005D41B9 /* Sync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Sync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FEC1FF1D7C1005D41B9 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FED1FF1D7C1005D41B9 /* AssetsPickerViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AssetsPickerViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FEE1FF1D7C1005D41B9 /* DATAStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DATAStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FEF1FF1D7C1005D41B9 /* Dimmer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dimmer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF01FF1D7C1005D41B9 /* FadeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FadeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF11FF1D7C1005D41B9 /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF21FF1D7C1005D41B9 /* INSPhotoGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = INSPhotoGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF31FF1D7C1005D41B9 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF41FF1D7C1005D41B9 /* PureLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PureLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF51FF1D7C1005D41B9 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF61FF1D7C1005D41B9 /* SwiftARGB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftARGB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF71FF1D7C1005D41B9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF81FF1D7C1005D41B9 /* TinyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FF91FF1D7C1005D41B9 /* UIViewKVO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UIViewKVO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5EB7FFB1FF1EA0B005D41B9 /* MyReportsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsTableViewController.swift; sourceTree = "<group>"; };
+		A5EB7FFD1FF1ED19005D41B9 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A5EB80001FF1F25C005D41B9 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		A5EB80011FF1F25C005D41B9 /* CoreDataCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewController.swift; sourceTree = "<group>"; };
+		A5EB80141FF21678005D41B9 /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
+		A5EB80151FF21678005D41B9 /* ReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportTableViewCell.xib; sourceTree = "<group>"; };
+		A5EB80181FF2251C005D41B9 /* CoreDataUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUITest.swift; sourceTree = "<group>"; };
+		A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5F24B8A1FB471720012EAF6 /* EpidemicReporting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpidemicReporting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F24B951FB471720012EAF6 /* EpidemicReporting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EpidemicReporting.xcdatamodel; sourceTree = "<group>"; };
@@ -91,6 +140,9 @@
 		A5F24BB01FB471720012EAF6 /* EpidemicReportingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpidemicReportingUITests.swift; sourceTree = "<group>"; };
 		A5F24BB21FB471720012EAF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF42C819E775FD7E8170ADB6 /* Pods-EpidemicReporting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReporting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting.debug.xcconfig"; sourceTree = "<group>"; };
+		BAA836756B09BD4C9F6E16E3 /* Pods-EpidemicReportingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReportingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests.release.xcconfig"; sourceTree = "<group>"; };
+		C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReportingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE1D2F75CE6352D6D3D930E /* Pods-EpidemicReportingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReportingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EB7FFA1FF1D7C1005D41B9 /* Pods_EpidemicReporting.framework in Frameworks */,
+				92C6B804B2760361DE9D9E37 /* Pods_EpidemicReportingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +184,9 @@
 		A529F0D51FB7281500E4ADDC /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB80011FF1F25C005D41B9 /* CoreDataCollectionViewController.swift */,
+				A5EB80001FF1F25C005D41B9 /* CoreDataTableViewController.swift */,
+				A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */,
 				A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */,
 			);
 			path = CommonUI;
@@ -138,6 +195,10 @@
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */,
+				A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */,
+				A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */,
+				A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */,
 				189BC41B1FE4E50500838437 /* DataService.swift */,
 				A5F24B941FB471720012EAF6 /* EpidemicReporting.xcdatamodeld */,
 			);
@@ -170,9 +231,11 @@
 		A5A902931FB47A6B00A6601F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A56B8C521FF0B35400303C02 /* UIView+Ext.swift */,
 				A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */,
 				A529F0D81FB72AEA00E4ADDC /* UIColor+Ext.swift */,
 				A529F0DA1FB7E22C00E4ADDC /* Common.swift */,
+				A5EB7FFD1FF1ED19005D41B9 /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -205,6 +268,7 @@
 		A5E3C9571FB49430000FAD71 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB7FFF1FF1F1BF005D41B9 /* Controller */,
 				A5E3C9631FB49989000FAD71 /* View */,
 			);
 			path = Report;
@@ -213,11 +277,8 @@
 		A5E3C9581FB49446000FAD71 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A5E3C95D1FB495B7000FAD71 /* Interactor */,
-				A5E3C95C1FB495B7000FAD71 /* Presenter */,
 				A5E3C95B1FB495B7000FAD71 /* Protocols */,
 				A5E3C9591FB495B7000FAD71 /* View */,
-				A5E3C95A1FB495B7000FAD71 /* WireFrame */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -225,15 +286,11 @@
 		A5E3C9591FB495B7000FAD71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A56B8C471FEFBF3100303C02 /* LoginStoryboard.storyboard */,
+				A56B8C4C1FEFD29900303C02 /* LoginViewController.swift */,
+				A56B8C4E1FEFDE6C00303C02 /* ResetPasswordViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A5E3C95A1FB495B7000FAD71 /* WireFrame */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WireFrame;
 			sourceTree = "<group>";
 		};
 		A5E3C95B1FB495B7000FAD71 /* Protocols */ = {
@@ -242,20 +299,6 @@
 				A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		A5E3C95C1FB495B7000FAD71 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		A5E3C95D1FB495B7000FAD71 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		A5E3C9601FB498B8000FAD71 /* View */ = {
@@ -271,8 +314,8 @@
 			isa = PBXGroup;
 			children = (
 				A5E3C9641FB49989000FAD71 /* Report.storyboard */,
-				A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */,
-				A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */,
+				A5EB80141FF21678005D41B9 /* ReportTableViewCell.swift */,
+				A5EB80151FF21678005D41B9 /* ReportTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +345,16 @@
 				A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		A5EB7FFF1FF1F1BF005D41B9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A529F0DC1FB9D23200E4ADDC /* ReportViewController.swift */,
+				A529F0DE1FDD178B00E4ADDC /* AssetsViewController.swift */,
+				A5EB7FFB1FF1EA0B005D41B9 /* MyReportsTableViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A5F24B811FB471720012EAF6 = {
@@ -346,6 +399,7 @@
 				A5F24BA51FB471720012EAF6 /* EpidemicReportingTests.swift */,
 				A5F24BA71FB471720012EAF6 /* Info.plist */,
 				189BC41D1FE4FB3900838437 /* DataServiceTest.swift */,
+				A5EB80181FF2251C005D41B9 /* CoreDataUITest.swift */,
 			);
 			path = EpidemicReportingTests;
 			sourceTree = "<group>";
@@ -362,10 +416,26 @@
 		B24806C2AD44BCE25C1A4048 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5EB7FEC1FF1D7C1005D41B9 /* Alamofire.framework */,
+				A5EB7FED1FF1D7C1005D41B9 /* AssetsPickerViewController.framework */,
+				A5EB7FEE1FF1D7C1005D41B9 /* DATAStack.framework */,
+				A5EB7FEF1FF1D7C1005D41B9 /* Dimmer.framework */,
+				A5EB7FF01FF1D7C1005D41B9 /* FadeView.framework */,
+				A5EB7FF11FF1D7C1005D41B9 /* FSCalendar.framework */,
+				A5EB7FF21FF1D7C1005D41B9 /* INSPhotoGallery.framework */,
+				A5EB7FF31FF1D7C1005D41B9 /* KeychainAccess.framework */,
+				A5EB7FF41FF1D7C1005D41B9 /* PureLayout.framework */,
+				A5EB7FF51FF1D7C1005D41B9 /* Regex.framework */,
+				A5EB7FF61FF1D7C1005D41B9 /* SwiftARGB.framework */,
+				A5EB7FF71FF1D7C1005D41B9 /* SwiftyJSON.framework */,
+				A5EB7FF81FF1D7C1005D41B9 /* TinyLog.framework */,
+				A5EB7FF91FF1D7C1005D41B9 /* UIViewKVO.framework */,
+				A5EB7FDD1FF1D64D005D41B9 /* Sync.framework */,
 				A529F0D31FB719AE00E4ADDC /* AMapFoundationKit.framework */,
 				A529F0D11FB7199F00E4ADDC /* AMapFoundationKit */,
 				A529F0CF1FB7198D00E4ADDC /* AMapLocationKit.framework */,
 				1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */,
+				C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,6 +445,8 @@
 			children = (
 				AF42C819E775FD7E8170ADB6 /* Pods-EpidemicReporting.debug.xcconfig */,
 				9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */,
+				DAE1D2F75CE6352D6D3D930E /* Pods-EpidemicReportingTests.debug.xcconfig */,
+				BAA836756B09BD4C9F6E16E3 /* Pods-EpidemicReportingTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -406,9 +478,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5F24BB81FB471720012EAF6 /* Build configuration list for PBXNativeTarget "EpidemicReportingTests" */;
 			buildPhases = (
+				172E078AABCE64303871082B /* [CP] Check Pods Manifest.lock */,
 				A5F24B9D1FB471720012EAF6 /* Sources */,
 				A5F24B9E1FB471720012EAF6 /* Frameworks */,
 				A5F24B9F1FB471720012EAF6 /* Resources */,
+				894565BF08BDD6DFCAFE81A8 /* [CP] Embed Pods Frameworks */,
+				2C60D201336D54190F814DB2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -491,7 +566,9 @@
 			files = (
 				A5E3C97D1FB524E0000FAD71 /* LaunchScreen.storyboard in Resources */,
 				A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */,
+				A5EB80171FF21678005D41B9 /* ReportTableViewCell.xib in Resources */,
 				A5E3C9621FB498B8000FAD71 /* SelfCheck.storyboard in Resources */,
+				A56B8C481FEFBF3100303C02 /* LoginStoryboard.storyboard in Resources */,
 				A5E3C9661FB49989000FAD71 /* Report.storyboard in Resources */,
 				A5E3C97E1FB524E0000FAD71 /* Main.storyboard in Resources */,
 				A5E3C9701FB499F1000FAD71 /* Message.storyboard in Resources */,
@@ -516,6 +593,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		172E078AABCE64303871082B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2C60D201336D54190F814DB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		76EC3EE6017B2FADC957F61D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,6 +636,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		894565BF08BDD6DFCAFE81A8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		916795E7150B679178221783 /* [CP] Embed Pods Frameworks */ = {
@@ -570,16 +692,29 @@
 			files = (
 				A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */,
 				A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */,
+				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
+				A5EB80211FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
+				A5EB801C1FF23893005D41B9 /* User+CoreDataClass.swift in Sources */,
+				A5EB7FFC1FF1EA0B005D41B9 /* MyReportsTableViewController.swift in Sources */,
 				A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */,
+				A56B8C531FF0B35400303C02 /* UIView+Ext.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
+				A5EB801D1FF23893005D41B9 /* User+CoreDataProperties.swift in Sources */,
 				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,
+				A5EB80021FF1F25C005D41B9 /* CoreDataTableViewController.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
+				A56B8C511FF0B2D300303C02 /* OPLoadingHUD.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */,
 				A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */,
+				A56B8C4D1FEFD29900303C02 /* LoginViewController.swift in Sources */,
+				A5EB80031FF1F25C005D41B9 /* CoreDataCollectionViewController.swift in Sources */,
+				A5EB7FFE1FF1ED19005D41B9 /* Utils.swift in Sources */,
+				A5EB80201FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift in Sources */,
 				A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */,
 				A5A902951FB47B1B00A6601F /* Networking.swift in Sources */,
 				A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */,
@@ -592,6 +727,7 @@
 			files = (
 				A5F24BA61FB471720012EAF6 /* EpidemicReportingTests.swift in Sources */,
 				189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */,
+				A5EB80191FF2251C005D41B9 /* CoreDataUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,33 +937,43 @@
 		};
 		A5F24BB91FB471720012EAF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAE1D2F75CE6352D6D3D930E /* Pods-EpidemicReportingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PETKK2G752;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = EpidemicReportingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = epidemic.reporting.com.EpidemicReportingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EpidemicReporting.app/EpidemicReporting";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
 		A5F24BBA1FB471720012EAF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAA836756B09BD4C9F6E16E3 /* Pods-EpidemicReportingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PETKK2G752;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = EpidemicReportingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = epidemic.reporting.com.EpidemicReportingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EpidemicReporting.app/EpidemicReporting";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
