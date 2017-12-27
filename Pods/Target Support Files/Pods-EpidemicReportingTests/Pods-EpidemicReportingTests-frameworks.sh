@@ -91,10 +91,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AssetsPickerViewController/AssetsPickerViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DATAStack/DATAStack.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Dimmer/Dimmer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FadeView/FadeView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gallery/Gallery.framework"
   install_framework "$BUILT_PRODUCTS_DIR/INSPhotoGallery/INSPhotoGallery.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PureLayout/PureLayout.framework"
@@ -103,16 +103,17 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftARGB/SwiftARGB.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sync/Sync.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TZImagePickerController/TZImagePickerController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TinyLog/TinyLog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIViewKVO/UIViewKVO.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AssetsPickerViewController/AssetsPickerViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DATAStack/DATAStack.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Dimmer/Dimmer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FSCalendar/FSCalendar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FadeView/FadeView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gallery/Gallery.framework"
   install_framework "$BUILT_PRODUCTS_DIR/INSPhotoGallery/INSPhotoGallery.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PureLayout/PureLayout.framework"
@@ -121,6 +122,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftARGB/SwiftARGB.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Sync/Sync.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TZImagePickerController/TZImagePickerController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TinyLog/TinyLog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIViewKVO/UIViewKVO.framework"
 fi

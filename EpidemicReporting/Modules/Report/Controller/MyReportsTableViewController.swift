@@ -8,9 +8,14 @@
 
 import UIKit
 import CoreData
+import TZImagePickerController
+import Gallery
 
 class MyReportsTableViewController: CoreDataTableViewController {
-
+    
+    fileprivate var imagePickerVc: TZImagePickerController?
+    fileprivate var gallyPickerVc: GalleryController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +42,11 @@ class MyReportsTableViewController: CoreDataTableViewController {
         plusView.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
         plusView.widthAnchor.constraint(equalToConstant: 56).isActive = true
         plusView.heightAnchor.constraint(equalToConstant: 56).isActive = true
+        
+        //add action
+        plusView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewPicker))
+        plusView.addGestureRecognizer(tapGesture)
         navigationController?.view.addSubview(buttonView)
     }
     
@@ -63,6 +73,14 @@ class MyReportsTableViewController: CoreDataTableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc private func imageViewPicker() {
+        gallyPickerVc = GalleryController()
+        gallyPickerVc?.delegate = self
+        if let presentVc = gallyPickerVc {
+            present(presentVc, animated: true, completion: nil)
+        }
     }
 }
 
@@ -94,3 +112,50 @@ extension MyReportsTableViewController {
         return 120
     }
 }
+
+extension MyReportsTableViewController: GalleryControllerDelegate {
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]){
+        
+    }
+    
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video){
+        
+    }
+    
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+//extension MyReportsTableViewController: TZImagePickerControllerDelegate {
+//
+//    func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
+//        //
+//        print("selected")
+//    }
+//
+//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingVideo coverImage: UIImage!, sourceAssets asset: Any!) {
+//        //
+//        print("selected")
+//    }
+//
+//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingGifImage animatedImage: UIImage!, sourceAssets asset: Any!) {
+//        //
+//        print("selected")
+//    }
+//
+//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
+//        //
+//        print("selected")
+//    }
+//
+//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool, infos: [[AnyHashable : Any]]!) {
+//        //
+//        print("selected")
+//    }
+//}
+

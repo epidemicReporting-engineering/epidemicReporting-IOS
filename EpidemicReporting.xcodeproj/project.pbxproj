@@ -128,6 +128,8 @@
 		A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A5EDA3351FF3270D00762380 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "../zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		A5EDA3361FF3270D00762380 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "../zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		A5F24B8A1FB471720012EAF6 /* EpidemicReporting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpidemicReporting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F24B8D1FB471720012EAF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5F24B951FB471720012EAF6 /* EpidemicReporting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EpidemicReporting.xcdatamodel; sourceTree = "<group>"; };
@@ -357,6 +359,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A5EDA3301FF3247200762380 /* Translation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Translation;
+			sourceTree = "<group>";
+		};
 		A5F24B811FB471720012EAF6 = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +391,7 @@
 		A5F24B8C1FB471720012EAF6 /* EpidemicReporting */ = {
 			isa = PBXGroup;
 			children = (
+				A5EDA3301FF3247200762380 /* Translation */,
 				A529F0D51FB7281500E4ADDC /* CommonUI */,
 				A5A902901FB47A6B00A6601F /* DataModel */,
 				A5A902921FB47A6B00A6601F /* Modules */,
@@ -546,6 +556,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A5F24B811FB471720012EAF6;
 			productRefGroup = A5F24B8B1FB471720012EAF6 /* Products */;
@@ -759,6 +770,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A5E3C97A1FB524E0000FAD71 /* Base */,
+				A5EDA3351FF3270D00762380 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -767,6 +779,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A5E3C97C1FB524E0000FAD71 /* Base */,
+				A5EDA3361FF3270D00762380 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

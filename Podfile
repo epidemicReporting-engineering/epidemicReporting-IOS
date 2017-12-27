@@ -10,7 +10,6 @@ target ‘EpidemicReporting’ do
     pod 'KeychainAccess', '~> 3.1.0'
     pod 'STRegex', '~> 1.0'
     pod 'Sync', '~> 4'
-    pod 'DATAStack', '~> 8.0.1'
     pod 'INSPhotoGallery'
     pod 'AMapLocation'
     pod 'AMap2DMap'
@@ -18,6 +17,8 @@ target ‘EpidemicReporting’ do
     pod 'FSCalendar'
     pod 'AssetsPickerViewController', '~> 2.0'
     pod 'SDWebImage', '~> 4.0'
+    pod 'TZImagePickerController'
+    pod 'Gallery'
 end
 
 target 'EpidemicReportingTests' do
@@ -26,7 +27,6 @@ target 'EpidemicReportingTests' do
     pod 'KeychainAccess', '~> 3.1.0'
     pod 'STRegex', '~> 1.0'
     pod 'Sync', '~> 4'
-    pod 'DATAStack', '~> 8.0.1'
     pod 'INSPhotoGallery'
     pod 'AMapLocation'
     pod 'AMap2DMap'
@@ -34,4 +34,6 @@ target 'EpidemicReportingTests' do
     pod 'FSCalendar'
     pod 'AssetsPickerViewController', '~> 2.0'
     pod 'SDWebImage', '~> 4.0'
+    pod 'TZImagePickerController'
+    pod 'Gallery'
 end
