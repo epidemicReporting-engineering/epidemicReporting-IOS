@@ -7,8 +7,66 @@
 //
 
 import Foundation
+import Photos
 
 class Utils {
+    
+    class func getUIImageFromAsset(_ asset: PHAsset, handler: @escaping ((_ image: UIImage?)->())) {
+        var img: UIImage?
+        let manager = PHImageManager.default()
+        let options = PHImageRequestOptions()
+        options.version = .original
+        options.isSynchronous = true
+        manager.requestImageData(for: asset, options: options) { data, _, _, _ in
+            if let data = data {
+                img = UIImage(data: data)
+                handler(img)
+            }
+        }
+    }
+    
+    class func getVideoFromAsset(_ asset: PHAsset, handler: @escaping ((_ success: Bool, _ url: URL?)->())) {
+        var url: URL?
+        let manager = PHImageManager.default()
+        let options = PHVideoRequestOptions()
+        options.version = .current
+        options.deliveryMode = .mediumQualityFormat
+        manager.requestAVAsset(forVideo: asset, options: options) { (assetVideo, _, _) in
+        url = (assetVideo as? AVURLAsset)?.url
+        //handler(url)
+        let outputPath = NSHomeDirectory() + "/Documents/\(Date().timeIntervalSince1970).mp4"
+        guard let videoUrl = url?.absoluteString else { return }
+        let avAsset:AVURLAsset = AVURLAsset(url: URL.init(fileURLWithPath: videoUrl), options: nil)
+        let compatiblePresets = AVAssetExportSession.exportPresets(compatibleWith: avAsset)
+        if compatiblePresets.contains(AVAssetExportPresetLowQuality) {
+        let exportSession:AVAssetExportSession = AVAssetExportSession.init(asset: avAsset, presetName: AVAssetExportPresetMediumQuality)!
+        let existBool = FileManager.default.fileExists(atPath: outputPath)
+        if existBool {
+            //TODO: need to fix the issue
+           //do nothing
+        }
+        exportSession.outputURL = URL.init(fileURLWithPath: outputPath)
+        exportSession.outputFileType = AVFileType.mp4
+        exportSession.shouldOptimizeForNetworkUse = true;
+        exportSession.exportAsynchronously(completionHandler: {
+            switch exportSession.status {
+                case .failed:
+                    handler(false, nil)
+                    break
+                case .cancelled:
+                    handler(false, nil)
+                    break;
+                case .completed:
+                    let mp4Path = URL.init(fileURLWithPath: outputPath)
+                    handler(true, mp4Path)
+                    break;
+                default:
+                    break;
+                    }
+                })
+            }
+        }
+    }
     
     class func getScreenWidth() -> CGFloat {
         return UIScreen.main.bounds.width

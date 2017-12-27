@@ -46,21 +46,18 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAction(_ sender: UIButton) {
         //mock up
-        loginSuccess()
+        //loginSuccess()
         
-        //will not execute it now
-        /*
         OPLoadingHUD.show(UIImage(named: "loading"), title: "登录中", animated: true, delay: 0.0)
         guard let user = username.text, let password = password.text else { return }
         DataService.sharedInstance.userLogin(user, pwd: password) { [weak self](success, error) in
             if error != nil {
-                //TODO: deal with the error
+                
             } else {
                 self?.loginSuccess()
             }
             OPLoadingHUD.hide()
         }
-         */
     }
     
     @IBAction func resetPasswordAction(_ sender: UIButton) {

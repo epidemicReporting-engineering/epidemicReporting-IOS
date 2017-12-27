@@ -314,6 +314,26 @@ class DataServiceTest: XCTestCase {
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 1))
         }
     }
+    
+    func test_7_upload_image() {
+        var waitingForBlock = true
+        let image = UIImage.init(named: "loginbg")
+        let uuid = UUID().uuidString
+        DataService.sharedInstance.uploadImageToServer(uuid, uploadImage: image, handler: { (success, json, error,uuid) in
+            print(success)
+            waitingForBlock = false
+            }, progressHandler: { (uuid,progress) in
+                print(progress?.fractionCompleted)
+                guard let value = progress?.fractionCompleted else { return }
+                if value == 1.0 {
+                    print("the uploading complete")
+                }
+        })
+        while waitingForBlock {
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 1))
+        }
+    }
+    
 }
 
 

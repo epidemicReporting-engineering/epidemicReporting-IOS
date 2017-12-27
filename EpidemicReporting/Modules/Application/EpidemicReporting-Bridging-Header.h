@@ -13,6 +13,5 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <FSCalendar/FSCalendar.h>
-#import <TZImagePickerController/TZImagePickerController.h>
 
 #endif /* EpidemicReporting_Bridging_Header_h */

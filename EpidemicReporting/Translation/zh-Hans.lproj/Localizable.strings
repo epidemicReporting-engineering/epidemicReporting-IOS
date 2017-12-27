@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  EpidemicReporting
+
+  Created by eleven on 2017/12/27.
+  Copyright © 2017年 epidemicreporting.com. All rights reserved.
+*/
+
+"PHOTOS"="相册";
+"CAMERA"="相机";
+"VIDEOS"="视频";
+"Gallery.Done"="确定";
+"Gallery.Images.Title"="相册";
+"Gallery.Camera.Title"="相机";
+"Gallery.Videos.Title"="视频";
+"Gallery.Camera.Flash.Off"="关闭";
+"Gallery.Camera.Flash.On"="开启";
+"Gallery.Camera.Flash.Auto"="自动";
+"Gallery.AllVideos"="所有视频";

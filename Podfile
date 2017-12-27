@@ -17,8 +17,6 @@ target ‘EpidemicReporting’ do
     pod 'FSCalendar'
     pod 'AssetsPickerViewController', '~> 2.0'
     pod 'SDWebImage', '~> 4.0'
-    pod 'TZImagePickerController'
-    pod 'Gallery'
 end
 
 target 'EpidemicReportingTests' do
@@ -34,6 +32,4 @@ target 'EpidemicReportingTests' do
     pod 'FSCalendar'
     pod 'AssetsPickerViewController', '~> 2.0'
     pod 'SDWebImage', '~> 4.0'
-    pod 'TZImagePickerController'
-    pod 'Gallery'
 end

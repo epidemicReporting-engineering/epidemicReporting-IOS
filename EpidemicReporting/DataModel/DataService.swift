@@ -58,15 +58,36 @@ class DataService: NSObject {
         }
     }
     
-    func uploadImageToServer(_ name: String?, desc: String?, uploadImage: UIImage?, handler:@escaping ((_ success:Bool, _ imageUrl: String?, _ error:NSError?)->()), progressHandler:@escaping ((_ progress: Progress?)->())) {
-        Networking.shareInstance.uploadImageToServer(name, desc: desc, uploadImage: uploadImage, handler: { (success, json, error) in
-            guard let data = json?.dictionaryObject else {
-                handler(false, nil, error)
+    func uploadImageToServer(_ uuid: String, uploadImage: UIImage?, handler:@escaping ((_ success:Bool, _ imageUrl: String?, _ error:NSError?, _ uuid: String)->()), progressHandler:@escaping ((_ uuid: String, _ progress: Progress?)->())) {
+        Networking.shareInstance.uploadImageToServer(uuid, uploadImage: uploadImage, handler: { (success, json, error) in
+            guard let data = json?["data"].dictionaryObject else {
+                handler(false, nil, error, uuid)
                 return
             }
-            handler(success, data["img"] as? String, nil)
+            if let relative = data["relativePath"] as? String {
+                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                handler(success, url, nil, uuid)
+                return
+            }
+            handler(false, nil, error, uuid)
         }) { (process) in
-            progressHandler(process)
+            progressHandler(uuid, process)
+        }
+    }
+    
+    func uploadVideoToServer(_ uuid: String, _ url: URL?, handler:@escaping ((_ success:Bool, _ videoUrl: String?, _ error:NSError?, _ uuid: String)->()), progressHandler:@escaping ((_ uuid: String, _ progress: Progress?)->())) {
+        Networking.shareInstance.uploadVideoToServer(uuid, url, handler: { (success, json, error) in
+            guard let data = json?["data"].dictionaryObject else {
+                handler(false, nil, error, uuid)
+                return
+            }
+            if let relative = data["relativePath"] as? String {
+                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                handler(success, url, nil, uuid)
+                return
+            }
+        }) { (process) in
+            progressHandler(uuid, process)
         }
     }
     

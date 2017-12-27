@@ -8,17 +8,17 @@
 
 import UIKit
 import CoreData
-import TZImagePickerController
-import Gallery
+import AssetsPickerViewController
+import Photos
+import TinyLog
 
 class MyReportsTableViewController: CoreDataTableViewController {
     
-    fileprivate var imagePickerVc: TZImagePickerController?
-    fileprivate var gallyPickerVc: GalleryController?
+    fileprivate var assetVC: AssetsViewController?
+    fileprivate var assets: [PHAsset]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         initUI()
         initTableView()
     }
@@ -76,11 +76,12 @@ class MyReportsTableViewController: CoreDataTableViewController {
     }
     
     @objc private func imageViewPicker() {
-        gallyPickerVc = GalleryController()
-        gallyPickerVc?.delegate = self
-        if let presentVc = gallyPickerVc {
-            present(presentVc, animated: true, completion: nil)
-        }
+        let pickerConfig = AssetsPickerConfig()
+        pickerConfig.selectedAssets = self.assets
+        
+        let picker = AssetsPickerViewController(pickerConfig: pickerConfig)
+        picker.pickerDelegate = self
+        present(picker, animated: true, completion: nil)
     }
 }
 
@@ -113,49 +114,54 @@ extension MyReportsTableViewController {
     }
 }
 
-extension MyReportsTableViewController: GalleryControllerDelegate {
-    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]){
-        
+
+extension MyReportsTableViewController: AssetsPickerViewControllerDelegate {
+    
+    func assetsPickerCannotAccessPhotoLibrary(controller: AssetsPickerViewController) {
+        logw("Need permission to access photo library.")
     }
     
-    func galleryController(_ controller: GalleryController, didSelectVideo video: Video){
-        
+    func assetsPickerDidCancel(controller: AssetsPickerViewController) {
+        log("Cancelled.")
     }
     
-    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        
+    func assetsPicker(controller: AssetsPickerViewController, selected assets: [PHAsset]) {
+        self.assets = assets
+        if let uploadNav = storyboard?.instantiateViewController(withIdentifier: "sendReportNav") as? UINavigationController {
+            assetVC = uploadNav.childViewControllers.first as? AssetsViewController
+            assetVC?.assets = assets
+            present(uploadNav, animated: true, completion: nil)
+        }
     }
     
-    func galleryControllerDidCancel(_ controller: GalleryController) {
-        controller.dismiss(animated: true, completion: nil)
+    func assetsPicker(controller: AssetsPickerViewController, shouldSelect asset: PHAsset, at indexPath: IndexPath) -> Bool {
+        log("shouldSelect: \(indexPath.row)")
+        
+        // can limit selection count
+        if controller.selectedAssets.count > 5 {
+            return false
+        }
+        return true
+    }
+    
+    func assetsPicker(controller: AssetsPickerViewController, didSelect asset: PHAsset, at indexPath: IndexPath) {
+        log("didSelect: \(indexPath.row)")
+    }
+    
+    func assetsPicker(controller: AssetsPickerViewController, shouldDeselect asset: PHAsset, at indexPath: IndexPath) -> Bool {
+        log("shouldDeselect: \(indexPath.row)")
+        return true
+    }
+    
+    func assetsPicker(controller: AssetsPickerViewController, didDeselect asset: PHAsset, at indexPath: IndexPath) {
+        log("didDeselect: \(indexPath.row)")
+    }
+    
+    func assetsPicker(controller: AssetsPickerViewController, didDismissByCancelling byCancel: Bool) {
+        log("dismiss completed - byCancel: \(byCancel)")
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 }
 
-//extension MyReportsTableViewController: TZImagePickerControllerDelegate {
-//
-//    func tz_imagePickerControllerDidCancel(_ picker: TZImagePickerController!) {
-//        //
-//        print("selected")
-//    }
-//
-//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingVideo coverImage: UIImage!, sourceAssets asset: Any!) {
-//        //
-//        print("selected")
-//    }
-//
-//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingGifImage animatedImage: UIImage!, sourceAssets asset: Any!) {
-//        //
-//        print("selected")
-//    }
-//
-//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
-//        //
-//        print("selected")
-//    }
-//
-//    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool, infos: [[AnyHashable : Any]]!) {
-//        //
-//        print("selected")
-//    }
-//}
+
 

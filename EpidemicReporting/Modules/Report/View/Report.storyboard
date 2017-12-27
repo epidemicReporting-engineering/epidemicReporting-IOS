@@ -96,15 +96,21 @@
                                     <constraint firstAttribute="height" constant="1" id="VT0-98-a93"/>
                                 </constraints>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Agy-as-fSL">
+                                <rect key="frame" x="-0.5" y="205" width="375" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="Y2A-uv-fhT"/>
+                                </constraints>
+                            </progressView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-rL-nuw">
-                                <rect key="frame" x="243" y="206" width="128" height="128"/>
+                                <rect key="frame" x="243" y="212" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="2p8-Py-1Uy"/>
                                     <constraint firstAttribute="width" constant="128" id="dRh-qn-qU9"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nh3-t3-SYz">
-                                <rect key="frame" x="295" y="258" width="24" height="24"/>
+                                <rect key="frame" x="295" y="264" width="24" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIr-5K-kPw">
                                         <rect key="frame" x="12" y="12.5" width="0.0" height="0.0"/>
@@ -122,15 +128,15 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="8yE-p3-hfa">
-                                <rect key="frame" x="4" y="206" width="20" height="20"/>
+                                <rect key="frame" x="4" y="212" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="4xZ-cC-OSA"/>
                                     <constraint firstAttribute="height" constant="20" id="uP9-fd-uHo"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f15-MA-geJ">
-                                <rect key="frame" x="34" y="206" width="169" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在获取地理位置信息.." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f15-MA-geJ">
+                                <rect key="frame" x="34" y="212" width="169" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -138,12 +144,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5i8-HW-20n" firstAttribute="centerX" secondItem="mpd-JG-fU4" secondAttribute="centerX" id="0zx-SL-Cu3"/>
-                            <constraint firstItem="IJh-rL-nuw" firstAttribute="top" secondItem="Usb-Hp-d7j" secondAttribute="bottom" constant="4" id="4fD-di-joS"/>
+                            <constraint firstItem="IJh-rL-nuw" firstAttribute="top" secondItem="Usb-Hp-d7j" secondAttribute="bottom" constant="10" id="4fD-di-joS"/>
                             <constraint firstItem="8yE-p3-hfa" firstAttribute="leading" secondItem="mpd-JG-fU4" secondAttribute="leading" constant="4" id="E7g-lg-97N"/>
                             <constraint firstItem="tnC-Vk-Syf" firstAttribute="top" secondItem="5i8-HW-20n" secondAttribute="top" constant="8" id="ED7-u1-F29"/>
-                            <constraint firstItem="8yE-p3-hfa" firstAttribute="top" secondItem="Usb-Hp-d7j" secondAttribute="bottom" constant="4" id="EmC-xJ-Vmy"/>
+                            <constraint firstItem="8yE-p3-hfa" firstAttribute="top" secondItem="Usb-Hp-d7j" secondAttribute="bottom" constant="10" id="EmC-xJ-Vmy"/>
                             <constraint firstItem="Usb-Hp-d7j" firstAttribute="width" secondItem="coJ-Rc-Rof" secondAttribute="width" id="Gkj-el-QQ0"/>
                             <constraint firstItem="Nh3-t3-SYz" firstAttribute="centerX" secondItem="IJh-rL-nuw" secondAttribute="centerX" id="I42-jm-Cr2"/>
+                            <constraint firstItem="Agy-as-fSL" firstAttribute="top" secondItem="Usb-Hp-d7j" secondAttribute="bottom" constant="3" id="IPA-m5-3Sh"/>
                             <constraint firstItem="Usb-Hp-d7j" firstAttribute="centerX" secondItem="mpd-JG-fU4" secondAttribute="centerX" id="PUZ-sl-KnR"/>
                             <constraint firstItem="IJh-rL-nuw" firstAttribute="leading" secondItem="f15-MA-geJ" secondAttribute="trailing" constant="40" id="QQc-MR-HHs"/>
                             <constraint firstItem="Usb-Hp-d7j" firstAttribute="top" secondItem="5i8-HW-20n" secondAttribute="bottom" constant="1" id="RmJ-Y2-PbG"/>
@@ -152,6 +159,8 @@
                             <constraint firstItem="mpd-JG-fU4" firstAttribute="trailing" secondItem="IJh-rL-nuw" secondAttribute="trailing" constant="4" id="Wfo-nU-fKP"/>
                             <constraint firstItem="Nh3-t3-SYz" firstAttribute="centerY" secondItem="IJh-rL-nuw" secondAttribute="centerY" id="Xuo-Yr-Haw"/>
                             <constraint firstItem="5i8-HW-20n" firstAttribute="top" secondItem="mpd-JG-fU4" secondAttribute="top" id="cYY-6A-yzs"/>
+                            <constraint firstItem="Agy-as-fSL" firstAttribute="centerX" secondItem="Usb-Hp-d7j" secondAttribute="centerX" id="oTq-kg-NYp"/>
+                            <constraint firstItem="Agy-as-fSL" firstAttribute="width" secondItem="Usb-Hp-d7j" secondAttribute="width" id="tLO-y9-s2v"/>
                             <constraint firstItem="5i8-HW-20n" firstAttribute="width" secondItem="coJ-Rc-Rof" secondAttribute="width" id="x6z-jv-2Mw"/>
                             <constraint firstItem="f15-MA-geJ" firstAttribute="top" secondItem="8yE-p3-hfa" secondAttribute="top" id="z4s-qq-KLi"/>
                         </constraints>
@@ -165,6 +174,7 @@
                         <outlet property="number" destination="iIr-5K-kPw" id="sIf-4M-ayN"/>
                         <outlet property="numberView" destination="Nh3-t3-SYz" id="hqc-os-mst"/>
                         <outlet property="placeHolder" destination="tnC-Vk-Syf" id="848-4u-OJ5"/>
+                        <outlet property="progress" destination="Agy-as-fSL" id="WsP-YG-snJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVR-ay-qbL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,10 +8,12 @@
 
 import UIKit
 import Photos
+import Alamofire
 
 class AssetsViewController: UIViewController {
     
     var assets: [PHAsset]?
+    var uploadURLs: [String]?
     fileprivate var locationManager: AMapLocationManager?
     fileprivate var search: AMapSearchAPI?
     fileprivate var location: String?
@@ -26,8 +28,9 @@ class AssetsViewController: UIViewController {
     @IBOutlet weak var number: UILabel!
     @IBOutlet weak var placeHolder: UILabel!
     @IBOutlet weak var currentLocation: UILabel!
-    
-    
+    @IBOutlet weak var progress: UIProgressView!
+    fileprivate var uploadingComplete = false
+    fileprivate var alertController: UIAlertController?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +49,7 @@ class AssetsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "发送", style: .done, target: self, action: #selector(sendReport))
         
         initUI()
+        uploadAssets(assets)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,23 +64,15 @@ class AssetsViewController: UIViewController {
         numberView.backgroundColor = UIColor.green
         guard let count = assets?.count, count > 0, let asset = assets?.first else { return }
         number.text = count.description
-        let image = getUIImageFromAsset(asset)
-        imageList.image = image
+        Utils.getUIImageFromAsset(asset) { [weak self] (image) in
+            self?.imageList.image = image
+        }
         commentsView.delegate = self
         commentsView.becomeFirstResponder()
-        
+        progress.setProgress(0.0, animated: true)
+        progress.progressTintColor = UIColor.init(hexString: themeBlue)
         getCurrentLocation()
         
-//        for uploadAsset in assets {
-//            let image = getUIImageFromAsset(uploadAsset)
-//            DataService.sharedInstance.uploadImageToServer("image", desc: "image", uploadImage: image, handler: { [weak self](success, json, error) in
-//                //
-//                print(success)
-//                }, progressHandler: { [weak self] (progress) in
-//                    //show the progress
-//                    print(progress?.fractionCompleted)
-//            })
-//        }
     }
     
     @objc func cancelWasPressed() {
@@ -84,10 +80,46 @@ class AssetsViewController: UIViewController {
     }
     
     @objc func sendReport() {
+        if (uploadingComplete == true) {}
         DataService.sharedInstance.reportMessage("user001", location: "Ning Bo", latitude: "111", longitude: "222", description: "333", multimedia: ["111","222"]) { (success, error) in
             if success {
                 
             }
+        }
+    }
+    
+    fileprivate func showAlterViewController() {
+        alertController = UIAlertController(title: "上传错误", message: "文件上传错误，您是否需要重新上传？", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: {[weak self] (action) in
+            self?.alertController?.dismiss(animated: true, completion: nil)
+        })
+        let okAction = UIAlertAction(title: "确定", style: .default, handler: {[weak self] (action) in
+
+            self?.uploadAssets(self?.assets)
+        })
+        alertController?.addAction(cancelAction)
+        alertController?.addAction(okAction)
+        guard let alertVC = alertController else { return }
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func uploadAssets(_ assetsIn: [PHAsset]?) {
+        BatchFilesUploading.sharedInstance.uploadFiles(assetsIn, handler: { [weak self] (success, result, error) in
+            if success {
+                self?.uploadingComplete = true
+                self?.uploadURLs = result
+            } else {
+                guard let code = error?.code else { return }
+                switch(code) {
+                case FileUploadErrorCode.UPLOADFAILED.rawValue:
+                    self?.progress.setProgress(0.0, animated: true)
+                    self?.showAlterViewController()
+                default:
+                    break
+                }
+            }
+        }) { [weak self](percentage) in
+            self?.progress.setProgress(percentage, animated: true)
         }
     }
     

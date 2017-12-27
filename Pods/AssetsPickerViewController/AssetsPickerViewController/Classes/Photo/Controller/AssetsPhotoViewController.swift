@@ -14,6 +14,7 @@ import TinyLog
 // MARK: - AssetsPhotoViewController
 class AssetsPhotoViewController: UIViewController {
     
+    
     // MARK: Properties
     fileprivate var pickerConfig: AssetsPickerConfig!
     fileprivate var previewing: UIViewControllerPreviewing?
@@ -109,13 +110,16 @@ class AssetsPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor(red: 18/255, green: 150/255, blue: 219/255, alpha: 1)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+
         setupCommon()
         setupBarButtonItems()
         
         updateEmptyView(count: 0)
         updateNoPermissionView()
-        
         if let selectedAssets = self.pickerConfig?.selectedAssets {
             setSelectedAssets(assets: selectedAssets)
         }

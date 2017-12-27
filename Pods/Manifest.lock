@@ -20,7 +20,6 @@ PODS:
     - UIViewKVO (~> 2.0)
   - FadeView (2.0.0)
   - FSCalendar (2.7.9)
-  - Gallery (2.0.2)
   - INSPhotoGallery (1.2.3)
   - KeychainAccess (3.1.0)
   - PureLayout (3.0.2)
@@ -32,7 +31,6 @@ PODS:
   - SwiftyJSON (3.1.4)
   - Sync (4.0.3)
   - TinyLog (2.0.4)
-  - TZImagePickerController (1.9.3)
   - UIViewKVO (2.0.0)
 
 DEPENDENCIES:
@@ -42,14 +40,12 @@ DEPENDENCIES:
   - AMapSearch
   - AssetsPickerViewController (~> 2.0)
   - FSCalendar
-  - Gallery
   - INSPhotoGallery
   - KeychainAccess (~> 3.1.0)
   - SDWebImage (~> 4.0)
   - STRegex (~> 1.0)
   - SwiftyJSON (~> 3.1.4)
   - Sync (~> 4)
-  - TZImagePickerController
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -61,7 +57,6 @@ SPEC CHECKSUMS:
   Dimmer: 9908a0003f4882eca1b2e318e11f82d32280794e
   FadeView: 80197da2fbee5382b178127e8c5f988a35eef018
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
-  Gallery: a5cdf94495b789c622e8286dea6bf6f29a0b3429
   INSPhotoGallery: 2c07e4a5b5be1b4fd49c0c1f16eed28c6fe8a15d
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
@@ -71,9 +66,8 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Sync: 0490b72e3322ba86095f603d7230bec36749f249
   TinyLog: 1b19359cd3f32ab4972c595d002efc614e596529
-  TZImagePickerController: 079ab986018c22793462e531045a75e366b18252
   UIViewKVO: 091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf
 
-PODFILE CHECKSUM: 3cb2562f05c33f88fc20fef00eca487d357b1ba2
+PODFILE CHECKSUM: e04e54467ff69ad3dc5376c3f4e68cb3edd95090
 
 COCOAPODS: 1.2.1
