@@ -84,10 +84,10 @@ class AdminReportsTableViewController: CoreDataTableViewController {
     }
     
     @objc func refeshDataAll() {
-        _ = setup
         navigationItem.title = "疫情汇总"
         DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
             self?.refreshControl?.endRefreshing()
+            self?.refeshData(DutyStatus.ALL)
         }
     }
 }
@@ -134,7 +134,9 @@ extension AdminReportsTableViewController: FilterTableViewControllerDelegate {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DutyReport")
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         guard let value = status?.rawValue else { return }
-        request.predicate = NSPredicate(format: "dutyStatus == %@", value)
+        if value != DutyStatus.ALL.rawValue {
+            request.predicate = NSPredicate(format: "dutyStatus == %@", value)
+        }
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         do {
             try fetchedResultsController?.performFetch()

@@ -20,6 +20,7 @@ enum DutyStatus: String {
     case FINISH = "4"
     case SUCCESS = "5"
     case CANTDO = "6"
+    case ALL = "7"
 }
 
 enum PullDataType: String {
