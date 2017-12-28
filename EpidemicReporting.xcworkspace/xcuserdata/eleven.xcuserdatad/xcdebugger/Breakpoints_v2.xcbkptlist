@@ -42,27 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536077401.294177"
+            timestampString = "536151966.146211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "reportAssign(_:dutyOwner:dutyDescription:dutyStatus:handler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536077401.294263"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "reportProcess(_:dutyOwner:dutyDescription:dutyStatus:dutyMultiMedia:handler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,60 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536077401.294336"
+            timestampString = "536151966.146572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "reportConfirm(_:dutyOwner:dutyDescription:dutyStatus:dutyMultiMedia:handler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536077401.294396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "getReportAllStatus(_:handler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536077401.294454"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "getAllReports(_:filter:param:handler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EpidemicReportingTests/CoreDataUITest.swift"
-            timestampString = "536064690.401539"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "test_1_query_report()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReportingTests/DataServiceTest.swift"
-            timestampString = "536077401.29463"
+            timestampString = "536119372.199415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "329"
@@ -201,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/Report/Controller/AssetsViewController.swift"
-            timestampString = "536077401.294687"
+            filePath = "EpidemicReporting/Networking/Networking.swift"
+            timestampString = "536119372.199516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "sendReport()"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "uploadVideoToServer(_:_:handler:progessHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,13 +153,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Networking/Networking.swift"
-            timestampString = "536077401.294744"
+            filePath = "EpidemicReportingTests/CoreDataUITest.swift"
+            timestampString = "536151033.752055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "uploadVideoToServer(_:_:handler:progessHandler:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "test_1_query_report()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EpidemicReporting/DataModel/DataService.swift"
+            timestampString = "536151966.146956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "reportMessage(_:location:latitude:longitude:description:multimedia:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EpidemicReporting/DataModel/DataService.swift"
+            timestampString = "536151966.147168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "getAllReports(_:filter:param:handler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

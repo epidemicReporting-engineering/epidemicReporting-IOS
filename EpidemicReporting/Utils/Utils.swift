@@ -81,8 +81,8 @@ class Utils {
         dateformatter.dateFormat = "yyyy年MM月dd日 HH:mm"
         
         let timeInterval:TimeInterval = TimeInterval(time)
-        let date = NSDate(timeIntervalSince1970: timeInterval)
-        return dateformatter.string(from: date as Date)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return dateformatter.string(from: date)
     }
     
     class func getDutyStatus(_ status: String) -> String {

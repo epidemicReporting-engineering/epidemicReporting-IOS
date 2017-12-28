@@ -22,11 +22,17 @@
 		A56B8C481FEFBF3100303C02 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B8C471FEFBF3100303C02 /* LoginStoryboard.storyboard */; };
 		A56B8C4D1FEFD29900303C02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C4C1FEFD29900303C02 /* LoginViewController.swift */; };
 		A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C4E1FEFDE6C00303C02 /* ResetPasswordViewController.swift */; };
-		A56B8C511FF0B2D300303C02 /* OPLoadingHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */; };
+		A56B8C511FF0B2D300303C02 /* LoadingHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C501FF0B2D300303C02 /* LoadingHUD.swift */; };
 		A56B8C531FF0B35400303C02 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B8C521FF0B35400303C02 /* UIView+Ext.swift */; };
 		A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */; };
 		A57F8E211FF35EEA002EC92B /* PHAsset+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E201FF35EEA002EC92B /* PHAsset+Ext.swift */; };
 		A57F8E231FF3BB66002EC92B /* BatchFilesUploading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E221FF3BB66002EC92B /* BatchFilesUploading.swift */; };
+		A57F8E301FF486A6002EC92B /* DutyReport+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E2E1FF486A6002EC92B /* DutyReport+CoreDataClass.swift */; };
+		A57F8E311FF486A6002EC92B /* DutyReport+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E2F1FF486A6002EC92B /* DutyReport+CoreDataProperties.swift */; };
+		A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E321FF48936002EC92B /* ToastWindow.swift */; };
+		A57F8E381FF4C6A5002EC92B /* AdminReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E371FF4C6A5002EC92B /* AdminReportsTableViewController.swift */; };
+		A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E3B1FF4D8BA002EC92B /* FilterTableViewController.swift */; };
+		A57F8E3E1FF4E1ED002EC92B /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F8E3D1FF4E1ED002EC92B /* FilterTableViewCell.swift */; };
 		A5A902951FB47B1B00A6601F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902941FB47B1B00A6601F /* Networking.swift */; };
 		A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */; };
 		A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */; };
@@ -44,8 +50,6 @@
 		A5EB80191FF2251C005D41B9 /* CoreDataUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB80181FF2251C005D41B9 /* CoreDataUITest.swift */; };
 		A5EB801C1FF23893005D41B9 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */; };
 		A5EB801D1FF23893005D41B9 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */; };
-		A5EB80201FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */; };
-		A5EB80211FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */; };
 		A5EDA34C1FF32FFF00762380 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5EDA34A1FF32FFF00762380 /* LaunchScreen.storyboard */; };
 		A5EDA34D1FF32FFF00762380 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5EDA34B1FF32FFF00762380 /* Main.storyboard */; };
 		A5EDA34E1FF3308000762380 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5EDA3501FF3308000762380 /* Localizable.strings */; };
@@ -93,11 +97,17 @@
 		A56B8C471FEFBF3100303C02 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		A56B8C4C1FEFD29900303C02 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A56B8C4E1FEFDE6C00303C02 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPLoadingHUD.swift; sourceTree = "<group>"; };
+		A56B8C501FF0B2D300303C02 /* LoadingHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingHUD.swift; sourceTree = "<group>"; };
 		A56B8C521FF0B35400303C02 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A57717AB1FE008BA00004188 /* UIBarButtonItem+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Ext.swift"; sourceTree = "<group>"; };
 		A57F8E201FF35EEA002EC92B /* PHAsset+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHAsset+Ext.swift"; sourceTree = "<group>"; };
 		A57F8E221FF3BB66002EC92B /* BatchFilesUploading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchFilesUploading.swift; sourceTree = "<group>"; };
+		A57F8E2E1FF486A6002EC92B /* DutyReport+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A57F8E2F1FF486A6002EC92B /* DutyReport+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A57F8E321FF48936002EC92B /* ToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastWindow.swift; sourceTree = "<group>"; };
+		A57F8E371FF4C6A5002EC92B /* AdminReportsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminReportsTableViewController.swift; sourceTree = "<group>"; };
+		A57F8E3B1FF4D8BA002EC92B /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
+		A57F8E3D1FF4E1ED002EC92B /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		A5A902941FB47B1B00A6601F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		A5A902961FB4848200A6601F /* WebServiceAPIMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceAPIMapping.swift; sourceTree = "<group>"; };
 		A5E3C95E1FB4960E000FAD71 /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
@@ -129,8 +139,6 @@
 		A5EB80181FF2251C005D41B9 /* CoreDataUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUITest.swift; sourceTree = "<group>"; };
 		A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5EDA34A1FF32FFF00762380 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5EDA34B1FF32FFF00762380 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A5EDA34F1FF3308000762380 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -191,19 +199,29 @@
 		A529F0D51FB7281500E4ADDC /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				A57F8E321FF48936002EC92B /* ToastWindow.swift */,
 				A5EB80011FF1F25C005D41B9 /* CoreDataCollectionViewController.swift */,
 				A5EB80001FF1F25C005D41B9 /* CoreDataTableViewController.swift */,
-				A56B8C501FF0B2D300303C02 /* OPLoadingHUD.swift */,
+				A56B8C501FF0B2D300303C02 /* LoadingHUD.swift */,
 				A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
 		};
+		A57F8E341FF4C534002EC92B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A57F8E371FF4C6A5002EC92B /* AdminReportsTableViewController.swift */,
+				A57F8E3B1FF4D8BA002EC92B /* FilterTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				A5EB801E1FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift */,
-				A5EB801F1FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift */,
+				A57F8E2E1FF486A6002EC92B /* DutyReport+CoreDataClass.swift */,
+				A57F8E2F1FF486A6002EC92B /* DutyReport+CoreDataProperties.swift */,
 				A5EB801A1FF23893005D41B9 /* User+CoreDataClass.swift */,
 				A5EB801B1FF23893005D41B9 /* User+CoreDataProperties.swift */,
 				189BC41B1FE4E50500838437 /* DataService.swift */,
@@ -269,6 +287,7 @@
 		A5E3C9561FB49430000FAD71 /* ReportList */ = {
 			isa = PBXGroup;
 			children = (
+				A57F8E341FF4C534002EC92B /* Controller */,
 				A5E3C9721FB49A34000FAD71 /* View */,
 			);
 			path = ReportList;
@@ -341,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */,
+				A57F8E3D1FF4E1ED002EC92B /* FilterTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -710,12 +730,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A57F8E381FF4C6A5002EC92B /* AdminReportsTableViewController.swift in Sources */,
 				A5F24B961FB471720012EAF6 /* EpidemicReporting.xcdatamodeld in Sources */,
 				A529F0E31FDEBDDE00E4ADDC /* NetworkingAPIs.swift in Sources */,
 				A57F8E211FF35EEA002EC92B /* PHAsset+Ext.swift in Sources */,
 				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
 				A57F8E231FF3BB66002EC92B /* BatchFilesUploading.swift in Sources */,
-				A5EB80211FF24BFA005D41B9 /* DutyReport+CoreDataProperties.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
 				A5EB801C1FF23893005D41B9 /* User+CoreDataClass.swift in Sources */,
@@ -724,20 +744,24 @@
 				A56B8C531FF0B35400303C02 /* UIView+Ext.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
 				A5EB801D1FF23893005D41B9 /* User+CoreDataProperties.swift in Sources */,
+				A57F8E301FF486A6002EC92B /* DutyReport+CoreDataClass.swift in Sources */,
 				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,
 				A5EB80021FF1F25C005D41B9 /* CoreDataTableViewController.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
-				A56B8C511FF0B2D300303C02 /* OPLoadingHUD.swift in Sources */,
+				A56B8C511FF0B2D300303C02 /* LoadingHUD.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */,
+				A57F8E311FF486A6002EC92B /* DutyReport+CoreDataProperties.swift in Sources */,
+				A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */,
 				A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */,
 				A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */,
 				A56B8C4D1FEFD29900303C02 /* LoginViewController.swift in Sources */,
 				A5EB80031FF1F25C005D41B9 /* CoreDataCollectionViewController.swift in Sources */,
 				A5EB7FFE1FF1ED19005D41B9 /* Utils.swift in Sources */,
-				A5EB80201FF24BFA005D41B9 /* DutyReport+CoreDataClass.swift in Sources */,
 				A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */,
+				A57F8E3E1FF4E1ED002EC92B /* FilterTableViewCell.swift in Sources */,
 				A5A902951FB47B1B00A6601F /* Networking.swift in Sources */,
 				A529F0DF1FDD178B00E4ADDC /* AssetsViewController.swift in Sources */,
 			);

@@ -59,7 +59,8 @@ class CoreDataUITest: XCTestCase {
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         request.predicate = NSPredicate(format: "id == %lld", id)
         let users = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [DutyReport])
-        print("users")
+        guard let media = users?.first?.multiMedia else { return }
+        let _ = NSKeyedUnarchiver.unarchiveObject(with: media as Data) as? [String]
     }
     
     func test_2_save_user() {

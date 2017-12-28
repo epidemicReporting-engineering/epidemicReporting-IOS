@@ -80,10 +80,19 @@ class AssetsViewController: UIViewController {
     }
     
     @objc func sendReport() {
-        if (uploadingComplete == true) {}
-        DataService.sharedInstance.reportMessage("user001", location: "Ning Bo", latitude: "111", longitude: "222", description: "333", multimedia: ["111","222"]) { (success, error) in
-            if success {
-                
+        guard let description = reportDescription else {
+            //TODO: toast, the content should not be empty
+            return
+        }
+
+        if (uploadingComplete == true) {
+            guard let userid = appDelegate.currentUser?.userid else { return }
+            DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
+                if success {
+                    self?.dismiss(animated: true, completion: nil)
+                } else {
+                    //TODO: Toast, error message
+                }
             }
         }
     }
@@ -151,6 +160,8 @@ class AssetsViewController: UIViewController {
             
             if let location = location {
                 NSLog("location:%@", location)
+                self?.latitude = location.coordinate.latitude.description
+                self?.longitude = location.coordinate.longitude.description
                 let request = AMapReGeocodeSearchRequest()
                 request.location = AMapGeoPoint.location(withLatitude: CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude))
                 request.requireExtension = true
@@ -170,6 +181,7 @@ extension AssetsViewController: AMapSearchDelegate {
             return
         }
         currentLocation.text = response?.regeocode?.formattedAddress
+        location = response?.regeocode?.formattedAddress
     }
 }
 
@@ -185,5 +197,6 @@ extension AssetsViewController: UITextViewDelegate {
         } else {
             placeHolder.isHidden = false
         }
+        reportDescription = textView.text
     }
 }

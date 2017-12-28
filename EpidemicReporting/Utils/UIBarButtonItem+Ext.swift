@@ -14,7 +14,10 @@ extension UIBarButtonItem {
     static func createBarButtonItemWithImage(_ image: UIImage, _ rect: CGRect, _ target: AnyObject, _ method: Selector) -> UIBarButtonItem {
         let Img = image.withRenderingMode(.alwaysOriginal)
         let imgButton = UIButton(type: .custom)
-        imgButton.frame = rect
+        imgButton.translatesAutoresizingMaskIntoConstraints = false
+        imgButton.widthAnchor.constraint(equalToConstant: rect.width).isActive = true
+        imgButton.heightAnchor.constraint(equalToConstant: rect.height).isActive = true
+        imgButton.contentHorizontalAlignment = .center
         imgButton.setBackgroundImage(Img, for: .normal)
         imgButton.addTarget(target, action: method, for: .touchUpInside)
         let barButtonItem = UIBarButtonItem(customView: imgButton)

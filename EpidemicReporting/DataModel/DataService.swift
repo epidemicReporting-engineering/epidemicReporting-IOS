@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import Sync
+import SwiftyJSON
 
 class DataService: NSObject {
     
@@ -27,7 +29,19 @@ class DataService: NSObject {
                 if token != "" {
                     UserDefaults.standard.set(token, forKey: "token")
                     UserDefaults.standard.synchronize()
-                    handler(true, nil)
+                    
+                    var jsonData:JSON? = JSON()
+                    jsonData = json
+                    jsonData?.dictionaryObject?["userid"] = username
+                    
+                    guard let data = jsonData?.dictionaryObject else { return }
+                    Sync.changes([data], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
+                        if error == nil {
+                            handler(true, nil)
+                        } else {
+                            handler(false, error)
+                        }
+                    })
                 } else {
                     handler(false, nil)
                 }
@@ -94,35 +108,15 @@ class DataService: NSObject {
     func reportMessage(_ reporter: String?, location: String?, latitude: String?, longitude: String?, description: String?, multimedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.reportMessage(reporter, location: location, latitude: latitude, longitude: longitude, description: description, multimedia: multimedia) { (success, json, error) in
             if success {
-                //TODO: store the data into DB, data example
-                /*
-                {
-                    "code": 0,
-                    "data": {
-                        "id": 100022,
-                        "description": "333",
-                        "dutyOwner": null,
-                        "leaderPoint": null,
-                        "leaderComment": null,
-                        "dutyDescription": null,
-                        "dutyStatus": null,
-                        "longitude": "222",
-                        "dutyMultiMedia": null,
-                        "latitude": "111",
-                        "reportTime": 1514182714000,
-                        "location": "Ning Bo",
-                        "reporter": "user001",
-                        "dutyOwnerName": null,
-                        "processTime": null,
-                        "reporterName": "张三",
-                        "multiMedia": [
-                        "111",
-                        "222"
-                        ]
+                guard let data = json?["data"].dictionaryObject else { handler(false, nil)
+                    return }
+                Sync.changes([data], inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
                     }
-                }
-                */
-                handler(true, nil)
+                })
             } else {
                 handler(false, error)
             }
@@ -158,7 +152,7 @@ class DataService: NSObject {
                  "222"
                  ]
                  }
-                */
+                 */
                 handler(true, nil)
             } else {
                 handler(false, error)
@@ -196,7 +190,7 @@ class DataService: NSObject {
                  ]
                  }
                  }
-
+                 
                  //data example: send finish status, get the response
                  {
                  "code" : 0,
@@ -226,7 +220,7 @@ class DataService: NSObject {
                  ]
                  }
                  }
-
+                 
                  */
                 handler(true, nil)
             } else {
@@ -268,7 +262,7 @@ class DataService: NSObject {
                  ]
                  }
                  }
-
+                 
                  */
                 handler(true, nil)
             } else {
@@ -280,9 +274,6 @@ class DataService: NSObject {
     func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getReportAllStatus(dutyId) { (success, json, error) in
             if success {
-                //TODO: store the data into DB, data example
-                /*
-                 */
                 handler(true, nil)
             } else {
                 handler(false, error)
@@ -293,10 +284,15 @@ class DataService: NSObject {
     func getAllReports(_ action: String?, filter: String?, param: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getAllReports(action, filter: filter, param: param) { (success, json, error) in
             if success {
-                //TODO: store the data into DB, data example
-                /*
-                 */
-                handler(true, nil)
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                    return }
+                Sync.changes(data, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
             } else {
                 handler(false, error)
             }

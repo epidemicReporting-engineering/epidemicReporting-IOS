@@ -2,7 +2,7 @@
 //  DutyReport+CoreDataClass.swift
 //  EpidemicReporting
 //
-//  Created by eleven on 2017/12/26.
+//  Created by eleven on 2017/12/28.
 //  Copyright © 2017年 epidemicreporting.com. All rights reserved.
 //
 //

@@ -36,13 +36,16 @@ class ReportTableViewCell: UITableViewCell {
             status.text = Utils.getDutyStatus(reportStatus)
         }
         
-        if let images = report.multiMedia {
-            //cover.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "defaultIcon"))
-            print("hello")
+        if let dutyOwner = report.dutyOwnerName {
+            processor.text = "责任人：" + dutyOwner
         }
         
-        guard let dutyOwner = report.dutyOwnerName else { return }
-        processor.text = "责任人：" + dutyOwner
+        if let media = report.multiMedia {
+            let medias = NSKeyedUnarchiver.unarchiveObject(with: media as Data) as? [String]
+            if let urls = medias, urls.count > 0, let url = urls.first {
+                cover.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "defaultIcon"))
+            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

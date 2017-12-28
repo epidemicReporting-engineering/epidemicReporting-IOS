@@ -2,7 +2,7 @@
 //  DutyReport+CoreDataProperties.swift
 //  EpidemicReporting
 //
-//  Created by eleven on 2017/12/26.
+//  Created by eleven on 2017/12/28.
 //  Copyright © 2017年 epidemicreporting.com. All rights reserved.
 //
 //
@@ -18,7 +18,7 @@ extension DutyReport {
     }
 
     @NSManaged public var dutyDescription: String?
-    @NSManaged public var dutyMultiMedia: String?
+    @NSManaged public var dutyMultiMedia: NSData?
     @NSManaged public var dutyOwner: String?
     @NSManaged public var dutyOwnerName: String?
     @NSManaged public var dutyStatus: String?
@@ -28,8 +28,8 @@ extension DutyReport {
     @NSManaged public var leaderPoint: String?
     @NSManaged public var location: String?
     @NSManaged public var longitude: String?
-    @NSManaged public var multiMedia: String?
-    @NSManaged public var processTime: String?
+    @NSManaged public var multiMedia: NSData?
+    @NSManaged public var processTime: NSNumber?
     @NSManaged public var reportDescription: String?
     @NSManaged public var reporter: String?
     @NSManaged public var reporterName: String?
