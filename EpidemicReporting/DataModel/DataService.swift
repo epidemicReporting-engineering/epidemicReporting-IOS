@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Sync
+import SwiftyJSON
 
 class DataService: NSObject {
     
@@ -28,7 +29,19 @@ class DataService: NSObject {
                 if token != "" {
                     UserDefaults.standard.set(token, forKey: "token")
                     UserDefaults.standard.synchronize()
-                    handler(true, nil)
+                    
+                    var jsonData:JSON? = JSON()
+                    jsonData = json
+                    jsonData?.dictionaryObject?["userid"] = username
+                    
+                    guard let data = jsonData?.dictionaryObject else { return }
+                    Sync.changes([data], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
+                        if error == nil {
+                            handler(true, nil)
+                        } else {
+                            handler(false, error)
+                        }
+                    })
                 } else {
                     handler(false, nil)
                 }
@@ -59,22 +72,87 @@ class DataService: NSObject {
         }
     }
     
-    func uploadImageToServer(_ name: String?, desc: String?, uploadImage: UIImage?, handler:@escaping ((_ success:Bool, _ imageUrl: String?, _ error:NSError?)->()), progressHandler:@escaping ((_ progress: Progress?)->())) {
-        Networking.shareInstance.uploadImageToServer(name, desc: desc, uploadImage: uploadImage, handler: { (success, json, error) in
-            guard let data = json?.dictionaryObject else {
-                handler(false, nil, error)
+    func uploadImageToServer(_ uuid: String, uploadImage: UIImage?, handler:@escaping ((_ success:Bool, _ imageUrl: String?, _ error:NSError?, _ uuid: String)->()), progressHandler:@escaping ((_ uuid: String, _ progress: Progress?)->())) {
+        Networking.shareInstance.uploadImageToServer(uuid, uploadImage: uploadImage, handler: { (success, json, error) in
+            guard let data = json?["data"].dictionaryObject else {
+                handler(false, nil, error, uuid)
                 return
             }
-            handler(success, data["img"] as? String, nil)
+            if let relative = data["relativePath"] as? String {
+                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                handler(success, url, nil, uuid)
+                return
+            }
+            handler(false, nil, error, uuid)
         }) { (process) in
-            progressHandler(process)
+            progressHandler(uuid, process)
+        }
+    }
+    
+    func uploadVideoToServer(_ uuid: String, _ url: URL?, handler:@escaping ((_ success:Bool, _ videoUrl: String?, _ error:NSError?, _ uuid: String)->()), progressHandler:@escaping ((_ uuid: String, _ progress: Progress?)->())) {
+        Networking.shareInstance.uploadVideoToServer(uuid, url, handler: { (success, json, error) in
+            guard let data = json?["data"].dictionaryObject else {
+                handler(false, nil, error, uuid)
+                return
+            }
+            if let relative = data["relativePath"] as? String {
+                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                handler(success, url, nil, uuid)
+                return
+            }
+        }) { (process) in
+            progressHandler(uuid, process)
         }
     }
     
     func reportMessage(_ reporter: String?, location: String?, latitude: String?, longitude: String?, description: String?, multimedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.reportMessage(reporter, location: location, latitude: latitude, longitude: longitude, description: description, multimedia: multimedia) { (success, json, error) in
             if success {
-                //TODO: store the data into DB
+                guard let data = json?["data"].dictionaryObject else { handler(false, nil)
+                    return }
+                Sync.changes([data], inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func reportAssign(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportAssign(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus) { (success, json, error) in
+            if success {
+                //TODO: store the data into DB, data example
+                /*
+                 {
+                 "code" : 0,
+                 "data" : {
+                 "id" : 100019,
+                 "description" : "333",
+                 "dutyOwner" : "user001",
+                 "leaderPoint" : null,
+                 "leaderComment" : null,
+                 "dutyDescription" : "注意给病人隔离",
+                 "dutyStatus" : "0",
+                 "longitude" : "222",
+                 "dutyMultiMedia" : null,
+                 "latitude" : "111",
+                 "reportTime" : 1514182714000,
+                 "location" : "Ning Bo",
+                 "reporter" : "user001",
+                 "dutyOwnerName" : "张三",
+                 "processTime" : 1514184160000,
+                 "reporterName" : "张三",
+                 "multiMedia" : [
+                 "111",
+                 "222"
+                 ]
+                 }
+                 */
                 handler(true, nil)
             } else {
                 handler(false, error)
@@ -82,30 +160,147 @@ class DataService: NSObject {
         }
     }
     
-    func userRegistration(_ username: String?, pwd: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-//        Networking.shareInstance.userRegister(username, password: pwd) { (success, json, error) in
-//            if success {
-//                handler(true, nil)
-//            } else {
-//                handler(false, error)
-//            }
-//        }
+    func reportProcess(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportProcess(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus, dutyMultiMedia: dutyMultiMedia) { (success, json, error) in
+            if success {
+                //TODO: store the data into DB, data example
+                /*
+                 {
+                 "code" : 0,
+                 "data" : {
+                 "id" : 100019,
+                 "description" : "333",
+                 "dutyOwner" : "user001",
+                 "leaderPoint" : null,
+                 "leaderComment" : null,
+                 "dutyDescription" : "我要开始处理疫情",
+                 "dutyStatus" : "1",
+                 "longitude" : "222",
+                 "dutyMultiMedia" : null,
+                 "latitude" : "111",
+                 "reportTime" : 1514182714000,
+                 "location" : "Ning Bo",
+                 "reporter" : "user001",
+                 "dutyOwnerName" : "张三",
+                 "processTime" : 1514187434000,
+                 "reporterName" : "张三",
+                 "multiMedia" : [
+                 "111",
+                 "222"
+                 ]
+                 }
+                 }
+                 
+                 //data example: send finish status, get the response
+                 {
+                 "code" : 0,
+                 "data" : {
+                 "id" : 100019,
+                 "description" : "333",
+                 "dutyOwner" : "user001",
+                 "leaderPoint" : null,
+                 "leaderComment" : null,
+                 "dutyDescription" : "结束处理",
+                 "dutyStatus" : "3",
+                 "longitude" : "222",
+                 "dutyMultiMedia" : [
+                 "picture 1",
+                 "picture 2"
+                 ],
+                 "latitude" : "111",
+                 "reportTime" : 1514182714000,
+                 "location" : "Ning Bo",
+                 "reporter" : "user001",
+                 "dutyOwnerName" : "张三",
+                 "processTime" : 1514187954000,
+                 "reporterName" : "张三",
+                 "multiMedia" : [
+                 "111",
+                 "222"
+                 ]
+                 }
+                 }
+                 
+                 */
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
     }
     
-    func getComments(_ commentType: String, _ farmId: Int16?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        
-//        Networking.shareInstance.getComments(commentType, farmId) { (success, json, error) in
-//            guard let data = json?["data"].arrayObject as? [[String : Any]] else {
-//                handler(false, error)
-//                return
-//            }
-//            Sync.changes(data, inEntityNamed: "Comment", dataStack: appDelegate.dataStack, operations: [.Insert, .Update], completion: { (error) in
-//                if error != nil {
-//                    handler(false, error)
-//                } else {
-//                    handler(true, nil)
-//                }
-//            })
-//        }
+    func reportConfirm(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportConfirm(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus, dutyMultiMedia: dutyMultiMedia) { (success, json, error) in
+            if success {
+                //TODO: store the data into DB, data example
+                /*
+                 {
+                 "code" : 0,
+                 "data" : {
+                 "id" : 100019,
+                 "description" : "333",
+                 "dutyOwner" : "user001",
+                 "leaderPoint" : null,
+                 "leaderComment" : null,
+                 "dutyDescription" : "非常好，感谢",
+                 "dutyStatus" : "4",
+                 "longitude" : "222",
+                 "dutyMultiMedia" : [
+                 "picture 3",
+                 "picture 5"
+                 ],
+                 "latitude" : "111",
+                 "reportTime" : 1514182714000,
+                 "location" : "Ning Bo",
+                 "reporter" : "user001",
+                 "dutyOwnerName" : "张三",
+                 "processTime" : 1514188502000,
+                 "reporterName" : "张三",
+                 "multiMedia" : [
+                 "111",
+                 "222"
+                 ]
+                 }
+                 }
+                 
+                 */
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ json: [DutyStatusModel]?, _ error:NSError?)->())) {
+        Networking.shareInstance.getReportAllStatus(dutyId) { (success, jsonData, error) in
+            if success {
+                if let data = jsonData?["data"] {
+                    let models = DutyStatusDataSource(statusData: data).getDutyStatus()
+                    handler(true, models, nil)
+                } else {
+                    handler(false, nil, nil)
+                }
+            } else {
+                handler(false, nil, error)
+            }
+        }
+    }
+    
+    func getAllReports(_ action: String?, filter: String?, param: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getAllReports(action, filter: filter, param: param) { (success, json, error) in
+            if success {
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                    return }
+                Sync.changes(data, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+            } else {
+                handler(false, error)
+            }
+        }
     }
 }

@@ -1,42 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f4U-Wd-2PI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f4U-Wd-2PI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--疫情汇总-->
-        <scene sceneID="mih-6D-0Dm">
+        <!--Admin Reports Table View Controller-->
+        <scene sceneID="K5w-ue-o1A">
             <objects>
-                <viewController id="QtE-nd-FUQ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Rta-fR-Xqt">
+                <tableViewController id="6aI-QU-Cq2" customClass="AdminReportsTableViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cau-ef-n3F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="6aI-QU-Cq2" id="Hho-1C-I7X"/>
+                            <outlet property="delegate" destination="6aI-QU-Cq2" id="5w8-fw-KZj"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="BM4-Zu-wQ1"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZAQ-Mz-fHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="394"/>
+        </scene>
+        <!--Filter Table View Controller-->
+        <scene sceneID="Rfv-g7-Dj6">
+            <objects>
+                <tableViewController storyboardIdentifier="filterTableVC" id="0iM-yi-4c1" customClass="FilterTableViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vsd-cl-gFp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="dxs-m9-d1E"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="疫情汇总" id="uwY-Ei-nuB"/>
-                    <navigationItem key="navigationItem" id="1B5-eB-qMv"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CYK-wZ-g1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="filterCell" rowHeight="87" id="Qn0-Go-boF" customClass="FilterTableViewCell" customModule="EpidemicReporting" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="87"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qn0-Go-boF" id="VGC-cE-OEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yKD-Aw-LAP">
+                                            <rect key="frame" x="10" y="31" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="GUx-ip-Gvf"/>
+                                                <constraint firstAttribute="width" constant="24" id="ahe-S0-0NU"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYN-lt-2mc">
+                                            <rect key="frame" x="54" y="43.5" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYB-OI-dh5">
+                                            <rect key="frame" x="120" y="44" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="BYN-lt-2mc" firstAttribute="centerY" secondItem="yKD-Aw-LAP" secondAttribute="centerY" id="3aD-Cc-36B"/>
+                                        <constraint firstItem="yKD-Aw-LAP" firstAttribute="centerY" secondItem="VGC-cE-OEf" secondAttribute="centerY" id="Kdh-jZ-19o"/>
+                                        <constraint firstItem="BYN-lt-2mc" firstAttribute="leading" secondItem="yKD-Aw-LAP" secondAttribute="trailing" constant="20" id="g03-FA-4fl"/>
+                                        <constraint firstItem="zYB-OI-dh5" firstAttribute="centerY" secondItem="BYN-lt-2mc" secondAttribute="centerY" id="osN-GB-QuJ"/>
+                                        <constraint firstItem="yKD-Aw-LAP" firstAttribute="leading" secondItem="VGC-cE-OEf" secondAttribute="leading" constant="10" id="x1b-5b-Ob3"/>
+                                        <constraint firstItem="zYB-OI-dh5" firstAttribute="leading" secondItem="yKD-Aw-LAP" secondAttribute="trailing" constant="86" id="xRc-Ex-S6H"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="logo" destination="yKD-Aw-LAP" id="kgc-41-bHt"/>
+                                    <outlet property="number" destination="zYB-OI-dh5" id="afz-bI-KT1"/>
+                                    <outlet property="type" destination="BYN-lt-2mc" id="HFZ-XB-Z3h"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0iM-yi-4c1" id="fZG-5D-o4q"/>
+                            <outlet property="delegate" destination="0iM-yi-4c1" id="EwD-5t-Mv0"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opB-vS-Bka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="395"/>
+            <point key="canvasLocation" x="1840.8" y="1152.7736131934034"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QDJ-EJ-KIl">
             <objects>
                 <navigationController storyboardIdentifier="ReportListNav" id="f4U-Wd-2PI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PwV-vC-Khk">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="PwV-vC-Khk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="QtE-nd-FUQ" kind="relationship" relationship="rootViewController" id="kwh-CX-bY3"/>
+                        <segue destination="6aI-QU-Cq2" kind="relationship" relationship="rootViewController" id="GUc-Ma-p7u"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgW-6e-4mm" userLabel="First Responder" sceneMemberID="firstResponder"/>

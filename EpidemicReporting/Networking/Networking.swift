@@ -31,7 +31,13 @@ class Networking {
     
     var baseURL: String! {
         get {
-            return "http://9.115.93.131:9966"
+            return "http://api.warmgoal.com"
+        }
+    }
+    
+    var apiBaseURL: String! {
+        get {
+            return "http://api.warmgoal.com/xsgov"
         }
     }
     
@@ -102,7 +108,7 @@ extension Networking {
                              progressHandler:((_ bytesRead: Int64?, _ totalBytesRead: Int64?, _ totalBytesExpectedToRead: Int64?)->())? = nil) {
         
         var localPath: URL? = finalPath
-        let url = baseURL + fileURL
+        let url = apiBaseURL + fileURL
         
         Alamofire.download(url, method: HTTPMethod.get) { (temporaryURL, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
             if let path = localPath {
@@ -123,7 +129,7 @@ extension Networking {
     }
     
     func syncWithAppServer(_ apiMapping: String, httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
-        var url = baseURL! + apiMapping
+        var url = apiBaseURL! + apiMapping
         
         if let parameters = urlParams {
             var urlParam = "?"
@@ -155,17 +161,66 @@ extension Networking {
         return request
     }
     
-    //upload image to server
-    func uploadImageToServer(_ name: String?, desc: String?, uploadImage: UIImage?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->()), progessHandler: @escaping ((_ progress:Progress?)->())) {
-        let url  = baseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
+    //upload video
+    func uploadVideoToServer(_ uuid: String, _ uploadVideo: URL?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->()), progessHandler: @escaping (_ progress: Progress?)->()) {
+        let url  = apiBaseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
         
         var params: Parameters = [String: Any]()
-        if let name = name, let desc = desc {
+        if let name = appDelegate.currentUser?.userid {
             params = [
-                "user": "user001",
+                "user": name,
             ]
         }
         
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            if let videoUrl = uploadVideo {
+                multipartFormData.append(videoUrl, withName: "file", fileName: "swift_file.mp4", mimeType: "video/mp4")
+            }
+            
+            for (key, value) in params {
+                multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+            }
+        }, usingThreshold: UInt64.init(), to: url, method: HTTPMethod.post, headers: getHeaders(), encodingCompletion: { encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (Progress) in
+                    print("Upload Progress: \(Progress.fractionCompleted)")
+                    progessHandler(Progress)
+                })
+                
+                upload.responseJSON { data in
+                    let response = data.response
+                    
+                    if response?.statusCode == 200 {
+                        if let value = data.result.value {
+                            let json = JSON(value)
+                            handler(true, json, nil)
+                        } else {
+                            handler(false, nil, data.result.error as NSError?)
+                        }
+                    } else {
+                        handler(false, nil, data.result.error as NSError?)
+                    }
+                }
+            case .failure(let encodingError):
+                handler(false, nil, encodingError as NSError?)
+            }
+        })
+    }
+    
+    //upload image to server
+    func uploadImageToServer(_ uuid: String, uploadImage: UIImage?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->()), progessHandler: @escaping ((_ progress:Progress?)->())) {
+        let url  = apiBaseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
+        
+        var params: Parameters = [String: Any]()
+        if let name = appDelegate.currentUser?.userid {
+            params = [
+                "user": name,
+            ]
+        }
+    
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             if let image = uploadImage, let imageData = UIImageJPEGRepresentation(image,1){
                 multipartFormData.append(imageData, withName: "file", fileName: "swift_file.jpeg", mimeType: "image/jpeg")

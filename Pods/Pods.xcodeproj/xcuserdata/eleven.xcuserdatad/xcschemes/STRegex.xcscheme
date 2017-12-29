@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A8664B6029714DA9746D71E824F1C8D9"
+               BlueprintIdentifier = "B4F5A231BA01A180FE1F3AEEA2407537"
                BuildableName = "Regex.framework"
                BlueprintName = "STRegex"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A8664B6029714DA9746D71E824F1C8D9"
+            BlueprintIdentifier = "B4F5A231BA01A180FE1F3AEEA2407537"
             BuildableName = "Regex.framework"
             BlueprintName = "STRegex"
             ReferencedContainer = "container:Pods.xcodeproj">

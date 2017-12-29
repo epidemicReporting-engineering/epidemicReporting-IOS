@@ -13,10 +13,6 @@ PODS:
     - PureLayout
     - SwiftARGB (~> 2.0)
     - TinyLog (~> 2.0)
-  - Charts (3.0.4):
-    - Charts/Core (= 3.0.4)
-  - Charts/Core (3.0.4)
-  - DATAStack (8.0.1)
   - Dimmer (2.0.3):
     - FadeView (~> 2.0)
     - PureLayout
@@ -27,9 +23,9 @@ PODS:
   - INSPhotoGallery (1.2.3)
   - KeychainAccess (3.1.0)
   - PureLayout (3.0.2)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - SDWebImage (4.2.1):
+    - SDWebImage/Core (= 4.2.1)
+  - SDWebImage/Core (4.2.1)
   - STRegex (1.1.0)
   - SwiftARGB (2.0.0)
   - SwiftyJSON (3.1.4)
@@ -43,12 +39,10 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - AssetsPickerViewController (~> 2.0)
-  - Charts
-  - DATAStack (~> 8.0.1)
   - FSCalendar
   - INSPhotoGallery
   - KeychainAccess (~> 3.1.0)
-  - SDWebImage (~> 3.7)
+  - SDWebImage (~> 4.0)
   - STRegex (~> 1.0)
   - SwiftyJSON (~> 3.1.4)
   - Sync (~> 4)
@@ -60,15 +54,13 @@ SPEC CHECKSUMS:
   AMapLocation: d02bd8c0081b0bc51b2e4cf89925ef57448263c9
   AMapSearch: 97042f81c1c8ea8adc4b1dadf1b1a688210aa141
   AssetsPickerViewController: d441e946a84edb0849ea62ef2b6d780218e611a3
-  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
-  DATAStack: 743c6f0f06a8141c2d42b31f293ba3a056a7d4ba
   Dimmer: 9908a0003f4882eca1b2e318e11f82d32280794e
   FadeView: 80197da2fbee5382b178127e8c5f988a35eef018
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   INSPhotoGallery: 2c07e4a5b5be1b4fd49c0c1f16eed28c6fe8a15d
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
   STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   SwiftARGB: 8727cfcdcfe8709e707a2391f1d5802a7c40dcad
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
@@ -76,6 +68,6 @@ SPEC CHECKSUMS:
   TinyLog: 1b19359cd3f32ab4972c595d002efc614e596529
   UIViewKVO: 091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf
 
-PODFILE CHECKSUM: 15341e9e873786ea6ba057b7d5f27c604b5b1025
+PODFILE CHECKSUM: e04e54467ff69ad3dc5376c3f4e68cb3edd95090
 
 COCOAPODS: 1.2.1
