@@ -271,12 +271,17 @@ class DataService: NSObject {
         }
     }
     
-    func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.getReportAllStatus(dutyId) { (success, json, error) in
+    func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ json: [DutyStatusModel]?, _ error:NSError?)->())) {
+        Networking.shareInstance.getReportAllStatus(dutyId) { (success, jsonData, error) in
             if success {
-                handler(true, nil)
+                if let data = jsonData?["data"] {
+                    let models = DutyStatusDataSource(statusData: data).getDutyStatus()
+                    handler(true, models, nil)
+                } else {
+                    handler(false, nil, nil)
+                }
             } else {
-                handler(false, error)
+                handler(false, nil, error)
             }
         }
     }
