@@ -33,5 +33,10 @@ enum FileUploadErrorCode: Int {
     case UPLOADFAILED = 1
 }
 
+enum RoleType: String {
+    case admin = "ADMIN"
+    case staff = "STAFF"
+}
+
 
 

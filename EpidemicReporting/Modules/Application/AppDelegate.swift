@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     public var currentUser: User? {
         didSet {
             //update User informaton
-            print("current user's id is: \(String(describing: currentUser?.userid))")
+            print("current user's id is: \(String(describing: currentUser?.username))")
         }
     }
     
@@ -143,23 +143,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func loginSuccess() {
-        //TODO: mock up, need clean
-        let id = "user001"
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        request.sortDescriptors = [NSSortDescriptor(key: "userid", ascending: true)]
-        request.predicate = NSPredicate(format: "userid == %@", id)
-        let users = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [User])
-        guard let user = users?.first else { return }
-        currentUser = user
-        
-        
+
         if tabbarController == nil {
             tabbarController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarNav") as? UINavigationController)?.childViewControllers.first as? UITabBarController
             self.window?.rootViewController = tabbarController
         }else{
             self.window?.rootViewController = tabbarController
         }
-        initTabar(true)
+        
+        var isAdmin = false
+        if let type = appDelegate.currentUser?.role {
+            isAdmin = type == RoleType.admin.rawValue ? true : false
+        }
+        initTabar(isAdmin)
     }
 }
 

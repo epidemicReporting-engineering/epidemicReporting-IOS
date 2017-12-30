@@ -80,13 +80,17 @@ class AssetsViewController: UIViewController {
     }
     
     @objc func sendReport() {
+        if (uploadingComplete == false) {
+            OPLoadingHUD.show(UIImage.init(named: "logo"), title: "图片还在上传", animated: false, delay: 2.0)
+            return
+        }
         guard let description = reportDescription else {
-            //TODO: toast, the content should not be empty
+            OPLoadingHUD.show(UIImage.init(named: "logo"), title: "内容不能为空", animated: false, delay: 2.0)
             return
         }
 
         if (uploadingComplete == true) {
-            guard let userid = appDelegate.currentUser?.userid else { return }
+            guard let userid = appDelegate.currentUser?.username else { return }
             DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
                 if success {
                     self?.dismiss(animated: true, completion: nil)

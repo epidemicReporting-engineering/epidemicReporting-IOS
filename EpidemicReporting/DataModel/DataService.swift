@@ -22,22 +22,17 @@ class DataService: NSObject {
     }
     
     func userLogin(_ username: String?, pwd: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.userLogin(username, password: pwd) { (success, json, error) in
+        Networking.shareInstance.userLogin(username, password: pwd) { [weak self] (success, json, error) in
             if success {
-                guard let token = json?["token"].string else { handler(false, nil)
+                guard let token = json?["token"].string, let refreshToken = json?["refreshToken"].string else { handler(false, nil)
                     return }
                 if token != "" {
                     UserDefaults.standard.set(token, forKey: "token")
                     UserDefaults.standard.synchronize()
                     
-                    var jsonData:JSON? = JSON()
-                    jsonData = json
-                    jsonData?.dictionaryObject?["userid"] = username
-                    
-                    guard let data = jsonData?.dictionaryObject else { return }
-                    Sync.changes([data], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
-                        if error == nil {
-                            handler(true, nil)
+                    self?.getProfile(username, access: token, refresh: refreshToken,  handler: {(success, error) in
+                        if success {
+                            handler(true,nil)
                         } else {
                             handler(false, error)
                         }
@@ -51,11 +46,25 @@ class DataService: NSObject {
         }
     }
     
-    func getProfile(_ username: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+    func getProfile(_ username: String?, access: String?, refresh: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getProfile(username) { (success, json, error) in
-            //TODO:process the data
             if success {
-                handler(true, nil)
+                guard let data = json?["data"] else { handler(false, nil)
+                    return }
+                
+                var jsonData:JSON? = JSON()
+                jsonData = data
+                jsonData?.dictionaryObject?["accessToken"] = access
+                jsonData?.dictionaryObject?["refreshToken"] = refresh
+                
+                guard let storedata = jsonData?.dictionaryObject else { return }
+                Sync.changes([storedata], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert,.update], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
             } else {
                 handler(false, error)
             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController {
     
@@ -69,6 +70,14 @@ class LoginViewController: UIViewController {
     }
     
     func loginSuccess() {
+        guard let user = username.text else { return }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.sortDescriptors = [NSSortDescriptor(key: "username", ascending: true)]
+        request.predicate = NSPredicate(format: "username == %@", user)
+        let users = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [User])
+        guard let coreuser = users?.first else { return }
+        appDelegate.currentUser = coreuser
+        
         NotificationCenter.default.post(name: Notification.Name(rawValue: "LoginSuccess"), object: nil)
 //        guard let username = loginUsername.text else { return }
 //        UserDefaults.standard.setValue(username, forKey: "last_logined_user")
