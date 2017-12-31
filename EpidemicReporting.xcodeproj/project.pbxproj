@@ -13,6 +13,8 @@
 		186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */; };
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
 		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
+		18BEC3121FF8704D00551B50 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */; };
+		18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */; };
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
 		92C6B804B2760361DE9D9E37 /* Pods_EpidemicReportingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */; };
 		A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */; };
@@ -88,6 +90,8 @@
 		186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLocationsViewController.swift; sourceTree = "<group>"; };
 		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		189BC41D1FE4FB3900838437 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReporting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReporting.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting.release.xcconfig"; sourceTree = "<group>"; };
 		A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpidemicReporting-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -372,6 +376,8 @@
 			children = (
 				A5E3C9731FB49A34000FAD71 /* ReportList.storyboard */,
 				A57F8E3D1FF4E1ED002EC92B /* FilterTableViewCell.swift */,
+				18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */,
+				18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				A57F8E451FF5DD3C002EC92B /* DutyStatusModel.swift in Sources */,
 				A57F8E411FF5CE7F002EC92B /* DutyDetailTableViewCell.swift in Sources */,
 				A57F8E211FF35EEA002EC92B /* PHAsset+Ext.swift in Sources */,
+				18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */,
 				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
 				A57F8E231FF3BB66002EC92B /* BatchFilesUploading.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
@@ -776,6 +783,7 @@
 				A56B8C4D1FEFD29900303C02 /* LoginViewController.swift in Sources */,
 				A5EB80031FF1F25C005D41B9 /* CoreDataCollectionViewController.swift in Sources */,
 				A5EB7FFE1FF1ED19005D41B9 /* Utils.swift in Sources */,
+				18BEC3121FF8704D00551B50 /* CustomCalloutView.swift in Sources */,
 				A529F0DB1FB7E22C00E4ADDC /* Common.swift in Sources */,
 				A57F8E3E1FF4E1ED002EC92B /* FilterTableViewCell.swift in Sources */,
 				A5A902951FB47B1B00A6601F /* Networking.swift in Sources */,

@@ -77,9 +77,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="logo" destination="yKD-Aw-LAP" id="kgc-41-bHt"/>
-                                    <outlet property="number" destination="zYB-OI-dh5" id="afz-bI-KT1"/>
-                                    <outlet property="type" destination="BYN-lt-2mc" id="HFZ-XB-Z3h"/>
+                                    <outlet property="logo" destination="yKD-Aw-LAP" id="GoV-9S-hD8"/>
+                                    <outlet property="number" destination="zYB-OI-dh5" id="Wz4-vJ-rUp"/>
+                                    <outlet property="type" destination="BYN-lt-2mc" id="OoN-eF-qP8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

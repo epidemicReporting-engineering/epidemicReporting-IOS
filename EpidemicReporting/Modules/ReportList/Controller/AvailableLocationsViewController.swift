@@ -11,21 +11,33 @@ import UIKit
 class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
     
     @IBOutlet weak var mapView: MAMapView!
+    
+    fileprivate var customCalloutView: CustomCalloutView?
+    fileprivate var annotations: [MAAnnotation] = [MAAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setStyledNavigationBar()
         
-        mapView?.isShowsUserLocation = false
-        mapView?.setZoomLevel(14.2, animated: false)
-        mapView?.showsScale = true
+//        mapView?.isShowsUserLocation = false
+//        mapView?.setZoomLevel(14.2, animated: false)
+//        mapView?.showsScale = true
         
-        let pointAnnotation = MAPointAnnotation()
-        pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: 39.979590, longitude: 116.352792)
-        pointAnnotation.title = "方恒国际"
-        pointAnnotation.subtitle = "阜通东大街6号"
-        mapView.addAnnotation(pointAnnotation)
+        customCalloutView = CustomCalloutView()
         
+        mapView.delegate = self
+        
+        let pointAnnotation1 = MAPointAnnotation()
+        pointAnnotation1.coordinate = CLLocationCoordinate2D(latitude: 39.979590, longitude: 116.352792)
+        pointAnnotation1.title = "人员：张三"
+        pointAnnotation1.subtitle = "地点：阜通东大街6号"
+        
+        let pointAnnotation2 = MAPointAnnotation()
+        pointAnnotation2.coordinate = CLLocationCoordinate2D(latitude: 40.0, longitude: 120.352792)
+        pointAnnotation2.title = "方恒国际"
+        pointAnnotation2.subtitle = "阜通东大街6号"
+        mapView.addAnnotation(pointAnnotation1)
+        mapView.addAnnotation(pointAnnotation2)
         // Do any additional setup after loading the view.
     }
 
@@ -35,23 +47,52 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
     }
     
     func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
-        
         if annotation.isKind(of: MAPointAnnotation.self) {
             let pointReuseIndetifier = "pointReuseIndetifier"
-            var annotationView: MAAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier)
+            var annotationView: CustomAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as? CustomAnnotationView
             
             if annotationView == nil {
-                annotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+                annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
             
-            annotationView!.image = UIImage(named: "restaurant")
+            //annotationView!.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
             //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView!.image = UIImage.init(named: "logo")
             annotationView!.centerOffset = CGPoint.init(x: 0, y: -18)
+            annotationView!.canShowCallout = true
             return annotationView!
         }
         
         return nil
     }
+    
+    func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
+        //
+    }
+    
+//    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+//
+//        if annotation.isKind(of: MAPointAnnotation.self) {
+//            let pointReuseIndetifier = "pointReuseIndetifier"
+//            var annotationView: MAPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! MAPinAnnotationView?
+//
+//            if annotationView == nil {
+//                annotationView = MAPinAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+//            }
+//
+//            annotationView!.canShowCallout = true
+//            annotationView!.animatesDrop = true
+//            annotationView!.isDraggable = true
+//            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+//
+//            let idx = annotations.index(of: annotation as! MAPointAnnotation)
+//            annotationView!.pinColor = MAPinAnnotationColor(rawValue: idx!)!
+//
+//            return annotationView!
+//        }
+//
+//        return nil
+//    }
     
     /*
     // MARK: - Navigation
