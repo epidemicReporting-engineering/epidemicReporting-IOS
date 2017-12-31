@@ -29,13 +29,9 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
         
         let pointAnnotation1 = MAPointAnnotation()
         pointAnnotation1.coordinate = CLLocationCoordinate2D(latitude: 39.979590, longitude: 116.352792)
-        pointAnnotation1.title = "人员：张三"
-        pointAnnotation1.subtitle = "地点：阜通东大街6号"
         
         let pointAnnotation2 = MAPointAnnotation()
-        pointAnnotation2.coordinate = CLLocationCoordinate2D(latitude: 40.0, longitude: 120.352792)
-        pointAnnotation2.title = "方恒国际"
-        pointAnnotation2.subtitle = "阜通东大街6号"
+        pointAnnotation2.coordinate = CLLocationCoordinate2D(latitude: 41.0, longitude: 117.352792)
         mapView.addAnnotation(pointAnnotation1)
         mapView.addAnnotation(pointAnnotation2)
         // Do any additional setup after loading the view.
@@ -57,9 +53,9 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
             
             //annotationView!.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
             //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-            annotationView!.image = UIImage.init(named: "logo")
+            annotationView!.image = UIImage.init(named: "location_map")
             annotationView!.centerOffset = CGPoint.init(x: 0, y: -18)
-            annotationView!.canShowCallout = true
+            annotationView!.canShowCallout = false
             return annotationView!
         }
         

@@ -29,6 +29,6 @@ enum WebServiceAPIMapping: String {
     
     //admin
     case DutyAssign        = "/api/duty/assign"
-    case GetStuff          = "/api/getstuff"
-    case GetStuffOwns      = "/api/getstuffowns"
+    case GetStuff          = "/api/duty/getstuff"
+    case GetStuffOwns      = "/api/duty/getstuffowns/get"
 }
