@@ -16,15 +16,10 @@ class ReportTableViewCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var reporter: UILabel!
     @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var status: UILabel!
     @IBOutlet weak var processor: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        statusView.layer.cornerRadius = statusView.bounds.width / 2
-        statusView.layer.masksToBounds = true
     }
     
     func updateDataSource(_ cell: DutyReport?) {
@@ -32,10 +27,7 @@ class ReportTableViewCell: UITableViewCell {
         reporter.text = report.reporterName
         time.text = Utils.getCurrentTimeStamp(report.reportTime)
         content.text = report.dutyDescription
-        if let reportStatus = report.dutyStatus {
-            status.text = Utils.getDutyStatus(reportStatus)
-        }
-        
+
         if let dutyOwner = report.dutyOwnerName {
             processor.text = "责任人：" + dutyOwner
         }

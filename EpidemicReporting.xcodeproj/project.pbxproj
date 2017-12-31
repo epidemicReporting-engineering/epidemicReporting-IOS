@@ -10,6 +10,7 @@
 		186FF0DA1FF771BD0047B87F /* MyReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0D91FF771BD0047B87F /* MyReportsTableViewController.swift */; };
 		186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */; };
 		186FF0EA1FF78A250047B87F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */; };
+		186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */; };
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
 		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
@@ -84,6 +85,7 @@
 		186FF0D91FF771BD0047B87F /* MyReportsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsTableViewController.swift; sourceTree = "<group>"; };
 		186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLocationsViewController.swift; sourceTree = "<group>"; };
 		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		189BC41D1FE4FB3900838437 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReporting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +221,7 @@
 			children = (
 				A57F8E371FF4C6A5002EC92B /* AdminReportsTableViewController.swift */,
 				A57F8E3B1FF4D8BA002EC92B /* FilterTableViewController.swift */,
+				186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
 				A57F8E301FF486A6002EC92B /* DutyReport+CoreDataClass.swift in Sources */,
+				186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */,
 				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,
 				A5EB80021FF1F25C005D41B9 /* CoreDataTableViewController.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,

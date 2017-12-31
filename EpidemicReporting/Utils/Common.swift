@@ -11,6 +11,10 @@ import UIKit
 import Photos
 
 let themeBlue = "#1296db"
+let blockRed = "#D75548"
+let finishGreen = "#BDE4A5"
+let canndoGray = "#B39685"
+
 
 enum DutyStatus: String {
     case UNASSIGN = "0"

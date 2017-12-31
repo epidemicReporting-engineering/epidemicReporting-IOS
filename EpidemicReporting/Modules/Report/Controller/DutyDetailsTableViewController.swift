@@ -20,14 +20,13 @@ class DutyDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationController?.setStyledNavigationBar()
         initTableView()
         updateDataSource()
     }
     
     func initTableView() {
-        navigationController?.setStyledNavigationBar()
-        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = "疫情状态"
         let footView = UIView()
         tableView.tableFooterView = footView

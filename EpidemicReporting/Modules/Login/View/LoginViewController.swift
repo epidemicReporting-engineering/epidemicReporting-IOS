@@ -47,8 +47,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAction(_ sender: UIButton) {
         //mock up
-        username.text = "user001"
-        password.text = "123456"
+//        username.text = "user001"
+//        password.text = "123456"
         
         OPLoadingHUD.show(UIImage(named: "loading"), title: "登录中", animated: true, delay: 0.0)
         guard let user = username.text, let password = password.text else { return }

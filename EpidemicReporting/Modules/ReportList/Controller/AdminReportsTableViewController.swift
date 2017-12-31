@@ -116,8 +116,63 @@ extension AdminReportsTableViewController {
 //        }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+        guard let status = duty?.dutyStatus else { return false }
+        if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.UNASSIGN.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+        return actionButtonDecider(duty)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func actionButtonDecider(_ report: DutyReport?) -> [UITableViewRowAction]? {
+        var actions:[UITableViewRowAction]? = [UITableViewRowAction]()
+        guard let status = report?.dutyStatus else { return nil }
+        switch status {
+        case DutyStatus.UNASSIGN.rawValue:
+            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
+                //TODO: send the status
+//                DataService.sharedInstance.getStuff(handler: { (success, error) in
+//                    print("get stuff")
+//                })
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                
+            }
+            assign.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(assign)
+        case DutyStatus.CANTDO.rawValue:
+            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
+                //TODO: send the status
+                DataService.sharedInstance.getStuff(handler: { (success, error) in
+                    print("get stuff")
+                })
+            }
+            assign.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(assign)
+        case DutyStatus.FINISH.rawValue:
+            let comment = UITableViewRowAction(style: .normal, title: "点评") { [weak self](action, indexPath) in
+                //TODO: send the status
+                
+            }
+            comment.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(comment)
+        default:
+            break
+        }
+        return actions
     }
 }
 

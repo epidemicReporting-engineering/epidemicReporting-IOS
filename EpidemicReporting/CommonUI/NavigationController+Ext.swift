@@ -20,5 +20,12 @@ extension UINavigationController {
         
         navigationBar.barTintColor = UIColor.init(hexString: themeBlue)
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        navigationBar.tintColor = UIColor.white
+        navigationBar.backItem?.title = ""
+    }
+    
+    func setBackItem() {
+        
     }
 }

@@ -46,4 +46,8 @@ extension Networking {
     func getAllReports(_ action: String?, filter: String?, param: String?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
         _ = syncWithAppServer(WebServiceAPIMapping.DutyAllReports.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: ["action": action, "filter": filter, "param": param], handler: handler)
     }
+    
+    func getStuff(handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.GetStuff.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, handler: handler)
+    }
 }

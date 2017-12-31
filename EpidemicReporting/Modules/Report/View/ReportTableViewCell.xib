@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -45,24 +45,6 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCs-Ib-bQx">
-                        <rect key="frame" x="33" y="34" width="44" height="44"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufi-w9-Zu8">
-                                <rect key="frame" x="22.5" y="22" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.48015919600000001" green="0.85882352939999995" blue="0.80196151090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="7fH-BW-DHZ"/>
-                            <constraint firstItem="Ufi-w9-Zu8" firstAttribute="centerY" secondItem="hCs-Ib-bQx" secondAttribute="centerY" id="Kdx-Su-6X4"/>
-                            <constraint firstItem="Ufi-w9-Zu8" firstAttribute="centerX" secondItem="hCs-Ib-bQx" secondAttribute="centerX" id="QIO-fb-aIn"/>
-                            <constraint firstAttribute="width" constant="44" id="fPR-gh-gQe"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWf-KU-b4M">
                         <rect key="frame" x="420" y="102.5" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -71,11 +53,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hCs-Ib-bQx" firstAttribute="centerY" secondItem="bgP-Dr-Xew" secondAttribute="centerY" id="Agb-Go-Di8"/>
                     <constraint firstItem="n2t-jn-eUk" firstAttribute="leading" secondItem="bgP-Dr-Xew" secondAttribute="trailing" constant="10" id="DuB-I3-Mcx"/>
                     <constraint firstItem="bgP-Dr-Xew" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="GSR-xZ-Szu"/>
                     <constraint firstItem="1lO-SE-iIC" firstAttribute="top" secondItem="bgP-Dr-Xew" secondAttribute="top" id="HPS-En-UiT"/>
-                    <constraint firstItem="hCs-Ib-bQx" firstAttribute="centerX" secondItem="bgP-Dr-Xew" secondAttribute="centerX" id="LvF-9V-DxV"/>
                     <constraint firstItem="mXX-LF-2QO" firstAttribute="top" secondItem="n2t-jn-eUk" secondAttribute="bottom" constant="10" id="XIX-gt-ZBT"/>
                     <constraint firstAttribute="trailing" secondItem="1lO-SE-iIC" secondAttribute="trailing" constant="10" id="XJc-u9-zSi"/>
                     <constraint firstItem="n2t-jn-eUk" firstAttribute="top" secondItem="bgP-Dr-Xew" secondAttribute="top" id="abz-w7-QIB"/>
@@ -94,8 +74,6 @@
                 <outlet property="cover" destination="bgP-Dr-Xew" id="0nE-Ns-Rif"/>
                 <outlet property="processor" destination="JWf-KU-b4M" id="ISb-fZ-GvE"/>
                 <outlet property="reporter" destination="n2t-jn-eUk" id="Ddl-Bw-KKg"/>
-                <outlet property="status" destination="Ufi-w9-Zu8" id="hi1-SS-r1n"/>
-                <outlet property="statusView" destination="hCs-Ib-bQx" id="CmC-13-9Eb"/>
                 <outlet property="time" destination="1lO-SE-iIC" id="IXE-yL-b8V"/>
             </connections>
             <point key="canvasLocation" x="16" y="12.5"/>

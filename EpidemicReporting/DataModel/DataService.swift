@@ -312,4 +312,23 @@ class DataService: NSObject {
             }
         }
     }
+    
+    func getStuff(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getStuff { (success, json, error) in
+            if success {
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                    return }
+//                Sync.changes(data, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+//                    if error == nil {
+//                        handler(true, nil)
+//                    } else {
+//                        handler(false, error)
+//                    }
+//                })
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+    }
 }
