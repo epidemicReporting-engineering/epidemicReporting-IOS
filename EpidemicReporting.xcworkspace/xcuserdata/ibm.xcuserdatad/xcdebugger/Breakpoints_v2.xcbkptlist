@@ -26,7 +26,7 @@
                   moduleName = "EpidemicReporting"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536387436.110456"
+                  timestampString = "536587166.634156"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "188"
@@ -41,7 +41,7 @@
                   moduleName = "EpidemicReporting"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536387436.112027"
+                  timestampString = "536587166.635653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "189"
@@ -70,16 +70,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/Report/Controller/MyReportsTableViewController.swift"
-            timestampString = "536373025.441161"
+            filePath = "EpidemicReporting/Modules/Report/Controller/AssetsViewController.swift"
+            timestampString = "536421092.344962"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "sendReport()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +90,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536373025.441231"
+            timestampString = "536421476.660433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "getStuff(handler:)"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "reportMessage(_:location:latitude:longitude:description:multimedia:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EpidemicReporting/Modules/Login/View/LoginViewController.swift"
+            timestampString = "536587166.389252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "loginAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
