@@ -81,11 +81,11 @@ class AssetsViewController: UIViewController {
     
     @objc func sendReport() {
         if (uploadingComplete == false) {
-            OPLoadingHUD.show(UIImage.init(named: "logo"), title: "图片还在上传", animated: false, delay: 2.0)
+            OPLoadingHUD.show(UIImage.init(named: "block"), title: "图片还在上传", animated: false, delay: 2.0)
             return
         }
         guard let description = reportDescription else {
-            OPLoadingHUD.show(UIImage.init(named: "logo"), title: "内容不能为空", animated: false, delay: 2.0)
+            OPLoadingHUD.show(UIImage.init(named: "block"), title: "内容不能为空", animated: false, delay: 2.0)
             return
         }
 
@@ -96,6 +96,7 @@ class AssetsViewController: UIViewController {
                     self?.dismiss(animated: true, completion: nil)
                 } else {
                     //TODO: Toast, error message
+                    OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
                 }
             }
         }
@@ -137,45 +138,15 @@ class AssetsViewController: UIViewController {
     }
     
     func getCurrentLocation() {
-        locationManager?.requestLocation(withReGeocode: false, completionBlock: { [weak self] (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
-            
-            if let error = error {
-                let error = error as NSError
-                
-                if error.code == AMapLocationErrorCode.locateFailed.rawValue {
-                    //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
-                    NSLog("定位错误:{\(error.code) - \(error.localizedDescription)};")
-                    return
-                }
-                else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
-                    || error.code == AMapLocationErrorCode.timeOut.rawValue
-                    || error.code == AMapLocationErrorCode.cannotFindHost.rawValue
-                    || error.code == AMapLocationErrorCode.badURL.rawValue
-                    || error.code == AMapLocationErrorCode.notConnectedToInternet.rawValue
-                    || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue {
-                    
-                    //逆地理错误：在带逆地理的单次定位中，逆地理过程可能发生错误，此时location有返回值，regeocode无返回值，进行annotation的添加
-                    NSLog("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
-                }
-                else {
-                    //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作，进行annotation的添加
-                }
-            }
-            
-            if let location = location {
-                NSLog("location:%@", location)
-                self?.latitude = location.coordinate.latitude.description
-                self?.longitude = location.coordinate.longitude.description
+        GetCurrentLocationUtils.sharedInstance.getCurrentLocation { [weak self](location, success, error) in
+            if success {
                 let request = AMapReGeocodeSearchRequest()
-                request.location = AMapGeoPoint.location(withLatitude: CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude))
+                guard let lat = location?.coordinate.latitude, let longt = location?.coordinate.longitude else { return }
+                request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
                 request.requireExtension = true
                 self?.search?.aMapReGoecodeSearch(request)
             }
-            
-            if let reGeocode = reGeocode {
-                NSLog("reGeocode:%@", reGeocode)
-            }
-        })
+        }
     }
 }
 

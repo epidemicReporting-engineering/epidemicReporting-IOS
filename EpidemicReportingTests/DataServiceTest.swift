@@ -88,7 +88,7 @@ class DataServiceTest: XCTestCase {
     func test_2_duty_assign() {
         var waitingForBlock = true
         //1. assign
-        DataService.sharedInstance.reportAssign("100003", dutyOwner: "user001", dutyDescription: "请立马开始到指定地点报道，有最新情况马上汇报给我", dutyStatus: DutyStatus.ASSIGNED.rawValue) { (success, error) in
+        DataService.sharedInstance.reportAssign("100007", dutyOwner: "user001", dutyDescription: "给user001新派发一个任务", dutyStatus: DutyStatus.ASSIGNED.rawValue) { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "Login result")
         }

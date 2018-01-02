@@ -42,14 +42,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8l-A7-NGu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211.5"/>
                                 <color key="backgroundColor" red="1" green="0.7374898996" blue="0.51129788210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="FDh-Rd-aBr"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Yy-Zt-sSp">
-                                <rect key="frame" x="9.5" y="170" width="356.5" height="260"/>
+                                <rect key="frame" x="9.5" y="221.5" width="356.5" height="260"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="7p9-zK-iWx">
                                         <rect key="frame" x="8" y="8" width="10" height="10"/>
@@ -65,8 +62,8 @@
                                             <constraint firstAttribute="height" constant="10" id="IB0-zU-qOQ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日已有2387人签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-8Z-LoS">
-                                        <rect key="frame" x="210" y="28" width="138.5" height="17.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日已有10人签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-8Z-LoS">
+                                        <rect key="frame" x="226.5" y="28" width="122" height="17.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -105,43 +102,36 @@
                                     <constraint firstItem="D0j-2p-A3o" firstAttribute="top" secondItem="F61-8Z-LoS" secondAttribute="bottom" constant="5" id="wHk-UM-uNR"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcA-Nb-rsT">
-                                <rect key="frame" x="-0.5" y="430" width="375" height="173"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-YA-y4v">
-                                        <rect key="frame" x="155.5" y="10" width="64" height="64"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="b14-mO-OY3"/>
-                                            <constraint firstAttribute="height" constant="64" id="hCC-gJ-bbA"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您今日还未签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuM-k9-AVq">
-                                        <rect key="frame" x="135.5" y="80" width="105" height="17.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fingerprint" translatesAutoresizingMaskIntoConstraints="NO" id="vuC-YA-y4v">
+                                <rect key="frame" x="155" y="491.5" width="64" height="64"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="VuM-k9-AVq" firstAttribute="centerX" secondItem="HcA-Nb-rsT" secondAttribute="centerX" id="231-ki-5Yg"/>
-                                    <constraint firstItem="VuM-k9-AVq" firstAttribute="top" secondItem="vuC-YA-y4v" secondAttribute="bottom" constant="6" id="9qe-EV-9GU"/>
-                                    <constraint firstItem="vuC-YA-y4v" firstAttribute="top" secondItem="HcA-Nb-rsT" secondAttribute="top" constant="10" id="Agd-iG-y41"/>
-                                    <constraint firstItem="vuC-YA-y4v" firstAttribute="centerX" secondItem="HcA-Nb-rsT" secondAttribute="centerX" id="rAw-QI-hZe"/>
+                                    <constraint firstAttribute="width" constant="64" id="b14-mO-OY3"/>
+                                    <constraint firstAttribute="height" constant="64" id="hCC-gJ-bbA"/>
                                 </constraints>
-                            </view>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="29f-1Q-9Wk" appends="YES" id="lUS-sD-Lft"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击签到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuM-k9-AVq">
+                                <rect key="frame" x="157.5" y="565.5" width="60" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vuC-YA-y4v" firstAttribute="centerX" secondItem="Bfe-iA-LdJ" secondAttribute="centerX" id="399-Dk-kH2"/>
                             <constraint firstItem="5Yy-Zt-sSp" firstAttribute="width" secondItem="dgT-lr-ked" secondAttribute="width" multiplier="0.95" id="9jS-5M-Vc3"/>
-                            <constraint firstItem="HcA-Nb-rsT" firstAttribute="width" secondItem="dgT-lr-ked" secondAttribute="width" id="FQu-hK-m1q"/>
-                            <constraint firstItem="Bfe-iA-LdJ" firstAttribute="bottom" secondItem="HcA-Nb-rsT" secondAttribute="bottom" id="FZF-WN-OnK"/>
+                            <constraint firstItem="VuM-k9-AVq" firstAttribute="centerX" secondItem="Bfe-iA-LdJ" secondAttribute="centerX" id="BV9-OZ-nRV"/>
                             <constraint firstItem="5Yy-Zt-sSp" firstAttribute="top" secondItem="D8l-A7-NGu" secondAttribute="bottom" constant="10" id="RFJ-VS-Ccq"/>
                             <constraint firstItem="5Yy-Zt-sSp" firstAttribute="centerX" secondItem="Bfe-iA-LdJ" secondAttribute="centerX" id="VQi-Ym-Ark"/>
                             <constraint firstItem="D8l-A7-NGu" firstAttribute="width" secondItem="dgT-lr-ked" secondAttribute="width" id="eEw-p5-dch"/>
-                            <constraint firstItem="HcA-Nb-rsT" firstAttribute="top" secondItem="5Yy-Zt-sSp" secondAttribute="bottom" id="gVA-ZS-wb3"/>
-                            <constraint firstItem="HcA-Nb-rsT" firstAttribute="centerX" secondItem="Bfe-iA-LdJ" secondAttribute="centerX" id="lQI-GX-7Qz"/>
+                            <constraint firstItem="Bfe-iA-LdJ" firstAttribute="bottom" secondItem="VuM-k9-AVq" secondAttribute="bottom" constant="20" id="jUk-7d-z1g"/>
                             <constraint firstItem="D8l-A7-NGu" firstAttribute="top" secondItem="Bfe-iA-LdJ" secondAttribute="top" id="p5Q-s4-lbe"/>
+                            <constraint firstItem="VuM-k9-AVq" firstAttribute="top" secondItem="vuC-YA-y4v" secondAttribute="bottom" constant="10" id="src-oa-H26"/>
+                            <constraint firstItem="vuC-YA-y4v" firstAttribute="top" secondItem="5Yy-Zt-sSp" secondAttribute="bottom" constant="10" id="xvh-7D-3I7"/>
                             <constraint firstItem="D8l-A7-NGu" firstAttribute="centerX" secondItem="Bfe-iA-LdJ" secondAttribute="centerX" id="y7n-qP-23I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bfe-iA-LdJ"/>
@@ -151,16 +141,23 @@
                     <connections>
                         <outlet property="calendar" destination="D0j-2p-A3o" id="6po-ft-Gvw"/>
                         <outlet property="calendarContainer" destination="5Yy-Zt-sSp" id="A2p-Us-xtD"/>
+                        <outlet property="checkBut" destination="vuC-YA-y4v" id="bm4-Do-Xcc"/>
+                        <outlet property="checkMessage" destination="VuM-k9-AVq" id="MH4-xz-X5r"/>
                         <outlet property="mapViewContainer" destination="D8l-A7-NGu" id="Xt1-A9-kgJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sd-J6-kqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="29f-1Q-9Wk">
+                    <connections>
+                        <action selector="checkinAction:" destination="zYu-h6-5ZR" id="2Dh-YT-P0s"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="922" y="-242"/>
         </scene>
     </scenes>
     <resources>
         <image name="circle" width="16" height="16"/>
-        <image name="fingerprint" width="64" height="64"/>
+        <image name="fingerprint" width="100" height="100"/>
     </resources>
 </document>

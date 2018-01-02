@@ -13,6 +13,10 @@
 		186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */; };
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
 		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
+		18AE8FF61FFBB3D000DCA39F /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE8FF51FFBB3CF00DCA39F /* MyMessagesTableViewController.swift */; };
+		18AE8FFA1FFBB85F00DCA39F /* MyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE8FF81FFBB85F00DCA39F /* MyMessageTableViewCell.swift */; };
+		18AE8FFB1FFBB85F00DCA39F /* MyMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AE8FF91FFBB85F00DCA39F /* MyMessageTableViewCell.xib */; };
+		18AE8FFD1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE8FFC1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift */; };
 		18BEC3121FF8704D00551B50 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */; };
 		18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */; };
 		18BEC3181FF8876000551B50 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BEC3171FF8876000551B50 /* CustomCalloutView.xib */; };
@@ -91,6 +95,10 @@
 		186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLocationsViewController.swift; sourceTree = "<group>"; };
 		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		189BC41D1FE4FB3900838437 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		18AE8FF51FFBB3CF00DCA39F /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
+		18AE8FF81FFBB85F00DCA39F /* MyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		18AE8FF91FFBB85F00DCA39F /* MyMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageTableViewCell.xib; sourceTree = "<group>"; };
+		18AE8FFC1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentLocationUtils.swift; sourceTree = "<group>"; };
 		18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		18BEC3171FF8876000551B50 /* CustomCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
@@ -202,6 +210,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18AE8FF71FFBB83600DCA39F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18AE8FF51FFBB3CF00DCA39F /* MyMessagesTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		A529F0CC1FB70F3300E4ADDC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +295,7 @@
 				A5EB7FFD1FF1ED19005D41B9 /* Utils.swift */,
 				A57F8E201FF35EEA002EC92B /* PHAsset+Ext.swift */,
 				A57F8E221FF3BB66002EC92B /* BatchFilesUploading.swift */,
+				18AE8FFC1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -286,6 +303,7 @@
 		A5E3C9541FB49430000FAD71 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				18AE8FF71FFBB83600DCA39F /* Controller */,
 				A5E3C96D1FB499F1000FAD71 /* View */,
 			);
 			path = Message;
@@ -369,6 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				A5E3C96E1FB499F1000FAD71 /* Message.storyboard */,
+				18AE8FF81FFBB85F00DCA39F /* MyMessageTableViewCell.swift */,
+				18AE8FF91FFBB85F00DCA39F /* MyMessageTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -633,6 +653,7 @@
 				A56B8C481FEFBF3100303C02 /* LoginStoryboard.storyboard in Resources */,
 				A5E3C9661FB49989000FAD71 /* Report.storyboard in Resources */,
 				A5EDA34E1FF3308000762380 /* Localizable.strings in Resources */,
+				18AE8FFB1FFBB85F00DCA39F /* MyMessageTableViewCell.xib in Resources */,
 				A5E3C9701FB499F1000FAD71 /* Message.storyboard in Resources */,
 				A5E3C9751FB49A34000FAD71 /* ReportList.storyboard in Resources */,
 			);
@@ -761,7 +782,9 @@
 				18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */,
 				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
 				A57F8E231FF3BB66002EC92B /* BatchFilesUploading.swift in Sources */,
+				18AE8FFA1FFBB85F00DCA39F /* MyMessageTableViewCell.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
+				18AE8FFD1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift in Sources */,
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
 				A5EB7FFC1FF1EA0B005D41B9 /* DutyDetailsTableViewController.swift in Sources */,
 				186FF0DA1FF771BD0047B87F /* MyReportsTableViewController.swift in Sources */,
@@ -779,6 +802,7 @@
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				18AE8FF61FFBB3D000DCA39F /* MyMessagesTableViewController.swift in Sources */,
 				A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */,
 				A57F8E311FF486A6002EC92B /* DutyReport+CoreDataProperties.swift in Sources */,
 				A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */,

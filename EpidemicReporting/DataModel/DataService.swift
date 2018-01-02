@@ -71,6 +71,16 @@ class DataService: NSObject {
         }
     }
     
+    func checkIn(_ username: String?, latitude: String?, longitude: String?, location: String?, isAbsence: Bool?, isAvailable: Bool?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.checkIn(username, latitude: latitude, longitude: longitude, location: location, isAbsence: isAbsence, isAvailable: isAvailable) { (success, json, error) in
+            if success {
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
     func changePassword(_ username: String?, oldPassword: String?, newPassword: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.changePassword(username, oldPassword: oldPassword, newPassword: newPassword) { (success, json, error) in
             if success {

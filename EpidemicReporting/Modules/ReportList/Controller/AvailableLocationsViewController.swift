@@ -28,10 +28,10 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
         mapView.delegate = self
         
         let pointAnnotation1 = MAPointAnnotation()
-        pointAnnotation1.coordinate = CLLocationCoordinate2D(latitude: 30.5416010199653, longitude: 120.800763346354)
+        pointAnnotation1.coordinate = CLLocationCoordinate2D(latitude: 29.8925661892361, longitude: 121.620976291233)
         
         let pointAnnotation2 = MAPointAnnotation()
-        pointAnnotation2.coordinate = CLLocationCoordinate2D(latitude: 32, longitude: 121.800763346354)
+        pointAnnotation2.coordinate = CLLocationCoordinate2D(latitude: 31.8925661892361, longitude: 121.620976291233)
         mapView.addAnnotation(pointAnnotation1)
         mapView.addAnnotation(pointAnnotation2)
         // Do any additional setup after loading the view.

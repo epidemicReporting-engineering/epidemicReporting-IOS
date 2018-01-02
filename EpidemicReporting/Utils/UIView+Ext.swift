@@ -35,5 +35,16 @@ extension UIView {
         UIGraphicsEndImageContext();
         return image!
     }
+    
+    func addScaleAnimation() {
+        let keyAnimate = CAKeyframeAnimation(keyPath: "transform.scale")
+        
+        keyAnimate.values = [0.8, 1, 1.1];
+        keyAnimate.isRemovedOnCompletion = true
+        keyAnimate.fillMode = kCAFillModeForwards
+        keyAnimate.duration = 0.1
+        keyAnimate.repeatCount = 2
+        layer.add(keyAnimate, forKey: "scale")
+    }
 
 }
