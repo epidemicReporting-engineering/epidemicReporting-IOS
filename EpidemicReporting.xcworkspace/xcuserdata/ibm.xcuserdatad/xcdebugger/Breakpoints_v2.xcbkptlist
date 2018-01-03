@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/Networking/Networking.swift"
-            timestampString = "536589023.856948"
+            timestampString = "536671317.220322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "188"
@@ -26,7 +26,7 @@
                   moduleName = "EpidemicReporting"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536598666.817804"
+                  timestampString = "536673593.391623"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "188"
@@ -41,7 +41,7 @@
                   moduleName = "EpidemicReporting"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536598666.819687"
+                  timestampString = "536673593.393064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "189"
@@ -73,29 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/Report/Controller/AssetsViewController.swift"
-            timestampString = "536598666.574845"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "sendReport()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/DataModel/DataService.swift"
-            timestampString = "536598666.574911"
+            timestampString = "536670106.084341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
             endingLineNumber = "129"
-            landmarkName = "uploadVideoToServer(_:_:handler:progressHandler:)"
+            landmarkName = "reportMessage(_:location:latitude:longitude:description:multimedia:handler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/SelfCheck/View/SelfCheckViewController.swift"
-            timestampString = "536598666.57497"
+            filePath = "EpidemicReporting/Modules/Report/Controller/MyReportsTableViewController.swift"
+            timestampString = "536673593.14745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "checkinAction(_:)"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,29 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/SelfCheck/View/SelfCheckViewController.swift"
-            timestampString = "536598707.386034"
+            filePath = "EpidemicReporting/EpidemicReportingTests/DataServiceTest.swift"
+            timestampString = "536671167.112486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "initSearch()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Utils/GetCurrentLocationUtils.swift"
-            timestampString = "536598748.206502"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getCurrentLocation(handler:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "test_1_duty_report()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

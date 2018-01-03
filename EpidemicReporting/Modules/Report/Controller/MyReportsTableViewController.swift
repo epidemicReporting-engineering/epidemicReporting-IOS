@@ -24,9 +24,7 @@ class MyReportsTableViewController: CoreDataTableViewController {
         initTableView()
         _ = setup
         
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
-            //
-        }
+        refeshDataAll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,6 +38,11 @@ class MyReportsTableViewController: CoreDataTableViewController {
         
         let nib = UINib.init(nibName: "ReportTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ReportTableViewCell")
+        
+        //add refresh controller
+        self.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refeshDataAll), for: .valueChanged)
+        refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新数据")
     }
     
     func intiUI() {
@@ -63,6 +66,12 @@ class MyReportsTableViewController: CoreDataTableViewController {
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(accessAssets))
         plusView.addGestureRecognizer(tap)
+    }
+    
+    @objc func refeshDataAll(){
+        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+            self?.refreshControl?.endRefreshing()
+        }
     }
     
     @objc func accessAssets() {
@@ -107,88 +116,6 @@ class MyReportsTableViewController: CoreDataTableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
           tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
-        guard let status = duty?.dutyStatus else { return false }
-        if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.SUCCESS.rawValue {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
-        return actionButtonDecider(duty)
-    }
-    
-    func actionButtonDecider(_ report: DutyReport?) -> [UITableViewRowAction]? {
-        var actions:[UITableViewRowAction]? = [UITableViewRowAction]()
-        guard let status = report?.dutyStatus else { return nil }
-        switch status {
-        case DutyStatus.UNASSIGN.rawValue:
-            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
-                //TODO: send the status
-                DataService.sharedInstance.getStuff(handler: { (success, error) in
-                    print("get stuff")
-                })
-            }
-            assign.backgroundColor = UIColor(hexString: themeBlue)
-            actions?.append(assign)
-        case DutyStatus.ASSIGNED.rawValue:
-            let start = UITableViewRowAction(style: .normal, title: "开始") { (action, indexPath) in
-                //TODO: send the status
-            }
-            start.backgroundColor = UIColor(hexString: themeBlue)
-            actions?.append(start)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { (action, indexPath) in
-                //TODO: send the status
-            }
-            cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
-            actions?.append(cantdo)
-            let block = UITableViewRowAction(style: .normal, title: "有问题") { (action, indexPath) in
-                //TODO: send the status
-            }
-            block.backgroundColor = UIColor.init(hexString: blockRed)
-            actions?.append(block)
-        case DutyStatus.START.rawValue:
-            let block = UITableViewRowAction(style: .normal, title: "有问题") { (action, indexPath) in
-                //TODO: send the status
-            }
-            block.backgroundColor = UIColor.init(hexString: blockRed)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { (action, indexPath) in
-                //TODO: send the status
-            }
-            cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
-            let finish = UITableViewRowAction(style: .normal, title: "结束") { (action, indexPath) in
-                //TODO: send the status
-            }
-            finish.backgroundColor = UIColor.init(hexString: finishGreen)
-            actions?.append(finish)
-            actions?.append(block)
-            actions?.append(cantdo)
-        case DutyStatus.BLOCK.rawValue:
-            let start = UITableViewRowAction(style: .normal, title: "开始") { (action, indexPath) in
-                //TODO: send the status
-            }
-            start.backgroundColor = UIColor(hexString: themeBlue)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { (action, indexPath) in
-                //TODO: send the status
-            }
-            cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
-            actions?.append(start)
-            actions?.append(cantdo)
-        default:
-            break
-        }
-        return actions
-    }
-    
-    func showAssetViewController (_ indexPath: IndexPath) {
-        let report = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
-        
     }
 }
 

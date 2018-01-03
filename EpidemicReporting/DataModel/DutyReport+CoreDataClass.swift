@@ -2,8 +2,8 @@
 //  DutyReport+CoreDataClass.swift
 //  EpidemicReporting
 //
-//  Created by eleven on 2017/12/28.
-//  Copyright © 2017年 epidemicreporting.com. All rights reserved.
+//  Created by IBM on 03/01/2018.
+//  Copyright © 2018 epidemicreporting.com. All rights reserved.
 //
 //
 

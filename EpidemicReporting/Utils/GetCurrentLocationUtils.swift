@@ -46,10 +46,12 @@ class GetCurrentLocationUtils: NSObject {
                 }
                 else {
                     //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作，进行annotation的添加
-                    if let location = location {
-                        NSLog("location:%@", location)
-                        handler(location,true,nil)
-                    }
+                    handler(nil,false,error)
+                }
+            } else {
+                if let location = location {
+                    NSLog("location:%@", location)
+                    handler(location,true,nil)
                 }
             }
         })

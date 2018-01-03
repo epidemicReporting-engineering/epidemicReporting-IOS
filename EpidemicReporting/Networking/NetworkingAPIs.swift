@@ -20,7 +20,7 @@ extension Networking {
     }
     
     func checkIn(_ username: String?, latitude: String?, longitude: String?, location: String?, isAbsence: Bool?, isAvailable: Bool?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
-        _ = syncWithAppServer(WebServiceAPIMapping.GetProfile.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: ["username": username,"latitude": latitude,"longitude": longitude,"location": location,"isAbsence": isAbsence,"isAvailable": isAvailable], params: nil,  handler: handler)
+        _ = syncWithAppServer(WebServiceAPIMapping.CheckIn.rawValue, httpMethod: .post, httpHeaders: getHeaders(), urlParams: nil, params: ["username": username,"latitude": latitude,"longitude": longitude,"location": location,"isAbsence": isAbsence,"isAvailable": isAvailable],  handler: handler)
     }
     
     func changePassword(_ username: String?, oldPassword: String?, newPassword: String?, handler:@escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {

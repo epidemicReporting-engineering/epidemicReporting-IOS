@@ -42,6 +42,18 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        GetCurrentLocationUtils.sharedInstance.getCurrentLocation { [weak self](location, success, error) in
+            if success {
+                let request = AMapReGeocodeSearchRequest()
+                guard let lat = location?.coordinate.latitude, let longt = location?.coordinate.longitude else { return }
+                self?.latitude = lat.description
+                self?.longitude = longt.description
+                request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
+                request.requireExtension = true
+                self?.search?.aMapReGoecodeSearch(request)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,18 +96,6 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     func initSearch() {
         search = AMapSearchAPI()
         search?.delegate = self
-        
-        GetCurrentLocationUtils.sharedInstance.getCurrentLocation { [weak self](location, success, error) in
-            if success {
-                let request = AMapReGeocodeSearchRequest()
-                guard let lat = location?.coordinate.latitude, let longt = location?.coordinate.longitude else { return }
-                self?.latitude = lat.description
-                self?.longitude = longt.description
-                request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
-                request.requireExtension = true
-                self?.search?.aMapReGoecodeSearch(request)
-            }
-        }
     }
     
     func initCalendar() {

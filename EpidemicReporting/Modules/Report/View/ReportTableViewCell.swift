@@ -23,9 +23,9 @@ class ReportTableViewCell: UITableViewCell {
     }
     
     func updateDataSource(_ cell: DutyReport?) {
-        guard let report = cell else { return }
+        guard let report = cell, let timeStamp = report.reportTime else { return }
         reporter.text = report.reporterName
-        time.text = Utils.getCurrentTimeStamp(report.reportTime)
+        time.text = Utils.getCurrentTimeStamp(timeStamp)
         content.text = report.dutyDescription
 
         if let dutyOwner = report.dutyOwnerName {
