@@ -360,6 +360,19 @@ class DataServiceTest: XCTestCase {
         }
     }
     
+    func test_7_get_checkin() {
+        var waitingForBlock = true
+        //
+        DataService.sharedInstance.getMyCheckIn { (success, error) in
+            waitingForBlock = false
+            XCTAssert(success, "duty_list")
+        }
+        
+        while waitingForBlock {
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 1))
+        }
+    }
+    
 }
 
 

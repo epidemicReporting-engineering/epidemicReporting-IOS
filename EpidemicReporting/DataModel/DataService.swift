@@ -46,6 +46,25 @@ class DataService: NSObject {
         }
     }
     
+    func getMyCheckIn(handler: @escaping ((_ isCheck: Bool, _ number: Int, _ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getMyCheckIn { (success, json, error) in
+            if success {
+                guard let data = json?["data"].array else { handler(false,0,false, nil)
+                    return }
+                for user in data {
+                    let current = user.dictionaryObject
+                    if current?["username"] as? String == appDelegate.currentUser?.username {
+                        handler(true, data.count,true,nil)
+                        break
+                    }
+                }
+                handler(false,data.count,false, nil)
+            } else {
+                handler(false,0,false, nil)
+            }
+        }
+    }
+    
     func getProfile(_ username: String?, access: String?, refresh: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getProfile(username) { (success, json, error) in
             if success {

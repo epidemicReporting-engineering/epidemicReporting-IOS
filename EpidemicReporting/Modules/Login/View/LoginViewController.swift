@@ -53,6 +53,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: UIButton) {
+        
+        username.text = "user001"
+        password.text = "123456"
 
         if (checkUsernamePassword()) {
             showHintMessage(false)

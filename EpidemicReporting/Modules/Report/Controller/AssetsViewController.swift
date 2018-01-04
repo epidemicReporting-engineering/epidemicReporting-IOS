@@ -14,6 +14,8 @@ class AssetsViewController: UIViewController {
     
     var assets: [PHAsset]?
     var uploadURLs: [String]?
+    var type: DutyStatus = .UNASSIGN
+    var dutyID: Int64? = 0
     fileprivate var locationManager: AMapLocationManager?
     fileprivate var search: AMapSearchAPI?
     fileprivate var location: String?
@@ -47,9 +49,6 @@ class AssetsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "取消", style: .plain, target: self, action: #selector(cancelWasPressed))
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "发送", style: .done, target: self, action: #selector(sendReport))
-        
-        initUI()
-        uploadAssets(assets)
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,25 +61,50 @@ class AssetsViewController: UIViewController {
         numberView.layer.cornerRadius = numberView.frame.width / 2
         numberView.layer.masksToBounds = true
         numberView.backgroundColor = UIColor.green
-        guard let count = assets?.count, count > 0, let asset = assets?.first else { return }
-        number.text = count.description
-        Utils.getUIImageFromAsset(asset) { [weak self] (image) in
-            self?.imageList.image = image
-        }
         commentsView.delegate = self
         commentsView.becomeFirstResponder()
         progress.setProgress(0.0, animated: true)
         progress.progressTintColor = UIColor.init(hexString: themeBlue)
-        getCurrentLocation()
-        
+        guard let count = assets?.count, count > 0, let asset = assets?.first else {
+            progress.setProgress(0, animated: true)
+            imageList.isHidden = true
+            numberView.isHidden = true
+            return
+        }
+        number.text = count.description
+        uploadAssets(assets)
+        Utils.getUIImageFromAsset(asset) { [weak self] (image) in
+            self?.imageList.image = image
+        }
     }
     
     @objc func cancelWasPressed() {
         dismiss(animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        initUI()
+        getCurrentLocation()
+        
+        switch type.rawValue {
+        case DutyStatus.BLOCK.rawValue:
+            placeHolder.text = "说说遇到的困难..."
+        case DutyStatus.CANTDO.rawValue:
+            placeHolder.text = "说说不能做的原因..."
+        case DutyStatus.FINISH.rawValue:
+            placeHolder.text = "总结下本次疫情处理心得..."
+        case DutyStatus.SUCCESS.rawValue:
+            placeHolder.text = "对本地疫情处理进行评价..."
+        default:
+            break
+        }
+    }
+    
     @objc func sendReport() {
-        if (uploadingComplete == false) {
+        guard let count = assets?.count else { return }
+        if (uploadingComplete == false && count > 0) {
             OPLoadingHUD.show(UIImage.init(named: "block"), title: "图片还在上传", animated: false, delay: 2.0)
             return
         }
@@ -89,14 +113,28 @@ class AssetsViewController: UIViewController {
             return
         }
 
+        if count == 0 {
+            uploadingComplete = true
+        }
+        
         if (uploadingComplete == true) {
             guard let userid = appDelegate.currentUser?.username else { return }
-            DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
-                if success {
-                    self?.dismiss(animated: true, completion: nil)
-                } else {
-                    //TODO: Toast, error message
-                    OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
+            if type == .UNASSIGN {
+                DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
+                    if success {
+                        self?.dismiss(animated: true, completion: nil)
+                    } else {
+                        OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
+                    }
+                }
+            } else {
+                guard let id = dutyID, id != 0 else { return }
+                DataService.sharedInstance.reportProcess(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
+                    if success {
+                        self?.dismiss(animated: true, completion: nil)
+                    } else {
+                        OPLoadingHUD.show(UIImage.init(named: "block"), title: "信息发送失败", animated: false, delay: 2.0)
+                    }
                 }
             }
         }

@@ -49,7 +49,7 @@ class MyReportsTableViewController: CoreDataTableViewController {
         navigationController?.setStyledNavigationBar()
         navigationItem.title = "疫情上报"
         
-        let baseView = UIView.init(frame: CGRect.init(x: Utils.getScreenWidth() - 100, y: Utils.getScreenHeigh() - 200, width: 60, height: 60))
+        let baseView = UIView.init(frame: CGRect.init(x: Utils.getScreenWidth() - 100, y: Utils.getScreenHeigh() - 160, width: 60, height: 60))
         baseView.layer.cornerRadius = baseView.bounds.width / 2
         baseView.layer.masksToBounds = true
         baseView.backgroundColor = UIColor(hexString: themeBlue)
@@ -63,6 +63,10 @@ class MyReportsTableViewController: CoreDataTableViewController {
         plusView.centerXAnchor.constraint(equalTo: baseView.centerXAnchor).isActive = true
         plusView.centerYAnchor.constraint(equalTo: baseView.centerYAnchor).isActive = true
         navigationController?.view.addSubview(baseView)
+        
+        baseView.layer.shadowOpacity = 0.8
+        baseView.layer.shadowColor = UIColor.black.cgColor
+        baseView.layer.shadowOffset = CGSize(width: 4, height: 4)
         
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(accessAssets))
         plusView.addGestureRecognizer(tap)

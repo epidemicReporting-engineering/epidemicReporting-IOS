@@ -23,6 +23,10 @@ extension Networking {
         _ = syncWithAppServer(WebServiceAPIMapping.CheckIn.rawValue, httpMethod: .post, httpHeaders: getHeaders(), urlParams: nil, params: ["username": username,"latitude": latitude,"longitude": longitude,"location": location,"isAbsence": isAbsence,"isAvailable": isAvailable],  handler: handler)
     }
     
+    func getMyCheckIn(handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.GetCheckedNum.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, params: nil,  handler: handler)
+    }
+    
     func changePassword(_ username: String?, oldPassword: String?, newPassword: String?, handler:@escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
         _ = syncWithAppServer(WebServiceAPIMapping.PasswordChange.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["username": username,"oldPassword": oldPassword,"newPassword": newPassword], handler: handler)
     }

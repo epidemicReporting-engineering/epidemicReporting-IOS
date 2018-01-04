@@ -16,6 +16,7 @@ enum WebServiceAPIMapping: String {
     case PasswordChange    = "/api/password/change"
     case GetProfile        = "/api/profile/get"
     case CheckIn           = "/api/dailysignin/signin"
+    case GetCheckedNum     = "/api/dailysignin/getsignin"
     
     //upload media
     case UploadMedia       = "/api/media/upload"

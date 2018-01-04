@@ -38,6 +38,15 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         navigationController?.setStyledNavigationBar()
         navigationItem.title = "我的足迹"
         
+        DataService.sharedInstance.getMyCheckIn { [weak self](ischeck, count, success, error) in
+            if success {
+                if ischeck {
+                    self?.checkMessage.text = "今日您已签到"
+                } else {
+                    self?.checkMessage.text = "点击签到"
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

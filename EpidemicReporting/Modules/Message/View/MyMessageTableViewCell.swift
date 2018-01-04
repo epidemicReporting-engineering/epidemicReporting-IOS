@@ -45,6 +45,8 @@ class MyMessageTableViewCell: UITableViewCell {
             statusImage.image = UIImage.init(named: "success")
         case DutyStatus.SUCCESS.rawValue:
             statusImage.image = UIImage.init(named: "confirm")
+        case DutyStatus.CANTDO.rawValue:
+            statusImage.image = UIImage.init(named: "cantdo")
         default:
             statusImage.image = UIImage.init(named: "circle_blue")
         }
