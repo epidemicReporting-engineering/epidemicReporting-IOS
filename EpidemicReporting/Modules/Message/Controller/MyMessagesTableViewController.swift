@@ -33,7 +33,11 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
             if let tabItems = self?.tabBarController?.tabBar.items as NSArray!{
                 let tabItem = tabItems[2] as! UITabBarItem
-                tabItem.badgeValue = "1"
+                if let count = self?.fetchedResultsController?.fetchedObjects?.count {
+                    if count > 0 {
+                        tabItem.badgeValue = count.description
+                    }
+                }
             }
         }
     }
@@ -62,7 +66,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     }
     
     @objc func refeshDataAll(){
-        DataService.sharedInstance.getAllReports(PullDataType.REFRESH.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
             self?.refreshControl?.endRefreshing()
         }
     }
@@ -74,8 +78,12 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     lazy var setup: () = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DutyReport")
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        guard let userid = appDelegate.currentUser?.username else { return }
-        request.predicate = NSPredicate(format: "dutyOwner == %@", userid)
+        guard let userid = appDelegate.currentUser?.username, let role = appDelegate.currentUser?.role else { return }
+        if role == RoleType.staff.rawValue {
+            request.predicate = NSPredicate(format: "dutyOwner == %@", userid)
+        } else {
+            request.predicate = NSPredicate(format: "dutyStatus IN {'0','4','6'}")
+        }
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }()
     
@@ -108,11 +116,19 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
-        guard let status = duty?.dutyStatus else { return false }
-        if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.SUCCESS.rawValue {
-            return false
+        guard let status = duty?.dutyStatus, let role = appDelegate.currentUser?.role else { return false }
+        if role == RoleType.staff.rawValue {
+            if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.SUCCESS.rawValue {
+                return false
+            } else {
+                return true
+            }
         } else {
-            return true
+            if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.UNASSIGN.rawValue {
+                return true
+            } else {
+                return false
+            }
         }
     }
     
@@ -127,9 +143,21 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         switch status {
         case DutyStatus.UNASSIGN.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
-                DataService.sharedInstance.getStuff(handler: { (success, error) in
-                    print("get stuff")
-                })
+                let sb = UIStoryboard.init(name: "ReportList", bundle: nil)
+                if let vc = sb.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    vc.duty = report
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            assign.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(assign)
+        case DutyStatus.CANTDO.rawValue:
+            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
+                let sb = UIStoryboard.init(name: "ReportList", bundle: nil)
+                if let vc = sb.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    vc.duty = report
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             }
             assign.backgroundColor = UIColor(hexString: themeBlue)
             actions?.append(assign)
@@ -202,6 +230,13 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
             actions?.append(start)
             actions?.append(cantdo)
+        case DutyStatus.FINISH.rawValue:
+            let confirm = UITableViewRowAction(style: .normal, title: "评审") { [weak self](action, indexPath) in
+                self?.currentStatus = .SUCCESS
+                self?.dutyNumber = report?.id
+                self?.showAccessPicker()
+            }
+            actions?.append(confirm)
         default:
             break
         }

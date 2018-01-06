@@ -102,6 +102,12 @@ class AssetsViewController: UIViewController {
         }
     }
     
+    func refeshDataAll(){
+        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+            print("refresh the data")
+        }
+    }
+    
     @objc func sendReport() {
         guard let count = assets?.count else { return }
         if (uploadingComplete == false && count > 0) {
@@ -122,16 +128,31 @@ class AssetsViewController: UIViewController {
             if type == .UNASSIGN {
                 DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
                     if success {
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true, completion: { [weak self] in
+                            self?.refeshDataAll()
+                        })
                     } else {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
+                    }
+                }
+            } else if type == .SUCCESS {
+                guard let id = dutyID, id != 0 else { return }
+                DataService.sharedInstance.reportConfirm(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
+                    if success {
+                        self?.dismiss(animated: true, completion: {[weak self]  in
+                            self?.refeshDataAll()
+                        })
+                    } else {
+                        OPLoadingHUD.show(UIImage.init(named: "block"), title: "信息发送失败", animated: false, delay: 2.0)
                     }
                 }
             } else {
                 guard let id = dutyID, id != 0 else { return }
                 DataService.sharedInstance.reportProcess(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
                     if success {
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true, completion: {[weak self]  in
+                            self?.refeshDataAll()
+                        })
                     } else {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "信息发送失败", animated: false, delay: 2.0)
                     }

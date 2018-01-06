@@ -26,7 +26,11 @@ class ReportTableViewCell: UITableViewCell {
         guard let report = cell, let timeStamp = report.reportTime else { return }
         reporter.text = report.reporterName
         time.text = Utils.getCurrentTimeStamp(timeStamp)
-        content.text = report.dutyDescription
+        if cell?.dutyStatus == DutyStatus.UNASSIGN.rawValue {
+            content.text = report.reportDescription
+        } else {
+            content.text = report.dutyDescription
+        }
 
         if let dutyOwner = report.dutyOwnerName {
             processor.text = "责任人：" + dutyOwner

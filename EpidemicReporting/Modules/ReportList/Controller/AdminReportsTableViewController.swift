@@ -106,24 +106,17 @@ extension AdminReportsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let parent = fetchedResultsController?.object(at: indexPath) as? Comment
-//        if parent?.user?.username == appDelegate.currentUser?.username {
-//            guard let alterVC = showReplyAlertController(parentComment?.id, showDelete: true, commentId: parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        } else {
-//            guard let alterVC = showReplyAlertController(parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        }
+        let cell = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let storyboard = UIStoryboard(name: "Report", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
+            vc.reportId = cell?.id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
-        guard let status = duty?.dutyStatus else { return false }
-        if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.UNASSIGN.rawValue {
-            return true
-        } else {
-            return false
-        }
+        return false
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -141,24 +134,17 @@ extension AdminReportsTableViewController {
         switch status {
         case DutyStatus.UNASSIGN.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
-                //TODO: send the status
-//                DataService.sharedInstance.getStuff(handler: { (success, error) in
-//                    print("get stuff")
-//                })
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
-                
-                
             }
             assign.backgroundColor = UIColor(hexString: themeBlue)
             actions?.append(assign)
         case DutyStatus.CANTDO.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
-                //TODO: send the status
-                DataService.sharedInstance.getStuff(handler: { (success, error) in
-                    print("get stuff")
-                })
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             }
             assign.backgroundColor = UIColor(hexString: themeBlue)
             actions?.append(assign)

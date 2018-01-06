@@ -347,17 +347,29 @@ class DataService: NSObject {
             if success {
                 guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
                     return }
-//                Sync.changes(data, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
-//                    if error == nil {
-//                        handler(true, nil)
-//                    } else {
-//                        handler(false, error)
-//                    }
-//                })
+                Sync.changes(data, inEntityNamed: "Processor", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
                 handler(true, nil)
             } else {
                 handler(false, error)
             }
         }
+    }
+    
+    func fetchAvailableProcessorsBy(_ name: String?) -> [Processor]? {
+        var processors: [Processor]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Processor")
+        request.sortDescriptors = [NSSortDescriptor(key: "username", ascending: true)]
+        if name != nil {
+            guard let username = name else { return nil }
+            request.predicate = NSPredicate(format: "username == %@", username)
+        }
+        processors = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Processor])
+        return processors
     }
 }

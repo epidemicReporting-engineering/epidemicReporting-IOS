@@ -67,11 +67,6 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        mapView?.isShowsUserLocation = true
-        mapView?.setZoomLevel(14.2, animated: false)
-        mapView?.showsScale = false
-        mapView?.userTrackingMode = MAUserTrackingMode.follow
     }
     
     @IBAction func checkinAction(_ sender: UITapGestureRecognizer) {
@@ -96,6 +91,10 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     
     private func initMapView() {
         mapView = MAMapView(frame: mapViewContainer.bounds)
+        mapView?.setUserTrackingMode(.follow, animated: true)
+        mapView?.isShowsUserLocation = true
+        mapView?.setZoomLevel(14.2, animated: false)
+        mapView?.showsScale = false
         mapView?.delegate = self
         if let map = mapView {
             mapViewContainer.addSubview(map)

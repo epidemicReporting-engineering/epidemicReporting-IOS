@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAction(_ sender: UIButton) {
         
-        username.text = "user001"
+        username.text = "admin001"
         password.text = "123456"
 
         if (checkUsernamePassword()) {

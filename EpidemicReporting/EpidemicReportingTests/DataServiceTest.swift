@@ -304,7 +304,7 @@ class DataServiceTest: XCTestCase {
     func test_6_duty_status() {
         var waitingForBlock = true
         //
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: "1514191491000") { (success, error) in
+        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { (success, error) in
             //
             waitingForBlock = false
             XCTAssert(success, "duty_list")
@@ -351,19 +351,6 @@ class DataServiceTest: XCTestCase {
         var waitingForBlock = true
         //
         DataService.sharedInstance.getStuff() { (success, error) in
-            waitingForBlock = false
-            XCTAssert(success, "duty_list")
-        }
-        
-        while waitingForBlock {
-            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 1))
-        }
-    }
-    
-    func test_7_get_checkin() {
-        var waitingForBlock = true
-        //
-        DataService.sharedInstance.getMyCheckIn { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "duty_list")
         }

@@ -15,6 +15,8 @@
 		186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */; };
 		186FF0EA1FF78A250047B87F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */; };
 		186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */; };
+		18978E2A2000542E0050470F /* Processor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18978E282000542E0050470F /* Processor+CoreDataClass.swift */; };
+		18978E2B2000542E0050470F /* Processor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18978E292000542E0050470F /* Processor+CoreDataProperties.swift */; };
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
 		189BC41E1FE4FB3900838437 /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41D1FE4FB3900838437 /* DataServiceTest.swift */; };
 		18AE8FF61FFBB3D000DCA39F /* MyMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AE8FF51FFBB3CF00DCA39F /* MyMessagesTableViewController.swift */; };
@@ -99,6 +101,8 @@
 		186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLocationsViewController.swift; sourceTree = "<group>"; };
+		18978E282000542E0050470F /* Processor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		18978E292000542E0050470F /* Processor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processor+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		189BC41D1FE4FB3900838437 /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		18AE8FF51FFBB3CF00DCA39F /* MyMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessagesTableViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				18978E282000542E0050470F /* Processor+CoreDataClass.swift */,
+				18978E292000542E0050470F /* Processor+CoreDataProperties.swift */,
 				18041D211FFCFBAE003A1F80 /* DutyReport+CoreDataClass.swift */,
 				18041D221FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift */,
 				186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */,
@@ -797,6 +803,8 @@
 				A529F0CE1FB70F7000E4ADDC /* SelfCheckProtocol.swift in Sources */,
 				A56B8C531FF0B35400303C02 /* UIView+Ext.swift in Sources */,
 				186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */,
+				18978E2A2000542E0050470F /* Processor+CoreDataClass.swift in Sources */,
+				18978E2B2000542E0050470F /* Processor+CoreDataProperties.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
 				186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */,
 				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,

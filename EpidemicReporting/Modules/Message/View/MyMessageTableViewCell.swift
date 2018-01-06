@@ -35,6 +35,8 @@ class MyMessageTableViewCell: UITableViewCell {
     
     func updateImage(_ status: String) {
         switch status {
+        case DutyStatus.UNASSIGN.rawValue:
+            statusImage.image = UIImage.init(named: "unknow")
         case DutyStatus.ASSIGNED.rawValue:
             statusImage.image = UIImage.init(named: "new_task")
         case DutyStatus.START.rawValue:
