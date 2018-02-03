@@ -102,7 +102,7 @@ class Utils {
         case "5":
             return "已评阅"
         case "6":
-            return "不能做"
+            return "无法做"
         default:
             return "未分配"
         }

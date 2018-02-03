@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initTabar(_ isAdmin: Bool) {
-        let selfCheckVC = UIStoryboard(name: "SelfCheck", bundle: nil).instantiateInitialViewController()!
+        let selfCheckVC = isAdmin ? UIStoryboard(name: "SelfCheck", bundle: nil).instantiateViewController(withIdentifier: "SelfCheckAdminNav") : UIStoryboard(name: "SelfCheck", bundle: nil).instantiateInitialViewController()!
         selfCheckVC.tabBarItem.image = UIImage.init(named: "locate")
         selfCheckVC.tabBarItem.title = "签到"
         
@@ -138,6 +138,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let reportListVC = UIStoryboard(name: "ReportList", bundle: nil).instantiateInitialViewController()!
         reportListVC.tabBarItem.image = UIImage.init(named: "reportList")
         reportListVC.tabBarItem.title = "疫情汇总"
+        
+        
         
         tabbarController?.viewControllers = isAdmin ? [selfCheckVC, reportVC, messageVC, reportListVC]: [selfCheckVC, reportVC, messageVC]
     }

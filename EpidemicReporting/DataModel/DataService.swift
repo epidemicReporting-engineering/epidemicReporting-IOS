@@ -46,21 +46,21 @@ class DataService: NSObject {
         }
     }
     
-    func getMyCheckIn(handler: @escaping ((_ isCheck: Bool, _ number: Int, _ success:Bool, _ error:NSError?)->())) {
+    func getMyCheckIn(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getMyCheckIn { (success, json, error) in
             if success {
-                guard let data = json?["data"].array else { handler(false,0,false, nil)
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
                     return }
-                for user in data {
-                    let current = user.dictionaryObject
-                    if current?["username"] as? String == appDelegate.currentUser?.username {
-                        handler(true, data.count,true,nil)
-                        break
+                Sync.changes(data, inEntityNamed: "Check", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
                     }
-                }
-                handler(false,data.count,false, nil)
+                })
+                handler(true, nil)
             } else {
-                handler(false,0,false, nil)
+                handler(false, error)
             }
         }
     }
@@ -371,5 +371,23 @@ class DataService: NSObject {
         }
         processors = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Processor])
         return processors
+    }
+    
+    func checkNumber(handler: @escaping ((_ isChecked:Bool, _ number: Int)->())) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Check")
+        request.predicate = NSPredicate(format: "createTime != nil")
+        if let number = (((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Check]))?.count {
+            guard let username = appDelegate.currentUser?.username else {
+                handler(false,number)
+                return
+            }
+            request.predicate = NSPredicate(format: "username == %@",username)
+            let myCheck = (((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Check]))?.count
+            if myCheck == 1 {
+                handler(true, number)
+            } else {
+                handler(false, number)
+            }
+        }
     }
 }

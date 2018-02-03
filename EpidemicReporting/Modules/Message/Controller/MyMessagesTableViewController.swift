@@ -174,14 +174,14 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             }
             start.backgroundColor = UIColor(hexString: themeBlue)
             actions?.append(start)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { [weak self](action, indexPath) in
+            let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
                 self?.dutyNumber = report?.id
                 self?.showAccessPicker()
             }
             cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
             actions?.append(cantdo)
-            let block = UITableViewRowAction(style: .normal, title: "有问题") { [weak self](action, indexPath) in
+            let block = UITableViewRowAction(style: .normal, title: "有困难") { [weak self](action, indexPath) in
                 self?.currentStatus = .BLOCK
                 self?.dutyNumber = report?.id
                 self?.showAccessPicker()
@@ -189,13 +189,13 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             block.backgroundColor = UIColor.init(hexString: blockRed)
             actions?.append(block)
         case DutyStatus.START.rawValue:
-            let block = UITableViewRowAction(style: .normal, title: "有问题") { [weak self](action, indexPath) in
+            let block = UITableViewRowAction(style: .normal, title: "有困难") { [weak self](action, indexPath) in
                 self?.currentStatus = .BLOCK
                 self?.dutyNumber = report?.id
                 self?.showAccessPicker()
             }
             block.backgroundColor = UIColor.init(hexString: blockRed)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { [weak self](action, indexPath) in
+            let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
                 self?.dutyNumber = report?.id
                 self?.showAccessPicker()
@@ -222,7 +222,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
                 }
             }
             start.backgroundColor = UIColor(hexString: themeBlue)
-            let cantdo = UITableViewRowAction(style: .normal, title: "不能做") { [weak self](action, indexPath) in
+            let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
                 self?.dutyNumber = report?.id
                 self?.showAccessPicker()

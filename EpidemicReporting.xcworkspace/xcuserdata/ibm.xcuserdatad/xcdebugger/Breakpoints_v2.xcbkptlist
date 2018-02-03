@@ -9,54 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Networking/Networking.swift"
-            timestampString = "536846375.337018"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "uploadVideoToServer(_:_:handler:progessHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in EpidemicReporting.Networking.uploadVideoToServer(Swift.String, Swift.Optional&lt;Foundation.URL&gt;, handler: (Swift.Bool, Swift.Optional&lt;SwiftyJSON.JSON&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; (), progessHandler: (Swift.Optional&lt;__ObjC.Progress&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "EpidemicReporting"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536902267.129222"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "188"
-                  endingLineNumber = "188"
-                  offsetFromSymbolStart = "156">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.Progress) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in EpidemicReporting.Networking.uploadVideoToServer(Swift.String, Swift.Optional&lt;Foundation.URL&gt;, handler: (Swift.Bool, Swift.Optional&lt;SwiftyJSON.JSON&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; (), progessHandler: (Swift.Optional&lt;__ObjC.Progress&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "EpidemicReporting"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ibm/workspace/epidemicReporting-iOS/EpidemicReporting/Networking/Networking.swift"
-                  timestampString = "536902267.1336631"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "189"
-                  endingLineNumber = "189"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/Modules/Report/View/AssetsViewController.swift"
             timestampString = "535103780.175314"
             startingColumnNumber = "9223372036854775807"
@@ -90,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EpidemicReporting/Modules/ReportList/View/CustomCalloutView.swift"
-            timestampString = "536902266.842079"
+            timestampString = "537279063.521629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -105,13 +57,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EpidemicReporting/Modules/Report/Controller/AssetsViewController.swift"
-            timestampString = "536902266.8421839"
+            filePath = "EpidemicReporting/Modules/Login/View/ResetPasswordViewController.swift"
+            timestampString = "539328859.923658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "sendReport()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "cancelResetAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EpidemicReporting/DataModel/DataService.swift"
+            timestampString = "539337352.862502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "checkIn(_:latitude:longitude:location:isAbsence:isAvailable:handler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EpidemicReporting/Modules/SelfCheck/View/SelfCheckViewController.swift"
+            timestampString = "539337352.862578"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "checkinAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

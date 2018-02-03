@@ -11,10 +11,16 @@
 		18041D241FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18041D221FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift */; };
 		1835AB861FFE5984006B7695 /* DutyStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835AB851FFE5984006B7695 /* DutyStatusViewController.swift */; };
 		1835AB881FFE5D82006B7695 /* DutyStatusImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835AB871FFE5D82006B7695 /* DutyStatusImageCollectionViewCell.swift */; };
+		1867BD872020B33100C5127A /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1867BD862020B33100C5127A /* Profile.storyboard */; };
+		1867BD892020B63200C5127A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867BD882020B63200C5127A /* ProfileViewController.swift */; };
 		186FF0DA1FF771BD0047B87F /* MyReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0D91FF771BD0047B87F /* MyReportsTableViewController.swift */; };
 		186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */; };
 		186FF0EA1FF78A250047B87F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */; };
 		186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */; };
+		188687272025867200EFDF87 /* AdminCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188687262025867200EFDF87 /* AdminCheckViewController.swift */; };
+		18868729202588EA00EFDF87 /* CheckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18868728202588EA00EFDF87 /* CheckTableViewCell.swift */; };
+		1886872C20258A9A00EFDF87 /* Check+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886872A20258A9A00EFDF87 /* Check+CoreDataClass.swift */; };
+		1886872D20258A9A00EFDF87 /* Check+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886872B20258A9A00EFDF87 /* Check+CoreDataProperties.swift */; };
 		18978E2A2000542E0050470F /* Processor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18978E282000542E0050470F /* Processor+CoreDataClass.swift */; };
 		18978E2B2000542E0050470F /* Processor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18978E292000542E0050470F /* Processor+CoreDataProperties.swift */; };
 		189BC41C1FE4E50600838437 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189BC41B1FE4E50500838437 /* DataService.swift */; };
@@ -97,10 +103,16 @@
 		18041D221FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DutyReport+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1835AB851FFE5984006B7695 /* DutyStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyStatusViewController.swift; sourceTree = "<group>"; };
 		1835AB871FFE5D82006B7695 /* DutyStatusImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyStatusImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		1867BD862020B33100C5127A /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		1867BD882020B63200C5127A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		186FF0D91FF771BD0047B87F /* MyReportsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsTableViewController.swift; sourceTree = "<group>"; };
 		186FF0E71FF78A250047B87F /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		186FF0E81FF78A250047B87F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		186FF0EB1FF85CFC0047B87F /* AvailableLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLocationsViewController.swift; sourceTree = "<group>"; };
+		188687262025867200EFDF87 /* AdminCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCheckViewController.swift; sourceTree = "<group>"; };
+		18868728202588EA00EFDF87 /* CheckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTableViewCell.swift; sourceTree = "<group>"; };
+		1886872A20258A9A00EFDF87 /* Check+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Check+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1886872B20258A9A00EFDF87 /* Check+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Check+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18978E282000542E0050470F /* Processor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processor+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18978E292000542E0050470F /* Processor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Processor+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		189BC41B1FE4E50500838437 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -218,6 +230,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1867BD832020B30300C5127A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1867BD852020B31F00C5127A /* View */,
+				1867BD842020B30E00C5127A /* Controller */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1867BD842020B30E00C5127A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1867BD882020B63200C5127A /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1867BD852020B31F00C5127A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1867BD862020B33100C5127A /* Profile.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18AE8FF71FFBB83600DCA39F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +296,8 @@
 		A5A902901FB47A6B00A6601F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				1886872A20258A9A00EFDF87 /* Check+CoreDataClass.swift */,
+				1886872B20258A9A00EFDF87 /* Check+CoreDataProperties.swift */,
 				18978E282000542E0050470F /* Processor+CoreDataClass.swift */,
 				18978E292000542E0050470F /* Processor+CoreDataProperties.swift */,
 				18041D211FFCFBAE003A1F80 /* DutyReport+CoreDataClass.swift */,
@@ -285,6 +324,7 @@
 		A5A902921FB47A6B00A6601F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1867BD832020B30300C5127A /* Profile */,
 				A5E3C9771FB52436000FAD71 /* Application */,
 				A5E3C9581FB49446000FAD71 /* Login */,
 				A5E3C9551FB49430000FAD71 /* SelfCheck */,
@@ -378,6 +418,8 @@
 			children = (
 				A5E3C9611FB498B8000FAD71 /* SelfCheck.storyboard */,
 				A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */,
+				188687262025867200EFDF87 /* AdminCheckViewController.swift */,
+				18868728202588EA00EFDF87 /* CheckTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -661,6 +703,7 @@
 				A5EDA34D1FF32FFF00762380 /* Main.storyboard in Resources */,
 				A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */,
 				A5EB80171FF21678005D41B9 /* ReportTableViewCell.xib in Resources */,
+				1867BD872020B33100C5127A /* Profile.storyboard in Resources */,
 				A5E3C9621FB498B8000FAD71 /* SelfCheck.storyboard in Resources */,
 				A56B8C481FEFBF3100303C02 /* LoginStoryboard.storyboard in Resources */,
 				A5E3C9661FB49989000FAD71 /* Report.storyboard in Resources */,
@@ -791,12 +834,14 @@
 				A57F8E451FF5DD3C002EC92B /* DutyStatusModel.swift in Sources */,
 				A57F8E411FF5CE7F002EC92B /* DutyDetailTableViewCell.swift in Sources */,
 				A57F8E211FF35EEA002EC92B /* PHAsset+Ext.swift in Sources */,
+				1867BD892020B63200C5127A /* ProfileViewController.swift in Sources */,
 				18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */,
 				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
 				A57F8E231FF3BB66002EC92B /* BatchFilesUploading.swift in Sources */,
 				18AE8FFA1FFBB85F00DCA39F /* MyMessageTableViewCell.swift in Sources */,
 				A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */,
 				18AE8FFD1FFBCCF300DCA39F /* GetCurrentLocationUtils.swift in Sources */,
+				188687272025867200EFDF87 /* AdminCheckViewController.swift in Sources */,
 				A529F0D71FB7288800E4ADDC /* NavigationController+Ext.swift in Sources */,
 				A5EB7FFC1FF1EA0B005D41B9 /* DutyDetailsTableViewController.swift in Sources */,
 				186FF0DA1FF771BD0047B87F /* MyReportsTableViewController.swift in Sources */,
@@ -813,12 +858,15 @@
 				A56B8C511FF0B2D300303C02 /* LoadingHUD.swift in Sources */,
 				1835AB881FFE5D82006B7695 /* DutyStatusImageCollectionViewCell.swift in Sources */,
 				186FF0EA1FF78A250047B87F /* User+CoreDataProperties.swift in Sources */,
+				1886872D20258A9A00EFDF87 /* Check+CoreDataProperties.swift in Sources */,
 				A5F24B8E1FB471720012EAF6 /* AppDelegate.swift in Sources */,
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
+				1886872C20258A9A00EFDF87 /* Check+CoreDataClass.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
 				18AE8FF61FFBB3D000DCA39F /* MyMessagesTableViewController.swift in Sources */,
 				A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */,
 				18041D241FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift in Sources */,
+				18868729202588EA00EFDF87 /* CheckTableViewCell.swift in Sources */,
 				A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */,
 				A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */,
 				A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */,

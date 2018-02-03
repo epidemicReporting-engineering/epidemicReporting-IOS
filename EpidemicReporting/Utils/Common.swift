@@ -13,7 +13,7 @@ import Photos
 let themeBlue = "#1296db"
 let blockRed = "#D75548"
 let finishGreen = "#BDE4A5"
-let canndoGray = "#B39685"
+let canndoGray = "#666666"
 
 
 enum DutyStatus: String {
