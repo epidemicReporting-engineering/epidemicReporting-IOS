@@ -15,7 +15,7 @@ class AdminCheckViewController: CoreDataTableViewController {
     
     lazy var setup: () = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Check")
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "createTime", ascending: true)]
         request.predicate = NSPredicate(format: "createTime != nil")
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }()
@@ -24,7 +24,7 @@ class AdminCheckViewController: CoreDataTableViewController {
         super.viewDidLoad()
 
         navigationController?.setStyledNavigationBar()
-        navigationItem.title = "管理员签到管理"
+        navigationItem.title = "管理员"
         initUI()
         let _ = setup
         // Do any additional setup after loading the view.
@@ -73,7 +73,7 @@ extension AdminCheckViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "checkCell") as? CheckTableViewCell
         guard let checkCell = cell else { return UITableViewCell() }
         if let data = fetchedResultsController?.fetchedObjects?[indexPath.item] as? Check {
-            cell?.updateDataSource(data.username, checkTime: data.createTime, checkLocation: data.location)
+            cell?.updateDataSource(data.name, checkTime: data.createTime, checkLocation: data.location)
         }
         
         return checkCell

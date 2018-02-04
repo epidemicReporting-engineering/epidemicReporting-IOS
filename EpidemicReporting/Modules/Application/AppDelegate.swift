@@ -125,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initTabar(_ isAdmin: Bool) {
         let selfCheckVC = isAdmin ? UIStoryboard(name: "SelfCheck", bundle: nil).instantiateViewController(withIdentifier: "SelfCheckAdminNav") : UIStoryboard(name: "SelfCheck", bundle: nil).instantiateInitialViewController()!
         selfCheckVC.tabBarItem.image = UIImage.init(named: "locate")
-        selfCheckVC.tabBarItem.title = "签到"
+        selfCheckVC.tabBarItem.title = isAdmin ? "签到管理" : "签到"
         
         let messageVC = UIStoryboard(name: "Message", bundle: nil).instantiateInitialViewController()!
         messageVC.tabBarItem.image = UIImage.init(named: "message")

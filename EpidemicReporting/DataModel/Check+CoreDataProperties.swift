@@ -25,5 +25,6 @@ extension Check {
     @NSManaged public var isAbsence: NSNumber?
     @NSManaged public var isAvailable: NSNumber?
     @NSManaged public var createTime: NSDate?
+    @NSManaged public var name: String?
 
 }

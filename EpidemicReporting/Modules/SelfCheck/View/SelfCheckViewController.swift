@@ -47,7 +47,6 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         navigationItem.title = "我的足迹"
         
         refreshCheckNumber()
-        //getCurrentLocation()
     }
     
     func refreshCheckNumber(){
@@ -60,6 +59,7 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
                     self?.checkMessage.text = "点击签到"
                 }
                 self?.totalNum.text = "今日签到人数：" + number.description
+                self?.getCurrentLocation()
             }
         }
     }
@@ -89,8 +89,8 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         if (current == nil) {
             OPLoadingHUD.show(UIImage(named: "block"), title: "无法获取地理位置", animated: false, delay: 2)
         } else {
-            guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.latitude.description, let loc = current?.location.description else { return }
-            DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: loc, isAbsence: false, isAvailable: true, handler: { [weak self](success, error) in
+            guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.latitude.description, let location = currentLocation else { return }
+            DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: location, isAbsence: false, isAvailable: true, handler: { [weak self](success, error) in
                 if success {
                     self?.checkMessage.text = "今日您已签到"
                     self?.refreshCheckNumber()
@@ -132,17 +132,11 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     }
     
     func getCurrentLocation() {
-        GetCurrentLocationUtils.sharedInstance.getCurrentLocation { [weak self](location, success, error) in
-            if success {
-                let request = AMapReGeocodeSearchRequest()
-                guard let lat = location?.coordinate.latitude, let longt = location?.coordinate.longitude else { return }
-                self?.latitude = lat.description
-                self?.longitude = longt.description
-                request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
-                request.requireExtension = true
-                self?.search?.aMapReGoecodeSearch(request)
-            }
-        }
+        let request = AMapReGeocodeSearchRequest()
+        guard let lat = current?.coordinate.latitude, let longt = current?.coordinate.longitude else { return }
+        request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
+        request.requireExtension = true
+        search?.aMapReGoecodeSearch(request)
     }
 }
 
