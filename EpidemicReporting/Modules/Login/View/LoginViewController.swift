@@ -57,8 +57,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: UIButton) {
-        username.text = "admin001"
-        password.text = "123456"
         if (checkUsernamePassword()) {
             showHintMessage(false)
             OPLoadingHUD.show(UIImage(named: "loading"), title: "登录中", animated: true, delay: 0.0)
