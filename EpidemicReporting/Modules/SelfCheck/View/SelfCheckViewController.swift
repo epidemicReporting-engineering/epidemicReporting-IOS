@@ -89,7 +89,7 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         if (current == nil) {
             OPLoadingHUD.show(UIImage(named: "block"), title: "无法获取地理位置", animated: false, delay: 2)
         } else {
-            guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.latitude.description, let location = currentLocation else { return }
+            guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.longitude.description, let location = currentLocation else { return }
             DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: location, isAbsence: false, isAvailable: true, handler: { [weak self](success, error) in
                 if success {
                     self?.checkMessage.text = "今日您已签到"
