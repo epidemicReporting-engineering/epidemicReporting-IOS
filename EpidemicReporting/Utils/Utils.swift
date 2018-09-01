@@ -76,13 +76,15 @@ class Utils {
         return UIScreen.main.bounds.height
     }
     
-    class func getCurrentTimeStamp(_ time: Int64) -> String {
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy年MM月dd日 HH:mm"
+    class func getCurrentTimeStamp(_ time: NSDate) -> String {
         
-        let timeInterval:TimeInterval = TimeInterval(time)
-        let date = Date(timeIntervalSince1970: timeInterval)
-        return dateformatter.string(from: date)
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "YYYY年MM月dd HH:mm"
+
+//        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+//        dateFormatter.dateStyle = .medium
+//        dateFormatter.timeStyle = .none
+        return dateformatter.string(from: time as Date)
     }
     
     class func getDutyStatus(_ status: String) -> String {
@@ -100,7 +102,7 @@ class Utils {
         case "5":
             return "已评阅"
         case "6":
-            return "不能做"
+            return "无法做"
         default:
             return "未分配"
         }

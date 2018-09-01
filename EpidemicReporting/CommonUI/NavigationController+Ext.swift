@@ -13,12 +13,19 @@ extension UINavigationController {
     func setStyledNavigationBar() {
         
         UIApplication.shared.statusBarStyle = .lightContent
-        
+
         if let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as? UIView {
             statusBar.backgroundColor = UIColor.init(hexString: themeBlue)
         }
-        
+
         navigationBar.barTintColor = UIColor.init(hexString: themeBlue)
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+//
+        navigationBar.tintColor = UIColor.white
+//        navigationBar.backItem?.title = ""
+    }
+    
+    func setBackItem() {
+        
     }
 }

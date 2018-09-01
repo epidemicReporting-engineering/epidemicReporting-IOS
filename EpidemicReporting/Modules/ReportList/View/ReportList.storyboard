@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,9 +77,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="logo" destination="yKD-Aw-LAP" id="kgc-41-bHt"/>
-                                    <outlet property="number" destination="zYB-OI-dh5" id="afz-bI-KT1"/>
-                                    <outlet property="type" destination="BYN-lt-2mc" id="HFZ-XB-Z3h"/>
+                                    <outlet property="logo" destination="yKD-Aw-LAP" id="GoV-9S-hD8"/>
+                                    <outlet property="number" destination="zYB-OI-dh5" id="Wz4-vJ-rUp"/>
+                                    <outlet property="type" destination="BYN-lt-2mc" id="OoN-eF-qP8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -93,10 +94,57 @@
             <point key="canvasLocation" x="1840.8" y="1152.7736131934034"/>
         </scene>
         <!--Navigation Controller-->
+        <scene sceneID="eDf-NX-7lG">
+            <objects>
+                <navigationController id="bqm-2B-qkB" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="tTi-Ee-9pd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hzb-AA-0RA" kind="relationship" relationship="rootViewController" id="RbU-al-hen"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZk-Vb-fbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911" y="2006"/>
+        </scene>
+        <!--Available Locations View Controller-->
+        <scene sceneID="tYc-Ni-moi">
+            <objects>
+                <viewController storyboardIdentifier="AvailableLocationsViewController" id="Hzb-AA-0RA" customClass="AvailableLocationsViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nvb-7g-UUH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOC-Gc-2G6" customClass="MAMapView">
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XOC-Gc-2G6" firstAttribute="centerX" secondItem="gmh-Xs-eie" secondAttribute="centerX" id="CaT-Oq-gJc"/>
+                            <constraint firstItem="XOC-Gc-2G6" firstAttribute="top" secondItem="gmh-Xs-eie" secondAttribute="top" id="L2X-j6-U36"/>
+                            <constraint firstAttribute="bottom" secondItem="XOC-Gc-2G6" secondAttribute="bottom" id="pvv-ps-8SB"/>
+                            <constraint firstItem="XOC-Gc-2G6" firstAttribute="width" secondItem="Nvb-7g-UUH" secondAttribute="width" id="v1T-ou-EjX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gmh-Xs-eie"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cTL-O5-7MP"/>
+                    <connections>
+                        <outlet property="mapView" destination="XOC-Gc-2G6" id="mLj-tc-5s9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zcy-Ie-Hab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1841" y="2006"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="QDJ-EJ-KIl">
             <objects>
                 <navigationController storyboardIdentifier="ReportListNav" id="f4U-Wd-2PI" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="PwV-vC-Khk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -106,18 +106,59 @@ extension AdminReportsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let parent = fetchedResultsController?.object(at: indexPath) as? Comment
-//        if parent?.user?.username == appDelegate.currentUser?.username {
-//            guard let alterVC = showReplyAlertController(parentComment?.id, showDelete: true, commentId: parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        } else {
-//            guard let alterVC = showReplyAlertController(parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        }
+        let cell = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let storyboard = UIStoryboard(name: "Report", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
+            vc.reportId = cell?.id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+        return actionButtonDecider(duty)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func actionButtonDecider(_ report: DutyReport?) -> [UITableViewRowAction]? {
+        var actions:[UITableViewRowAction]? = [UITableViewRowAction]()
+        guard let status = report?.dutyStatus else { return nil }
+        switch status {
+        case DutyStatus.UNASSIGN.rawValue:
+            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            assign.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(assign)
+        case DutyStatus.CANTDO.rawValue:
+            let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            assign.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(assign)
+        case DutyStatus.FINISH.rawValue:
+            let comment = UITableViewRowAction(style: .normal, title: "点评") { [weak self](action, indexPath) in
+                //TODO: send the status
+                
+            }
+            comment.backgroundColor = UIColor(hexString: themeBlue)
+            actions?.append(comment)
+        default:
+            break
+        }
+        return actions
     }
 }
 

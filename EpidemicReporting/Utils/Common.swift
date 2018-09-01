@@ -11,6 +11,10 @@ import UIKit
 import Photos
 
 let themeBlue = "#1296db"
+let blockRed = "#D75548"
+let finishGreen = "#BDE4A5"
+let canndoGray = "#666666"
+
 
 enum DutyStatus: String {
     case UNASSIGN = "0"
@@ -31,6 +35,11 @@ enum PullDataType: String {
 enum FileUploadErrorCode: Int {
     case UPLOADING = 0
     case UPLOADFAILED = 1
+}
+
+enum RoleType: String {
+    case admin = "ADMIN"
+    case staff = "STAFF"
 }
 
 

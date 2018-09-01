@@ -20,14 +20,13 @@ class DutyDetailsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationController?.setStyledNavigationBar()
         initTableView()
         updateDataSource()
     }
     
     func initTableView() {
-        navigationController?.setStyledNavigationBar()
-        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = "疫情状态"
         let footView = UIView()
         tableView.tableFooterView = footView
@@ -77,14 +76,13 @@ extension DutyDetailsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let parent = fetchedResultsController?.object(at: indexPath) as? Comment
-//        if parent?.user?.username == appDelegate.currentUser?.username {
-//            guard let alterVC = showReplyAlertController(parentComment?.id, showDelete: true, commentId: parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        } else {
-//            guard let alterVC = showReplyAlertController(parent?.id) else { return }
-//            present(alterVC, animated: true, completion: nil)
-//        }
+        guard let data = dataModels?[indexPath.item] else { return }
+        let storyboard = UIStoryboard.init(name: "Report", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "DutyStatusViewController") as? DutyStatusViewController {
+            navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -10,10 +10,11 @@ import UIKit
 
 class FilterTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var type: UILabel!
     @IBOutlet weak var number: UILabel!
     
+    @IBOutlet weak var type: UILabel!
     var dutyStatus: DutyStatus?
     
     override func awakeFromNib() {

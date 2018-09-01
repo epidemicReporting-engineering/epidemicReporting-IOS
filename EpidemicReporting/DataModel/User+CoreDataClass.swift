@@ -2,8 +2,8 @@
 //  User+CoreDataClass.swift
 //  EpidemicReporting
 //
-//  Created by eleven on 2017/12/26.
-//  Copyright © 2017年 epidemicreporting.com. All rights reserved.
+//  Created by IBM on 30/12/2017.
+//  Copyright © 2017 epidemicreporting.com. All rights reserved.
 //
 //
 

@@ -88,7 +88,7 @@ class DataServiceTest: XCTestCase {
     func test_2_duty_assign() {
         var waitingForBlock = true
         //1. assign
-        DataService.sharedInstance.reportAssign("100004", dutyOwner: "user001", dutyDescription: "请立马开始到指定地点报道，有最新情况马上汇报给我", dutyStatus: DutyStatus.ASSIGNED.rawValue) { (success, error) in
+        DataService.sharedInstance.reportAssign("100007", dutyOwner: "user001", dutyDescription: "给user001新派发一个任务", dutyStatus: DutyStatus.ASSIGNED.rawValue) { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "Login result")
         }
@@ -127,7 +127,7 @@ class DataServiceTest: XCTestCase {
     func test_2_duty_start() {
         var waitingForBlock = true
         //1. start
-        DataService.sharedInstance.reportProcess("100004", dutyOwner: "user001", dutyDescription: "之前说的问题，其他同事已经帮我解决，非常感谢，我又要开始处理", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { (success, error) in
+        DataService.sharedInstance.reportProcess("100003", dutyOwner: "user001", dutyDescription: "之前说的问题，其他同事已经帮我解决，非常感谢，我又要开始处理", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "Login result")
         }
@@ -166,7 +166,7 @@ class DataServiceTest: XCTestCase {
     func test_3_duty_block() {
         var waitingForBlock = true
         //block
-        DataService.sharedInstance.reportProcess("100004", dutyOwner: "user001", dutyDescription: "我这里遇到了点情况，需要前线支援", dutyStatus: DutyStatus.BLOCK.rawValue, dutyMultiMedia: ["picture 11","picture 12"]) { (success, error) in
+        DataService.sharedInstance.reportProcess("100003", dutyOwner: "user001", dutyDescription: "我这里遇到了点情况，需要前线支援", dutyStatus: DutyStatus.BLOCK.rawValue, dutyMultiMedia: ["picture 11","picture 12"]) { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "Login result")
         }
@@ -304,7 +304,7 @@ class DataServiceTest: XCTestCase {
     func test_6_duty_status() {
         var waitingForBlock = true
         //
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: "1514191491000") { (success, error) in
+        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { (success, error) in
             //
             waitingForBlock = false
             XCTAssert(success, "duty_list")
@@ -338,6 +338,19 @@ class DataServiceTest: XCTestCase {
         var waitingForBlock = true
         //
         DataService.sharedInstance.getReportAllStatus("100004") { (success, json, error) in
+            waitingForBlock = false
+            XCTAssert(success, "duty_list")
+        }
+        
+        while waitingForBlock {
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 1))
+        }
+    }
+    
+    func test_7_admin_stuff() {
+        var waitingForBlock = true
+        //
+        DataService.sharedInstance.getStuff() { (success, error) in
             waitingForBlock = false
             XCTAssert(success, "duty_list")
         }

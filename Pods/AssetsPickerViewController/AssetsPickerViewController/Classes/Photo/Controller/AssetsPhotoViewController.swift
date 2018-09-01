@@ -223,7 +223,7 @@ extension AssetsPhotoViewController {
     func setupBarButtonItems() {
         navigationItem.leftBarButtonItem = cancelButtonItem
         navigationItem.rightBarButtonItem = doneButtonItem
-        doneButtonItem.isEnabled = false
+        doneButtonItem.isEnabled = true
     }
     
     func setupAssets() {
@@ -385,7 +385,7 @@ extension AssetsPhotoViewController {
     
     func updateNavigationStatus() {
         
-        doneButtonItem.isEnabled = selectedArray.count > 0
+        doneButtonItem.isEnabled = true
         
         let counts: (imageCount: Int, videoCount: Int) = selectedArray.reduce((0, 0)) { (result, asset) -> (Int, Int) in
             let imageCount = asset.mediaType == .image ? 1 : 0

@@ -166,7 +166,7 @@ extension Networking {
         let url  = apiBaseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
         
         var params: Parameters = [String: Any]()
-        if let name = appDelegate.currentUser?.userid {
+        if let name = appDelegate.currentUser?.username {
             params = [
                 "user": name,
             ]
@@ -215,7 +215,7 @@ extension Networking {
         let url  = apiBaseURL! + "\(WebServiceAPIMapping.UploadMedia.rawValue)"
         
         var params: Parameters = [String: Any]()
-        if let name = appDelegate.currentUser?.userid {
+        if let name = appDelegate.currentUser?.username {
             params = [
                 "user": name,
             ]

@@ -2,8 +2,8 @@
 //  User+CoreDataProperties.swift
 //  EpidemicReporting
 //
-//  Created by eleven on 2017/12/26.
-//  Copyright © 2017年 epidemicreporting.com. All rights reserved.
+//  Created by IBM on 30/12/2017.
+//  Copyright © 2017 epidemicreporting.com. All rights reserved.
 //
 //
 
@@ -19,6 +19,8 @@ extension User {
 
     @NSManaged public var accessToken: String?
     @NSManaged public var refreshToken: String?
-    @NSManaged public var userid: String?
+    @NSManaged public var name: String?
+    @NSManaged public var username: String?
+    @NSManaged public var role: String?
 
 }

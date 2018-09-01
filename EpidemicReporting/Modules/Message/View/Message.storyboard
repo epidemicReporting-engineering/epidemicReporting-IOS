@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNk-ZP-hjp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BNk-ZP-hjp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,34 +13,36 @@
         <scene sceneID="oVi-Br-IEi">
             <objects>
                 <navigationController id="BNk-ZP-hjp" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QsO-KW-sa4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="QsO-KW-sa4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="X8O-ea-hWt" kind="relationship" relationship="rootViewController" id="lF5-Ak-yqV"/>
+                        <segue destination="TSv-fc-MFp" kind="relationship" relationship="rootViewController" id="qjO-Fm-Uop"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3g-EG-M7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-54" y="-322"/>
         </scene>
-        <!--消息-->
-        <scene sceneID="z6j-B9-Wrl">
+        <!--My Messages Table View Controller-->
+        <scene sceneID="uIl-YU-RB8">
             <objects>
-                <viewController storyboardIdentifier="MessageNav" id="X8O-ea-hWt" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="r7W-L5-Bgb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="TSv-fc-MFp" customClass="MyMessagesTableViewController" customModule="EpidemicReporting" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="D9d-c9-Gzy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="rfB-28-UJo"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="消息" id="feS-rG-CDF"/>
-                    <navigationItem key="navigationItem" id="X6e-Lk-0Vu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Inq-XY-cRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="TSv-fc-MFp" id="WN2-pi-26c"/>
+                            <outlet property="delegate" destination="TSv-fc-MFp" id="pBH-4e-HSo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="OgG-YK-3u8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXx-h6-jTo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1026" y="-322"/>
+            <point key="canvasLocation" x="847" y="-328"/>
         </scene>
     </scenes>
 </document>

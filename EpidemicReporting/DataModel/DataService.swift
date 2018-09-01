@@ -22,22 +22,17 @@ class DataService: NSObject {
     }
     
     func userLogin(_ username: String?, pwd: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.userLogin(username, password: pwd) { (success, json, error) in
+        Networking.shareInstance.userLogin(username, password: pwd) { [weak self] (success, json, error) in
             if success {
-                guard let token = json?["token"].string else { handler(false, nil)
+                guard let token = json?["token"].string, let refreshToken = json?["refreshToken"].string else { handler(false, nil)
                     return }
                 if token != "" {
                     UserDefaults.standard.set(token, forKey: "token")
                     UserDefaults.standard.synchronize()
                     
-                    var jsonData:JSON? = JSON()
-                    jsonData = json
-                    jsonData?.dictionaryObject?["userid"] = username
-                    
-                    guard let data = jsonData?.dictionaryObject else { return }
-                    Sync.changes([data], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
-                        if error == nil {
-                            handler(true, nil)
+                    self?.getProfile(username, access: token, refresh: refreshToken,  handler: {(success, error) in
+                        if success {
+                            handler(true,nil)
                         } else {
                             handler(false, error)
                         }
@@ -51,9 +46,52 @@ class DataService: NSObject {
         }
     }
     
-    func getProfile(_ username: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+    func getMyCheckIn(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getMyCheckIn { (success, json, error) in
+            if success {
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                    return }
+                Sync.changes(data, inEntityNamed: "Check", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func getProfile(_ username: String?, access: String?, refresh: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getProfile(username) { (success, json, error) in
-            //TODO:process the data
+            if success {
+                guard let data = json?["data"] else { handler(false, nil)
+                    return }
+                
+                var jsonData:JSON? = JSON()
+                jsonData = data
+                jsonData?.dictionaryObject?["accessToken"] = access
+                jsonData?.dictionaryObject?["refreshToken"] = refresh
+                
+                guard let storedata = jsonData?.dictionaryObject else { return }
+                Sync.changes([storedata], inEntityNamed: "User", dataStack: appDelegate.dataStack, operations: [.insert,.update], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func checkIn(_ username: String?, latitude: String?, longitude: String?, location: String?, isAbsence: Bool?, isAvailable: Bool?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.checkIn(username, latitude: latitude, longitude: longitude, location: location, isAbsence: isAbsence, isAvailable: isAvailable) { (success, json, error) in
             if success {
                 handler(true, nil)
             } else {
@@ -300,6 +338,55 @@ class DataService: NSObject {
                 })
             } else {
                 handler(false, error)
+            }
+        }
+    }
+    
+    func getStuff(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getStuff { (success, json, error) in
+            if success {
+                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                    return }
+                Sync.changes(data, inEntityNamed: "Processor", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+                handler(true, nil)
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func fetchAvailableProcessorsBy(_ name: String?) -> [Processor]? {
+        var processors: [Processor]?
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Processor")
+        request.sortDescriptors = [NSSortDescriptor(key: "username", ascending: true)]
+        if name != nil {
+            guard let username = name else { return nil }
+            request.predicate = NSPredicate(format: "username == %@", username)
+        }
+        processors = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Processor])
+        return processors
+    }
+    
+    func checkNumber(handler: @escaping ((_ isChecked:Bool, _ number: Int)->())) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Check")
+        request.predicate = NSPredicate(format: "createTime != nil")
+        if let number = (((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Check]))?.count {
+            guard let username = appDelegate.currentUser?.username else {
+                handler(false,number)
+                return
+            }
+            request.predicate = NSPredicate(format: "username == %@",username)
+            let myCheck = (((try! appDelegate.dataStack.mainContext.fetch(request)) as? [Check]))?.count
+            if myCheck == 1 {
+                handler(true, number)
+            } else {
+                handler(false, number)
             }
         }
     }

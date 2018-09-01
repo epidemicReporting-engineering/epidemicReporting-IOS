@@ -16,26 +16,22 @@ class ReportTableViewCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var reporter: UILabel!
     @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var status: UILabel!
     @IBOutlet weak var processor: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        statusView.layer.cornerRadius = statusView.bounds.width / 2
-        statusView.layer.masksToBounds = true
     }
     
     func updateDataSource(_ cell: DutyReport?) {
-        guard let report = cell else { return }
+        guard let report = cell, let timeStamp = report.reportTime else { return }
         reporter.text = report.reporterName
-        time.text = Utils.getCurrentTimeStamp(report.reportTime)
-        content.text = report.dutyDescription
-        if let reportStatus = report.dutyStatus {
-            status.text = Utils.getDutyStatus(reportStatus)
+        time.text = Utils.getCurrentTimeStamp(timeStamp)
+        if cell?.dutyStatus == DutyStatus.UNASSIGN.rawValue {
+            content.text = report.reportDescription
+        } else {
+            content.text = report.dutyDescription
         }
-        
+
         if let dutyOwner = report.dutyOwnerName {
             processor.text = "责任人：" + dutyOwner
         }
