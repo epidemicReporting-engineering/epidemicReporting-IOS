@@ -21,11 +21,13 @@ PODS:
   - FadeView (2.0.0)
   - FSCalendar (2.7.9)
   - INSPhotoGallery (1.2.3)
+  - IQKeyboardManagerSwift (5.0.8)
   - KeychainAccess (3.1.0)
   - PureLayout (3.0.2)
   - SDWebImage (4.2.1):
     - SDWebImage/Core (= 4.2.1)
   - SDWebImage/Core (4.2.1)
+  - SnapKit (4.0.0)
   - STRegex (1.1.0)
   - SwiftARGB (2.0.0)
   - SwiftyJSON (3.1.4)
@@ -41,8 +43,10 @@ DEPENDENCIES:
   - AssetsPickerViewController (~> 2.0)
   - FSCalendar
   - INSPhotoGallery
+  - IQKeyboardManagerSwift
   - KeychainAccess (~> 3.1.0)
   - SDWebImage (~> 4.0)
+  - SnapKit (~> 4.0.0)
   - STRegex (~> 1.0)
   - SwiftyJSON (~> 3.1.4)
   - Sync (~> 4)
@@ -58,16 +62,18 @@ SPEC CHECKSUMS:
   FadeView: 80197da2fbee5382b178127e8c5f988a35eef018
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   INSPhotoGallery: 2c07e4a5b5be1b4fd49c0c1f16eed28c6fe8a15d
+  IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   SwiftARGB: 8727cfcdcfe8709e707a2391f1d5802a7c40dcad
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Sync: 0490b72e3322ba86095f603d7230bec36749f249
+  Sync: '0490b72e3322ba86095f603d7230bec36749f249'
   TinyLog: 1b19359cd3f32ab4972c595d002efc614e596529
-  UIViewKVO: 091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf
+  UIViewKVO: '091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf'
 
-PODFILE CHECKSUM: e04e54467ff69ad3dc5376c3f4e68cb3edd95090
+PODFILE CHECKSUM: '08a2f7101387a357d134b0c587e614849beb5d7f'
 
 COCOAPODS: 1.2.1

@@ -17,6 +17,8 @@ target ‘EpidemicReporting’ do
     pod 'FSCalendar'
     pod 'AssetsPickerViewController', '~> 2.0'
     pod 'SDWebImage', '~> 4.0'
+    pod 'SnapKit', '~> 4.0.0'
+    pod 'IQKeyboardManagerSwift'
 end
 
 target 'EpidemicReportingTests' do

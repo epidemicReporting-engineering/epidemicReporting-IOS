@@ -28,8 +28,8 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
             if let tabItems = self?.tabBarController?.tabBar.items as NSArray!{
                 let tabItem = tabItems[2] as! UITabBarItem
@@ -41,6 +41,20 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             }
         }
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+//            if let tabItems = self?.tabBarController?.tabBar.items as NSArray!{
+//                let tabItem = tabItems[2] as! UITabBarItem
+//                if let count = self?.fetchedResultsController?.fetchedObjects?.count {
+//                    if count > 0 {
+//                        tabItem.badgeValue = count.description
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

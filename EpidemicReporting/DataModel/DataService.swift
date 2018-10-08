@@ -47,23 +47,36 @@ class DataService: NSObject {
     }
     
     func getMyCheckIn(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.getMyCheckIn { (success, json, error) in
-            if success {
-                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
-                    return }
-                Sync.changes(data, inEntityNamed: "Check", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
-                    if error == nil {
-                        handler(true, nil)
-                    } else {
-                        handler(false, error)
-                    }
-                })
-                handler(true, nil)
-            } else {
-                handler(false, error)
-            }
+        let clander = Calendar(identifier: .gregorian)
+        let comps = clander.dateComponents([.year, .month], from: Date())
+        guard let username = appDelegate.currentUser?.username, let month = comps.month, let year = comps.year else {
+            handler(false, nil)
+            return
         }
+        
+        Networking.shareInstance.getMyCheckInMoth(month: "\(month)", year: "\(year)", user: username) { (success, json, error) in
+            print(json)
+        }
+        
+//        Networking.shareInstance.getMyCheckIn { (success, json, error) in
+//            if success {
+//                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+//                    return }
+//                Sync.changes(data, inEntityNamed: "Check", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+//                    if error == nil {
+//                        handler(true, nil)
+//                    } else {
+//                        handler(false, error)
+//                    }
+//                })
+//                handler(true, nil)
+//            } else {
+//                handler(false, error)
+//            }
+//        }
     }
+    
+//    func getMyCheckIn(user)
     
     func getProfile(_ username: String?, access: String?, refresh: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.getProfile(username) { (success, json, error) in
@@ -145,6 +158,24 @@ class DataService: NSObject {
     
     func reportMessage(_ reporter: String?, location: String?, latitude: String?, longitude: String?, description: String?, multimedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.reportMessage(reporter, location: location, latitude: latitude, longitude: longitude, description: description, multimedia: multimedia) { (success, json, error) in
+            if success {
+                guard let data = json?["data"].dictionaryObject else { handler(false, nil)
+                    return }
+                Sync.changes([data], inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,], completion: { (error) in
+                    if error == nil {
+                        handler(true, nil)
+                    } else {
+                        handler(false, error)
+                    }
+                })
+            } else {
+                handler(false, error)
+            }
+        }
+    }
+    
+    func reportDuty(data: DutyReportDataModel, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportDuty(data: data) { (success, json, error) in
             if success {
                 guard let data = json?["data"].dictionaryObject else { handler(false, nil)
                     return }

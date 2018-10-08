@@ -79,6 +79,11 @@
 		A5F24B981FB471720012EAF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F24B971FB471720012EAF6 /* Assets.xcassets */; };
 		A5F24BA61FB471720012EAF6 /* EpidemicReportingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24BA51FB471720012EAF6 /* EpidemicReportingTests.swift */; };
 		A5F24BB11FB471720012EAF6 /* EpidemicReportingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F24BB01FB471720012EAF6 /* EpidemicReportingUITests.swift */; };
+		E1275CEB215908FA00BBFD35 /* PatientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1275CEA215908FA00BBFD35 /* PatientDetailViewController.swift */; };
+		E1275CED2159328300BBFD35 /* AddPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1275CEC2159328300BBFD35 /* AddPatientViewController.swift */; };
+		E1275CEF215A56CC00BBFD35 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1275CEE215A56CC00BBFD35 /* CheckBox.swift */; };
+		E16B3F3021590594008E4713 /* UnderlineTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16B3F2F21590594008E4713 /* UnderlineTextfield.swift */; };
+		E16EDB142157AE2A00E9CB66 /* SelectionAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16EDB132157AE2A00E9CB66 /* SelectionAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +205,12 @@
 		BAA836756B09BD4C9F6E16E3 /* Pods-EpidemicReportingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReportingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReportingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE1D2F75CE6352D6D3D930E /* Pods-EpidemicReportingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReportingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReportingTests/Pods-EpidemicReportingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E1275CEA215908FA00BBFD35 /* PatientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailViewController.swift; sourceTree = "<group>"; };
+		E1275CEC2159328300BBFD35 /* AddPatientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientViewController.swift; sourceTree = "<group>"; };
+		E1275CEE215A56CC00BBFD35 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		E14EE7C02162550E00D75336 /* EpidemicReporting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EpidemicReporting.entitlements; sourceTree = "<group>"; };
+		E16B3F2F21590594008E4713 /* UnderlineTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextfield.swift; sourceTree = "<group>"; };
+		E16EDB132157AE2A00E9CB66 /* SelectionAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +290,9 @@
 				A5EB80001FF1F25C005D41B9 /* CoreDataTableViewController.swift */,
 				A56B8C501FF0B2D300303C02 /* LoadingHUD.swift */,
 				A529F0D61FB7288800E4ADDC /* NavigationController+Ext.swift */,
+				E16EDB132157AE2A00E9CB66 /* SelectionAlertView.swift */,
+				E16B3F2F21590594008E4713 /* UnderlineTextfield.swift */,
+				E1275CEE215A56CC00BBFD35 /* CheckBox.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -477,6 +491,8 @@
 				A5EB7FFB1FF1EA0B005D41B9 /* DutyDetailsTableViewController.swift */,
 				186FF0D91FF771BD0047B87F /* MyReportsTableViewController.swift */,
 				1835AB851FFE5984006B7695 /* DutyStatusViewController.swift */,
+				E1275CEA215908FA00BBFD35 /* PatientDetailViewController.swift */,
+				E1275CEC2159328300BBFD35 /* AddPatientViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -513,6 +529,7 @@
 		A5F24B8C1FB471720012EAF6 /* EpidemicReporting */ = {
 			isa = PBXGroup;
 			children = (
+				E14EE7C02162550E00D75336 /* EpidemicReporting.entitlements */,
 				A5EDA3301FF3247200762380 /* Translation */,
 				A529F0D51FB7281500E4ADDC /* CommonUI */,
 				A5A902901FB47A6B00A6601F /* DataModel */,
@@ -659,6 +676,11 @@
 					A5F24B891FB471720012EAF6 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A5F24BA01FB471720012EAF6 = {
 						CreatedOnToolsVersion = 9.1;
@@ -834,6 +856,7 @@
 				A57F8E451FF5DD3C002EC92B /* DutyStatusModel.swift in Sources */,
 				A57F8E411FF5CE7F002EC92B /* DutyDetailTableViewCell.swift in Sources */,
 				A57F8E211FF35EEA002EC92B /* PHAsset+Ext.swift in Sources */,
+				E1275CED2159328300BBFD35 /* AddPatientViewController.swift in Sources */,
 				1867BD892020B63200C5127A /* ProfileViewController.swift in Sources */,
 				18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */,
 				A56B8C4F1FEFDE6C00303C02 /* ResetPasswordViewController.swift in Sources */,
@@ -850,8 +873,10 @@
 				186FF0E91FF78A250047B87F /* User+CoreDataClass.swift in Sources */,
 				18978E2A2000542E0050470F /* Processor+CoreDataClass.swift in Sources */,
 				18978E2B2000542E0050470F /* Processor+CoreDataProperties.swift in Sources */,
+				E16EDB142157AE2A00E9CB66 /* SelectionAlertView.swift in Sources */,
 				A529F0DD1FB9D23200E4ADDC /* ReportViewController.swift in Sources */,
 				186FF0EC1FF85CFC0047B87F /* AvailableLocationsViewController.swift in Sources */,
+				E1275CEF215A56CC00BBFD35 /* CheckBox.swift in Sources */,
 				189BC41C1FE4E50600838437 /* DataService.swift in Sources */,
 				A5EB80021FF1F25C005D41B9 /* CoreDataTableViewController.swift in Sources */,
 				A5A902971FB4848200A6601F /* WebServiceAPIMapping.swift in Sources */,
@@ -863,11 +888,13 @@
 				A529F0D91FB72AEA00E4ADDC /* UIColor+Ext.swift in Sources */,
 				1886872C20258A9A00EFDF87 /* Check+CoreDataClass.swift in Sources */,
 				A5E3C95F1FB4960E000FAD71 /* LoginProtocol.swift in Sources */,
+				E16B3F3021590594008E4713 /* UnderlineTextfield.swift in Sources */,
 				18AE8FF61FFBB3D000DCA39F /* MyMessagesTableViewController.swift in Sources */,
 				A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */,
 				18041D241FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift in Sources */,
 				18868729202588EA00EFDF87 /* CheckTableViewCell.swift in Sources */,
 				A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */,
+				E1275CEB215908FA00BBFD35 /* PatientDetailViewController.swift in Sources */,
 				A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */,
 				A57717AC1FE008BA00004188 /* UIBarButtonItem+Ext.swift in Sources */,
 				1835AB861FFE5984006B7695 /* DutyStatusViewController.swift in Sources */,
@@ -1043,8 +1070,9 @@
 			baseConfigurationReference = AF42C819E775FD7E8170ADB6 /* Pods-EpidemicReporting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EpidemicReporting/EpidemicReporting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PETKK2G752;
+				DEVELOPMENT_TEAM = ZJLLWPE37A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/AMapLocation",
@@ -1070,8 +1098,9 @@
 			baseConfigurationReference = 9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EpidemicReporting/EpidemicReporting.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PETKK2G752;
+				DEVELOPMENT_TEAM = ZJLLWPE37A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/AMapLocation",

@@ -30,12 +30,12 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     
     fileprivate let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
     
+//    fileprivate var checkinTypeSelectionView: SelectionAlertView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initMapView()
-        initSearch()
-        initCalendar()
+        initUI()
         
         let rightFilterItemblank = UIBarButtonItem.createBarButtonItemWithText("", CGRect(x: 0, y: 0, width: 4, height: 24), self, #selector(profilePress), UIColor.white, 12)
         guard let profileImage = UIImage(named: "profile") else { return }
@@ -50,17 +50,20 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     }
     
     func refreshCheckNumber(){
+//        DataService.sharedInstance.getMyCheckIn { (success, error) in
+//
+//            DataService.sharedInstance.checkNumber { [weak self](checked, number) in
+//                if checked {
+//                    self?.checkMessage.text = "今日您已签到"
+//                } else {
+//                    self?.checkMessage.text = "点击签到"
+//                }
+//                self?.totalNum.text = "今日签到人数：" + number.description
+//                self?.getCurrentLocation()
+//            }
+//        }
         DataService.sharedInstance.getMyCheckIn { (success, error) in
-            
-            DataService.sharedInstance.checkNumber { [weak self](checked, number) in
-                if checked {
-                    self?.checkMessage.text = "今日您已签到"
-                } else {
-                    self?.checkMessage.text = "点击签到"
-                }
-                self?.totalNum.text = "今日签到人数：" + number.description
-                self?.getCurrentLocation()
-            }
+            print("finish")
         }
     }
     
@@ -86,11 +89,32 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     
     @IBAction func checkinAction(_ sender: UITapGestureRecognizer) {
         checkBut.addScaleAnimation()
+        let alert = UIAlertController(title: nil, message: "请选择签到方式", preferredStyle: .actionSheet)
+        let checkinAction = UIAlertAction(title: "签到 可工作状态", style: .default) { [weak self] (action) in
+            self?.checkIn(isAbsence: false, isAvaliable: true)
+        }
+        let checkinUnavaliableAction = UIAlertAction(title: "签到 不可工作状态", style: .default) { [weak self] (action) in
+            self?.checkIn(isAbsence: false, isAvaliable: false)
+        }
+        let missAction = UIAlertAction(title: "缺勤", style: .default) { [weak self] (action) in
+            self?.checkIn(isAbsence: true, isAvaliable: false)
+        }
+        let acCancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        alert.addAction(checkinAction)
+        alert.addAction(checkinUnavaliableAction)
+        alert.addAction(missAction)
+
+        alert.addAction(acCancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    fileprivate func checkIn(isAbsence: Bool, isAvaliable: Bool) {
         if (current == nil) {
             OPLoadingHUD.show(UIImage(named: "block"), title: "无法获取地理位置", animated: false, delay: 2)
         } else {
             guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.longitude.description, let location = currentLocation else { return }
-            DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: location, isAbsence: false, isAvailable: true, handler: { [weak self](success, error) in
+            DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: location, isAbsence: isAbsence, isAvailable: isAvaliable, handler: { [weak self](success, error) in
                 if success {
                     self?.checkMessage.text = "今日您已签到"
                     self?.refreshCheckNumber()
@@ -99,6 +123,7 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
                 }
             })
         }
+
     }
     
     
@@ -110,25 +135,44 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         mapView = MAMapView(frame: mapViewContainer.bounds)
         mapView?.setUserTrackingMode(.follow, animated: true)
         mapView?.isShowsUserLocation = true
-        mapView?.setZoomLevel(14.2, animated: false)
+        mapView?.setZoomLevel(10.2, animated: false)
         mapView?.showsScale = false
         mapView?.delegate = self
+        
         if let map = mapView {
             mapViewContainer.addSubview(map)
         }
         current = mapView?.userLocation
     }
     
-    func initSearch() {
+    private func initSearch() {
         search = AMapSearchAPI()
         search?.delegate = self
     }
     
-    func initCalendar() {
+    private func initCalendar() {
         calendar.dataSource = self
         calendarContainer.layer.borderWidth = 3.0
         calendarContainer.layer.borderColor = UIColor.init(hexString: themeBlue).cgColor
         calendarContainer.layer.cornerRadius = 10
+    }
+    
+    func initUI() {
+        initMapView()
+        initSearch()
+        initCalendar()
+        
+//        let config = SelectionConfiguration()
+//        config.selections = [(title: "在位签到", tag: 0) ,(title: "缺勤签到", tag: 1)]
+//        checkinTypeSelectionView = SelectionAlertView(configuration: config) { [weak self] (tag) in
+//
+//        }
+//        view.addSubview(checkinTypeSelectionView ?? UIView())
+//        checkinTypeSelectionView?.snp.makeConstraints { (maker) in
+//            maker.centerX.equalToSuperview()
+//            maker.centerY.equalToSuperview().offset(-30)
+//            maker.width.equalToSuperview().multipliedBy(0.65)
+//        }
     }
     
     func getCurrentLocation() {
@@ -138,6 +182,10 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         request.requireExtension = true
         search?.aMapReGoecodeSearch(request)
     }
+    
+//    func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
+//        print(userLocation.coordinate)
+//    }
 }
 
 extension SelfCheckViewController: FSCalendarDataSource {

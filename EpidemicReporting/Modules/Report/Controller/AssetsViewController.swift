@@ -16,6 +16,8 @@ class AssetsViewController: UIViewController {
     var uploadURLs: [String]?
     var type: DutyStatus = .UNASSIGN
     var dutyID: Int64? = 0
+    var reportData: DutyReportDataModel?
+    
     fileprivate var locationManager: AMapLocationManager?
     fileprivate var search: AMapSearchAPI?
     fileprivate var location: String?
@@ -33,6 +35,7 @@ class AssetsViewController: UIViewController {
     @IBOutlet weak var progress: UIProgressView!
     fileprivate var uploadingComplete = false
     fileprivate var alertController: UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,8 +128,14 @@ class AssetsViewController: UIViewController {
         
         if (uploadingComplete == true) {
             guard let userid = appDelegate.currentUser?.username else { return }
+            guard var reportData = reportData else { return }
             if type == .UNASSIGN {
-                DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
+                reportData.location = location ?? "无法获取地理位置信息"
+                reportData.latitude = latitude ?? "0.0"
+                reportData.longitude = longitude ?? "0.0"
+                reportData.description = description
+                reportData.multiMedia = uploadURLs ?? []
+                DataService.sharedInstance.reportDuty(data: reportData) { [weak self] (success, error) in
                     if success {
                         self?.dismiss(animated: true, completion: { [weak self] in
                             self?.refeshDataAll()
@@ -135,8 +144,18 @@ class AssetsViewController: UIViewController {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
                     }
                 }
+//                DataService.sharedInstance.reportMessage(userid, location: location ?? "无法获取地理位置信息", latitude: latitude, longitude: longitude, description: description, multimedia: uploadURLs) { [weak self](success, error) in
+//                    if success {
+//                        self?.dismiss(animated: true, completion: { [weak self] in
+//                            self?.refeshDataAll()
+//                        })
+//                    } else {
+//                        OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
+//                    }
+//                }
             } else if type == .SUCCESS {
                 guard let id = dutyID, id != 0 else { return }
+//                reportData
                 DataService.sharedInstance.reportConfirm(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
                     if success {
                         self?.dismiss(animated: true, completion: {[weak self]  in

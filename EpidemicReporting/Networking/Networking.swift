@@ -128,8 +128,8 @@ extension Networking {
         }
     }
     
-    func syncWithAppServer(_ apiMapping: String, httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
-        var url = apiBaseURL! + apiMapping
+    func syncWithAppServer(_ apiMapping: String, pathTail: String? = nil,httpMethod: HTTPMethod ,httpHeaders: HTTPHeaders? = nil, urlParams:[String: Any?]? = nil, params:[String: Any?]? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) -> DataRequest? {
+        var url = apiBaseURL! + apiMapping + (pathTail ?? "")
         
         if let parameters = urlParams {
             var urlParam = "?"
@@ -142,6 +142,9 @@ extension Networking {
             urlParam = urlParam.substring(to: index)
             url += urlParam
         }
+        print("=============")
+        print("\(url)")
+
         
         let request = Alamofire.request(url, method: httpMethod, parameters: params, encoding: JSONEncoding.default, headers: httpHeaders).responseJSON { (data) in
             //TODO: waiting for the status code

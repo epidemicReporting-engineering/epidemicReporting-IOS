@@ -136,10 +136,17 @@ extension MyReportsTableViewController: AssetsPickerViewControllerDelegate {
     func assetsPicker(controller: AssetsPickerViewController, selected assets: [PHAsset]) {
         // do your job with selected assets
         self.assets = assets
-        if let nav = storyboard?.instantiateViewController(withIdentifier: "sendReportNav") as? UINavigationController, let reportVc  = nav.childViewControllers.first as? AssetsViewController {
-            reportVc.assets = self.assets
+        if let nav = storyboard?.instantiateViewController(withIdentifier: "patientDetialNav") as? UINavigationController, let pdVc  = nav.childViewControllers.first as? PatientDetailViewController {
+            pdVc.finishedAction = { [weak self] (reportData) in
+                if let nav = self?.storyboard?.instantiateViewController(withIdentifier: "sendReportNav") as? UINavigationController, let reportVc  = nav.childViewControllers.first as? AssetsViewController {
+                    reportVc.assets = self?.assets
+                    reportVc.reportData = reportData
+                    self?.present(nav, animated: true, completion: nil)
+                }
+            }
             present(nav, animated: true, completion: nil)
         }
+
     }
     func assetsPicker(controller: AssetsPickerViewController, shouldSelect asset: PHAsset, at indexPath: IndexPath) -> Bool {
         return true
