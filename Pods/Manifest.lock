@@ -22,6 +22,9 @@ PODS:
   - FSCalendar (2.7.9)
   - INSPhotoGallery (1.2.3)
   - IQKeyboardManagerSwift (5.0.8)
+  - JCore (1.2.1)
+  - JPush (3.1.0):
+    - JCore (~> 1.2.0)
   - KeychainAccess (3.1.0)
   - PureLayout (3.0.2)
   - SDWebImage (4.2.1):
@@ -44,12 +47,39 @@ DEPENDENCIES:
   - FSCalendar
   - INSPhotoGallery
   - IQKeyboardManagerSwift
+  - JPush (= 3.1.0)
   - KeychainAccess (~> 3.1.0)
   - SDWebImage (~> 4.0)
   - SnapKit (~> 4.0.0)
   - STRegex (~> 1.0)
   - SwiftyJSON (~> 3.1.4)
   - Sync (~> 4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AMap2DMap
+    - AMapFoundation
+    - AMapLocation
+    - AMapSearch
+    - AssetsPickerViewController
+    - Dimmer
+    - FadeView
+    - FSCalendar
+    - INSPhotoGallery
+    - IQKeyboardManagerSwift
+    - JCore
+    - JPush
+    - KeychainAccess
+    - PureLayout
+    - SDWebImage
+    - SnapKit
+    - STRegex
+    - SwiftARGB
+    - SwiftyJSON
+    - Sync
+    - TinyLog
+    - UIViewKVO
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -63,6 +93,8 @@ SPEC CHECKSUMS:
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   INSPhotoGallery: 2c07e4a5b5be1b4fd49c0c1f16eed28c6fe8a15d
   IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  JCore: 467b5b56bd367c548f88ee1b5794d94ee07ab319
+  JPush: 5921e25ad13e0386351079217b009f2039084eac
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
@@ -70,10 +102,10 @@ SPEC CHECKSUMS:
   STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   SwiftARGB: 8727cfcdcfe8709e707a2391f1d5802a7c40dcad
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Sync: '0490b72e3322ba86095f603d7230bec36749f249'
+  Sync: 0490b72e3322ba86095f603d7230bec36749f249
   TinyLog: 1b19359cd3f32ab4972c595d002efc614e596529
-  UIViewKVO: '091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf'
+  UIViewKVO: 091f9e020d69e73c4bf5e5ef61cde7bff1c24bbf
 
-PODFILE CHECKSUM: '08a2f7101387a357d134b0c587e614849beb5d7f'
+PODFILE CHECKSUM: 7816e3fb87d25f90ecbca922a721adcdda720f07
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.2

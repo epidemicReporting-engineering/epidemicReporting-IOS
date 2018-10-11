@@ -49,7 +49,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //map usage
         AMapServices.shared().apiKey = "18b32346a4d880b4dc95e580c8850a1c"
+        
+        // JPush init
+        let entity = JPUSHRegisterEntity()
+        entity.types = 0|1|2
+        JPUSHService.register(forRemoteNotificationConfig: entity, delegate:nil)
+        JPUSHService.setup(withOption: launchOptions,
+                           appKey: Networking.shareInstance.JPushAppKey,
+                           channel: Networking.shareInstance.JPushChannel,
+                           apsForProduction: Networking.shareInstance.JPushIsInProd)
+        
+//        JPUSHService.setLogOFF() //关闭日志打印
+
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        JPUSHService.registerDeviceToken(deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("注册deviceToken失败！！")
+    }
+    
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any], fetchCompletionHandler completionHandler:@escaping (UIBackgroundFetchResult) ->Void) {
+        JPUSHService.handleRemoteNotification(userInfo)
+        completionHandler(.newData)
+    }
+    
+    func application(_ application:UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable:Any]) {
+        JPUSHService.handleRemoteNotification(userInfo)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

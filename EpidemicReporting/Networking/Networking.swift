@@ -41,6 +41,10 @@ class Networking {
         }
     }
     
+    let JPushAppKey = "ee38e3ea40f952e1a3658560"
+    let JPushChannel = "App Store"
+    let JPushIsInProd = false
+    
     func initialHeaders() -> [String : String]? {
         let headers = [
             "Allow": "POST,OPTIONS",

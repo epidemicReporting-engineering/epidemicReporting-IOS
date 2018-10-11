@@ -19,6 +19,7 @@ target ‘EpidemicReporting’ do
     pod 'SDWebImage', '~> 4.0'
     pod 'SnapKit', '~> 4.0.0'
     pod 'IQKeyboardManagerSwift'
+    pod 'JPush', '3.1.0'
 end
 
 target 'EpidemicReportingTests' do
