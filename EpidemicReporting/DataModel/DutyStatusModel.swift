@@ -41,38 +41,21 @@ class DutyStatusDataSource {
     fileprivate func parse(_ statusData: JSON?) -> [DutyStatusModel]? {
         guard let data = statusData else { return nil }
         guard let dutyDetails = data["dutyProcessRes"].array else { return nil }
-        let reporterName = data["reporterName"].string ?? "信息丢失或空缺"
-        let description = data["description"].string ?? "信息丢失或空缺"
+        let reporterName = data["reporterName"].string ?? ""
+        let description = data["description"].string ?? ""
 
         let status = dutyDetails.map { (statusItemData) -> DutyStatusModel in
             let dutyItem = DutyStatusModel()
             dutyItem.id = statusItemData["dutyId"].int64
-            dutyItem.leaderComment = statusItemData["leaderComment"].string ?? "信息丢失或空缺"
-            dutyItem.dutyDescription = statusItemData["dutyDescription"].string ?? "信息丢失或空缺"
+            dutyItem.leaderComment = statusItemData["leaderComment"].string ?? ""
+            dutyItem.dutyDescription = statusItemData["dutyDescription"].string ?? ""
             dutyItem.dutyMultiMedia = statusItemData.dictionaryObject?["dutyMultiMedia"] as? [String]
-            dutyItem.dutyOwnerName = statusItemData["dutyOwnerName"].string ?? "信息丢失或空缺"
-            dutyItem.dutyOwner = statusItemData["dutyOwner"].string ?? "信息丢失或空缺"
+            dutyItem.dutyOwnerName = statusItemData["dutyOwnerName"].string ?? ""
+            dutyItem.dutyOwner = statusItemData["dutyOwner"].string ?? ""
             dutyItem.leaderPoint = statusItemData["leaderPoint"].string
             dutyItem.dutyStatus = statusItemData["dutyStatus"].string ?? "0"
             dutyItem.reportDescription = description
             dutyItem.reporterName = reporterName
-//            dutyItem.id = statusItemData.dictionaryObject?["id"] as? Int64
-//            dutyItem.dutyOwner = statusItemData.dictionaryObject?["dutyOwner"] as? String
-//            dutyItem.leaderPoint = statusItemData.dictionaryObject?["leaderPoint"] as? String
-//            dutyItem.leaderComment = statusItemData.dictionaryObject?["leaderComment"] as? String
-//            dutyItem.dutyDescription = statusItemData.dictionaryObject?["dutyDescription"] as? String
-//            dutyItem.dutyStatus = statusItemData.dictionaryObject?["dutyStatus"] as? String
-//            dutyItem.longitude = statusItemData.dictionaryObject?["longitude"] as? String
-//            dutyItem.dutyMultiMedia = statusItemData.dictionaryObject?["dutyMultiMedia"] as? [String]
-//            dutyItem.latitude = statusItemData.dictionaryObject?["latitude"] as? String
-//            dutyItem.reportTime = statusItemData.dictionaryObject?["reportTime"] as? Int64
-//            dutyItem.location = statusItemData.dictionaryObject?["location"] as? String
-//            dutyItem.reportDescription = statusItemData.dictionaryObject?["reportDescription"] as? String
-//            dutyItem.reporter = statusItemData.dictionaryObject?["reporter"] as? String
-//            dutyItem.dutyOwnerName = statusItemData.dictionaryObject?["dutyOwnerName"] as? String
-//            dutyItem.processTime = statusItemData.dictionaryObject?["processTime"] as? Int64
-//            dutyItem.reporterName = statusItemData.dictionaryObject?["reporterName"] as? String
-//            dutyItem.multiMedia = statusItemData.dictionaryObject?["multiMedia"] as? [String]
             return dutyItem
         }
         return status

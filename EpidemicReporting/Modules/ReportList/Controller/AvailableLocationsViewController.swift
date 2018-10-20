@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
     
@@ -15,7 +16,7 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
     fileprivate var customCalloutView: CustomCalloutView?
     fileprivate var annotations: [MAAnnotation] = [MAAnnotation]()
     fileprivate var processors: [Processor]?
-    var duty: DutyReport?
+    var duty: JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +91,7 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "好的", style: .default, handler: {[weak self]
             action in
-            DataService.sharedInstance.reportAssign(self?.duty?.id.description, dutyOwner: process?.username, dutyDescription: "请立即开始处理", dutyStatus: DutyStatus.ASSIGNED.rawValue, handler: {[weak self](success, error) in
+            DataService.sharedInstance.reportAssign(self?.duty?["id"].string, dutyOwner: process?.username, dutyDescription: "请立即开始处理", dutyStatus: DutyStatus.ASSIGNED.rawValue, handler: {[weak self](success, error) in
                 if !success {
                     OPLoadingHUD.show(UIImage.init(named: "block"), title: "分配失败", animated: false, delay: 2)
                 } else {

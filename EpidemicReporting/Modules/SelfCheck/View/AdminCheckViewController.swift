@@ -8,17 +8,18 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 
 class AdminCheckViewController: CoreDataTableViewController {
     
     @IBOutlet weak var totalNum: UILabel!
     
-    lazy var setup: () = {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Check")
-        request.sortDescriptors = [NSSortDescriptor(key: "createTime", ascending: true)]
-        request.predicate = NSPredicate(format: "createTime != nil")
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-    }()
+    fileprivate var data = [JSON]() {
+        didSet {
+            totalNum.text =  "今日已经有\(data.count)人签到"
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +27,11 @@ class AdminCheckViewController: CoreDataTableViewController {
         navigationController?.setStyledNavigationBar()
         navigationItem.title = "管理员"
         initUI()
-        let _ = setup
-        // Do any additional setup after loading the view.
-        
-        DataService.sharedInstance.getMyCheckIn { [weak self](success, error) in
-            guard let number = self?.fetchedResultsController?.fetchedObjects?.count.description else { return }
-            self?.totalNum.text =  "今日签到人数：" + number
-            self?.tableView.reloadData()
+        totalNum.text =  "今日已经有 - 人签到"
+
+        DataService.sharedInstance.getDayChekInNumberJSON { [weak self] (success, json, error)  in
+            guard let json = json, let jsonData = json["data"].array else { return }
+            self?.data = jsonData
         }
     }
     
@@ -65,16 +64,23 @@ extension AdminCheckViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "checkCell") as? CheckTableViewCell
+        let userData = data[indexPath.row]
         guard let checkCell = cell else { return UITableViewCell() }
-        if let data = fetchedResultsController?.fetchedObjects?[indexPath.item] as? Check {
-            cell?.updateDataSource(data.name, checkTime: data.createTime, checkLocation: data.location)
+        var date: NSDate?
+        if let time = userData["date"].double {
+            date = NSDate.init(timeIntervalSince1970: time)
         }
+        checkCell.updateDataSource(userData["name"].string, checkTime: date, checkLocation: userData["location"].string)
         
         return checkCell
     }

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import AssetsPickerViewController
 import Photos
+import SwiftyJSON
 
 class MyReportsTableViewController: CoreDataTableViewController {
     
@@ -17,19 +18,19 @@ class MyReportsTableViewController: CoreDataTableViewController {
     fileprivate var assets = [PHAsset]()
     fileprivate var pickerConfig = AssetsPickerConfig()
     
+    fileprivate var data = [JSON]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         intiUI()
         initTableView()
-        _ = setup
-        
+//        _ = setup
         refeshDataAll()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func initTableView() {
@@ -73,8 +74,11 @@ class MyReportsTableViewController: CoreDataTableViewController {
     }
     
     @objc func refeshDataAll(){
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+        guard let userName = appDelegate.currentUser?.username else { return }
+        DataService.sharedInstance.getAllReportsJSON(reporter: userName) { [weak self] (success, json, error)  in
             self?.refreshControl?.endRefreshing()
+            guard let jsonData = json?["data"]["list"].array else { return }
+            self?.data = jsonData
         }
     }
     
@@ -87,24 +91,28 @@ class MyReportsTableViewController: CoreDataTableViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    lazy var setup: () = {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DutyReport")
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        guard let userid = appDelegate.currentUser?.username else { return }
-        request.predicate = NSPredicate(format: "reporter == %@", userid)
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-    }()
+//    lazy var setup: () = {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DutyReport")
+//        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+//        guard let userid = appDelegate.currentUser?.username else { return }
+//        request.predicate = NSPredicate(format: "reporter == %@", userid)
+//        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: appDelegate.dataStack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+//    }()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReportTableViewCell", for: indexPath) as? ReportTableViewCell
         guard let dataCell = cell else { return UITableViewCell()}
-        let data = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
-        cell?.updateDataSource(data)
+        let thisData = data[indexPath.row]
+        cell?.updateDataSource(thisData)
         return dataCell
     }
     
@@ -113,13 +121,13 @@ class MyReportsTableViewController: CoreDataTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let thisData = data[indexPath.row]
         let storyboard = UIStoryboard(name: "Report", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
-            vc.reportId = cell?.id
+            vc.reportId = thisData["id"].int64
             navigationController?.pushViewController(vc, animated: true)
         }
-          tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -141,13 +149,16 @@ extension MyReportsTableViewController: AssetsPickerViewControllerDelegate {
                 if let nav = self?.storyboard?.instantiateViewController(withIdentifier: "sendReportNav") as? UINavigationController, let reportVc  = nav.childViewControllers.first as? AssetsViewController {
                     reportVc.assets = self?.assets
                     reportVc.reportData = reportData
+                    reportVc.finishedAction = { [weak self] in
+                        self?.refeshDataAll()
+                    }
                     self?.present(nav, animated: true, completion: nil)
                 }
             }
             present(nav, animated: true, completion: nil)
         }
-
     }
+    
     func assetsPicker(controller: AssetsPickerViewController, shouldSelect asset: PHAsset, at indexPath: IndexPath) -> Bool {
         return true
     }

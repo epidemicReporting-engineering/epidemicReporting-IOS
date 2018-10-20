@@ -30,6 +30,7 @@ class PatientDetailViewController: UIViewController {
         IQKeyboardManager.sharedManager().enable = true
         title = "患者详情"
         prepareUI()
+        navigationController?.setStyledNavigationBar()
     }
 
 
@@ -39,7 +40,7 @@ extension PatientDetailViewController {
     
     fileprivate func prepareUI() {
         navigationController?.setStyledNavigationBar()
-        navigationController?.navigationBar.tintColor = UIColor.white
+//        navigationController?.navigationBar.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "取消", style: .plain, target: self, action: #selector(cancelAction))
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "完成", style: .plain, target: self, action: #selector(completionAction))
 
@@ -117,7 +118,6 @@ extension PatientDetailViewController {
             maker.right.equalTo(departmentTF)
             maker.bottom.lessThanOrEqualTo(-32)
         }
-//        paitentsLabel.text = "张三,张三,张三,张三,张三,张三,张三,张三，张三,张三,张三,张三,张三,张三,张三,张三，张三,张三,张三,张三,张三,张三,张三,张三，张三,张三,张三,张三,张三,张三,张三,张三"
     }
     
     @objc func cancelAction() {
@@ -129,19 +129,35 @@ extension PatientDetailViewController {
         addVC.finishedAddAction = { [weak self] (data) in
             guard let strong = self else { return }
             strong.reportData.pataints.append(data)
-            var text = strong.reportData.pataints.first?.name ?? ""
-            for index in 1..<strong.reportData.pataints.count {
-                let pa = strong.reportData.pataints[index]
-                text += ",\(pa.name)"
+//            var text = ""
+//            if let name = strong.reportData.pataints.first?.name {
+//                text = name
+//            }
+//            for index in 1..<strong.reportData.pataints.count {
+//                let pa = strong.reportData.pataints[index]
+//                text += ",\(pa.name)"
+//            }
+            if let original = strong.paitentsLabel.text, original.isEmpty == false {
+                strong.paitentsLabel.text = original + ",\(data.name)"
+            } else {
+                strong.paitentsLabel.text = data.name
             }
-            strong.paitentsLabel.text = text
+            
+//            strong.paitentsLabel.text = text
         }
         navigationController?.pushViewController(addVC, animated: true)
     }
     
     @objc func completionAction() {
         self.dismiss(animated: true) { [weak self] in
-            guard let reportData = self?.reportData else { return }
+            guard var reportData = self?.reportData else { return }
+            if let timeInterval = self?.datePicker.date.timeIntervalSince1970 {
+                reportData.happenTime = "\(CLongLong(round(timeInterval*1000)))"
+            }
+            let now = Date().timeIntervalSince1970
+            reportData.reportTime = "\(CLongLong(round(now*1000)))"
+            reportData.company = self?.companyTF.text ?? ""
+            reportData.department = self?.departmentTF.text ?? ""
             self?.finishedAction?(reportData)
         }
     }

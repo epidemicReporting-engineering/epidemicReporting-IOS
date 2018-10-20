@@ -36,6 +36,8 @@ class AssetsViewController: UIViewController {
     fileprivate var uploadingComplete = false
     fileprivate var alertController: UIAlertController?
     
+    var finishedAction: (()->Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,6 +85,8 @@ class AssetsViewController: UIViewController {
     
     @objc func cancelWasPressed() {
         dismiss(animated: true, completion: nil)
+        finishedAction?()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +110,8 @@ class AssetsViewController: UIViewController {
     }
     
     func refeshDataAll(){
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+        guard let userName = appDelegate.currentUser?.username else { return }
+        DataService.sharedInstance.getAllReports(userName: userName) { (success, error) in
             print("refresh the data")
         }
     }
@@ -128,8 +133,7 @@ class AssetsViewController: UIViewController {
         
         if (uploadingComplete == true) {
             guard let userid = appDelegate.currentUser?.username else { return }
-            guard var reportData = reportData else { return }
-            if type == .UNASSIGN {
+            if type == .UNASSIGN, var reportData = reportData {
                 reportData.location = location ?? "无法获取地理位置信息"
                 reportData.latitude = latitude ?? "0.0"
                 reportData.longitude = longitude ?? "0.0"
@@ -139,6 +143,7 @@ class AssetsViewController: UIViewController {
                     if success {
                         self?.dismiss(animated: true, completion: { [weak self] in
                             self?.refeshDataAll()
+                            self?.finishedAction?()
                         })
                     } else {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "疫情发送失败", animated: false, delay: 2.0)
@@ -156,10 +161,11 @@ class AssetsViewController: UIViewController {
             } else if type == .SUCCESS {
                 guard let id = dutyID, id != 0 else { return }
 //                reportData
-                DataService.sharedInstance.reportConfirm(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
+                DataService.sharedInstance.reportConfirm(id.description, leaderPoint: "10", leaderComment: "") { [weak self](success, error) in
                     if success {
                         self?.dismiss(animated: true, completion: {[weak self]  in
                             self?.refeshDataAll()
+                            self?.finishedAction?()
                         })
                     } else {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "信息发送失败", animated: false, delay: 2.0)
@@ -167,10 +173,11 @@ class AssetsViewController: UIViewController {
                 }
             } else {
                 guard let id = dutyID, id != 0 else { return }
-                DataService.sharedInstance.reportProcess(id.description, dutyOwner: userid, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
+                DataService.sharedInstance.reportProcess(id.description, dutyDescription: description, dutyStatus: type.rawValue, dutyMultiMedia: uploadURLs) { [weak self](success, error) in
                     if success {
                         self?.dismiss(animated: true, completion: {[weak self]  in
                             self?.refeshDataAll()
+                            self?.finishedAction?()
                         })
                     } else {
                         OPLoadingHUD.show(UIImage.init(named: "block"), title: "信息发送失败", animated: false, delay: 2.0)
@@ -220,6 +227,8 @@ class AssetsViewController: UIViewController {
             if success {
                 let request = AMapReGeocodeSearchRequest()
                 guard let lat = location?.coordinate.latitude, let longt = location?.coordinate.longitude else { return }
+                self?.latitude = lat.description
+                self?.longitude = longt.description
                 request.location = AMapGeoPoint.location(withLatitude: CGFloat(lat), longitude: CGFloat(longt))
                 request.requireExtension = true
                 self?.search?.aMapReGoecodeSearch(request)

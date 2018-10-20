@@ -32,6 +32,7 @@
 		18BEC3121FF8704D00551B50 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3111FF8704D00551B50 /* CustomCalloutView.swift */; };
 		18BEC3161FF87D7000551B50 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */; };
 		18BEC3181FF8876000551B50 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BEC3171FF8876000551B50 /* CustomCalloutView.xib */; };
+		27B215602177854900312901 /* MutiMediaArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2155F2177854900312901 /* MutiMediaArray.swift */; };
 		8F19DB943D9A93DDE42C8F31 /* Pods_EpidemicReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */; };
 		92C6B804B2760361DE9D9E37 /* Pods_EpidemicReportingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8138215E043E4DF9058EFC4 /* Pods_EpidemicReportingTests.framework */; };
 		A529F0CB1FB6FCE800E4ADDC /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */; };
@@ -130,6 +131,7 @@
 		18BEC3151FF87D7000551B50 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		18BEC3171FF8876000551B50 /* CustomCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		1D3B2FFC5E1A9B0AB6BF3C8D /* Pods_EpidemicReporting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EpidemicReporting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B2155F2177854900312901 /* MutiMediaArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutiMediaArray.swift; sourceTree = "<group>"; };
 		9163467D287CE964544335DC /* Pods-EpidemicReporting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EpidemicReporting.release.xcconfig"; path = "Pods/Target Support Files/Pods-EpidemicReporting/Pods-EpidemicReporting.release.xcconfig"; sourceTree = "<group>"; };
 		A529F0C91FB6F11600E4ADDC /* EpidemicReporting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpidemicReporting-Bridging-Header.h"; sourceTree = "<group>"; };
 		A529F0CA1FB6FCE800E4ADDC /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				189BC41B1FE4E50500838437 /* DataService.swift */,
 				A5F24B941FB471720012EAF6 /* EpidemicReporting.xcdatamodeld */,
 				A57F8E441FF5DD3C002EC92B /* DutyStatusModel.swift */,
+				27B2155F2177854900312901 /* MutiMediaArray.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -974,6 +977,7 @@
 				A57F8E3C1FF4D8BA002EC92B /* FilterTableViewController.swift in Sources */,
 				18041D241FFCFBAE003A1F80 /* DutyReport+CoreDataProperties.swift in Sources */,
 				18868729202588EA00EFDF87 /* CheckTableViewCell.swift in Sources */,
+				27B215602177854900312901 /* MutiMediaArray.swift in Sources */,
 				A57F8E331FF48936002EC92B /* ToastWindow.swift in Sources */,
 				E1275CEB215908FA00BBFD35 /* PatientDetailViewController.swift in Sources */,
 				A5EB80161FF21678005D41B9 /* ReportTableViewCell.swift in Sources */,

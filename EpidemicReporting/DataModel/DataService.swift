@@ -46,16 +46,16 @@ class DataService: NSObject {
         }
     }
     
-    func getMyCheckIn(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+    func getMyCheckIn(handler: @escaping ((_ success:Bool, _ error:NSError?, _ data: JSON?)->())) {
         let clander = Calendar(identifier: .gregorian)
         let comps = clander.dateComponents([.year, .month], from: Date())
         guard let username = appDelegate.currentUser?.username, let month = comps.month, let year = comps.year else {
-            handler(false, nil)
+            handler(false, nil, nil)
             return
         }
         
         Networking.shareInstance.getMyCheckInMoth(month: "\(month)", year: "\(year)", user: username) { (success, json, error) in
-            print(json)
+            handler(success, error, success ? json : nil)
         }
         
 //        Networking.shareInstance.getMyCheckIn { (success, json, error) in
@@ -74,6 +74,38 @@ class DataService: NSObject {
 //                handler(false, error)
 //            }
 //        }
+    }
+    
+    func getDayChekInNumberJSON(handler: @escaping ((_ success:Bool, _ json: JSON?, _ error:NSError?)->())) {
+        Networking.shareInstance.getMyCheckIn { (success, json, error) in
+            print(json)
+            if success {
+                handler(true, json, nil)
+            } else {
+                handler(false, nil, error)
+            }
+        }
+    }
+    
+    func getDayCheckInNumber(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.getMyCheckIn() { (success, json, error) in
+            Networking.shareInstance.getMyCheckIn { (success, json, error) in
+                if success {
+                    guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
+                        return }
+                    Sync.changes(data, inEntityNamed: "Check", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                        if error == nil {
+                            handler(true, nil)
+                        } else {
+                            handler(false, error)
+                        }
+                    })
+                    handler(true, nil)
+                } else {
+                    handler(false, error)
+                }
+            }
+        }
     }
     
 //    func getMyCheckIn(user)
@@ -113,6 +145,8 @@ class DataService: NSObject {
         }
     }
     
+
+    
     func changePassword(_ username: String?, oldPassword: String?, newPassword: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.changePassword(username, oldPassword: oldPassword, newPassword: newPassword) { (success, json, error) in
             if success {
@@ -130,7 +164,7 @@ class DataService: NSObject {
                 return
             }
             if let relative = data["relativePath"] as? String {
-                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                let url = relative
                 handler(success, url, nil, uuid)
                 return
             }
@@ -147,7 +181,7 @@ class DataService: NSObject {
                 return
             }
             if let relative = data["relativePath"] as? String {
-                let url = Networking.shareInstance.baseURL! + "/media/" + relative
+                let url = relative
                 handler(success, url, nil, uuid)
                 return
             }
@@ -229,8 +263,8 @@ class DataService: NSObject {
         }
     }
     
-    func reportProcess(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.reportProcess(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus, dutyMultiMedia: dutyMultiMedia) { (success, json, error) in
+    func reportProcess(_ dutyId: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportProcess(dutyId, dutyDescription: dutyDescription, dutyStatus: dutyStatus, dutyMultiMedia: dutyMultiMedia) { (success, json, error) in
             if success {
                 //TODO: store the data into DB, data example
                 /*
@@ -298,8 +332,8 @@ class DataService: NSObject {
         }
     }
     
-    func reportConfirm(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.reportConfirm(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus, dutyMultiMedia: dutyMultiMedia) { (success, json, error) in
+    func reportConfirm(_ dutyId: String?, leaderPoint: String?, leaderComment: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.reportConfirm(dutyId, leaderPoint: leaderPoint, leaderComment: leaderComment) { (success, json, error) in
             if success {
                 //TODO: store the data into DB, data example
                 /*
@@ -355,26 +389,81 @@ class DataService: NSObject {
         }
     }
     
-    func getAllReports(_ action: String?, filter: String?, param: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.getAllReports(action, filter: filter, param: param) { (success, json, error) in
+    func getAllReportsJSON(reporter: String, handler: @escaping ((_ success:Bool, _ json: JSON?, _ error:NSError?)->())) {
+        Networking.shareInstance.dutyQuery(reporter) { (success, json, error) in
             if success {
-                guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
-                    return }
-                Sync.changes(data, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
+                handler(true, json, error)
+            } else {
+                handler(false, nil, error)
+            }
+        }
+    }
+    
+    func getAllReportsJSONByUserName(userName: String, handler: @escaping ((_ success:Bool, _ json: JSON?, _ error:NSError?)->())) {
+        Networking.shareInstance.dutyQuery(nil, userName: userName) { (success, json, error) in
+            if success {
+                handler(true, json, error)
+            } else {
+                handler(false, nil, error)
+            }
+        }
+    }
+    
+    func getAllStatusReportsJSON(handler: @escaping ((_ success:Bool, _ json: JSON?, _ error:NSError?)->())) {
+        Networking.shareInstance.dutyQuery(nil, userName: nil) { (success, json, error) in
+            if success {
+                handler(true, json, error)
+            } else {
+                handler(false, nil, error)
+            }
+        }
+    }
+    
+    //_ action: String?, filter: String?, param: String?
+    func getAllReports(userName: String, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
+        Networking.shareInstance.dutyQuery(userName) { (success, json, error) in
+            
+            if success {
+                guard let data = json?["data"]["list"].arrayObject as? [[String: Any]] else {
+                    handler(false, nil)
+                    return
+                }
+                var newData = [[String : Any]]()
+                for d in data {
+                    var newDic = d
+                    var urls = ""
+                    if let mediaArray = newDic["multiMedia"] as? [String] {
+                        for media in mediaArray {
+                            print(media)
+
+                            urls += "\(media),"
+                        }
+                    }
+                    if urls.count > 0 {
+                        urls.removeLast()
+                    }
+                    newDic["medias"] = urls
+                    newDic["reportDateString"] = d["reportTime"]
+                    newData.append(newDic)
+                }
+
+                Sync.changes(newData, inEntityNamed: "DutyReport", dataStack: appDelegate.dataStack, operations: [.insert, .update,.delete], completion: { (error) in
                     if error == nil {
                         handler(true, nil)
                     } else {
                         handler(false, error)
                     }
                 })
+                handler(true, error)
             } else {
                 handler(false, error)
             }
         }
+        
     }
     
     func getStuff(handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
-        Networking.shareInstance.getStuff { (success, json, error) in
+        Networking.shareInstance.getAvailableStuff { (success, json, error) in
             if success {
                 guard let data = json?["data"].arrayObject as? [[String : Any]] else { handler(false, nil)
                     return }

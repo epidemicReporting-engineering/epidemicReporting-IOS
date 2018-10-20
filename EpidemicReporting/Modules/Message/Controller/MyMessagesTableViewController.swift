@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import AssetsPickerViewController
 import Photos
+import SwiftyJSON
 
 class MyMessagesTableViewController: CoreDataTableViewController {
     
@@ -18,43 +19,21 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     fileprivate var pickerConfig = AssetsPickerConfig()
     fileprivate var currentStatus:DutyStatus = .UNASSIGN
     fileprivate var dutyNumber: Int64? = 0
+    fileprivate var data = [JSON]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         intiUI()
         initTableView()
-        _ = setup
+        refeshDataAll()
+//        _ = setup
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
-            if let tabItems = self?.tabBarController?.tabBar.items as NSArray!{
-                let tabItem = tabItems[2] as! UITabBarItem
-                if let count = self?.fetchedResultsController?.fetchedObjects?.count {
-                    if count > 0 {
-                        tabItem.badgeValue = count.description
-                    }
-                }
-            }
-        }
-    }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
-//            if let tabItems = self?.tabBarController?.tabBar.items as NSArray!{
-//                let tabItem = tabItems[2] as! UITabBarItem
-//                if let count = self?.fetchedResultsController?.fetchedObjects?.count {
-//                    if count > 0 {
-//                        tabItem.badgeValue = count.description
-//                    }
-//                }
-//            }
-//        }
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,9 +59,31 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     }
     
     @objc func refeshDataAll(){
-        DataService.sharedInstance.getAllReports(PullDataType.LOAD.rawValue, filter: nil, param: nil) { [weak self](success, error) in
+        guard let userName = appDelegate.currentUser?.username, let role = appDelegate.currentUser?.role else { return }
+        DataService.sharedInstance.getAllStatusReportsJSON() { [weak self] (success, json, error)  in
             self?.refreshControl?.endRefreshing()
+            guard let jsonData = json?["data"]["list"].array else { return }
+            
+            var result = [JSON]()
+            for json in jsonData {
+                if role == RoleType.staff.rawValue {
+                    if json["dutyOwner"].string == userName {
+                        result.append(json)
+                    }
+                } else {
+                    if let ds = json["dutyStatus"].string {
+                        if ds == "0" || ds == "4" || ds == "6" {
+                            result.append(json)
+                        }
+                    }
+                }
+            }
+            
+            self?.data = jsonData
         }
+//        DataService.sharedInstance.getAllReports(userName: userName) { [weak self] (success, error) in
+//            self?.refreshControl?.endRefreshing()
+//        }
     }
     
     @objc func accessAssets() {
@@ -106,11 +107,15 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageTableViewCell", for: indexPath) as? MyMessageTableViewCell
         guard let dataCell = cell else { return UITableViewCell()}
-        let data = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
-        cell?.updateDataSource(data)
+        let thisData = data[indexPath.row]
+        cell?.updateDataSource(data: thisData)
         return dataCell
     }
     
@@ -119,18 +124,20 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
+//        let cell = self.fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let thisData = data[indexPath.row]
         let storyboard = UIStoryboard(name: "Report", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
-            vc.reportId = cell?.id
+            vc.reportId = thisData["id"].int64
             navigationController?.pushViewController(vc, animated: true)
         }
-          tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
-        guard let status = duty?.dutyStatus, let role = appDelegate.currentUser?.role else { return false }
+//        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let duty = data[indexPath.row]
+        guard let status = duty["dutyStatus"].string, let role = appDelegate.currentUser?.role else { return false }
         if role == RoleType.staff.rawValue {
             if status == DutyStatus.CANTDO.rawValue || status == DutyStatus.FINISH.rawValue || status == DutyStatus.SUCCESS.rawValue {
                 return false
@@ -147,13 +154,15 @@ class MyMessagesTableViewController: CoreDataTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+//        let duty = fetchedResultsController?.object(at: indexPath) as? DutyReport
+        let duty = data[indexPath.row]
         return actionButtonDecider(duty)
     }
     
-    func actionButtonDecider(_ report: DutyReport?) -> [UITableViewRowAction]? {
+    func actionButtonDecider(_ report: JSON?) -> [UITableViewRowAction]? {
+        guard let report = report else { return nil }
         var actions:[UITableViewRowAction]? = [UITableViewRowAction]()
-        guard let status = report?.dutyStatus else { return nil }
+        guard let status = report["dutyStatus"].string else { return nil }
         switch status {
         case DutyStatus.UNASSIGN.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
@@ -177,7 +186,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             actions?.append(assign)
         case DutyStatus.ASSIGNED.rawValue:
             let start = UITableViewRowAction(style: .normal, title: "开始") { (action, indexPath) in
-                DataService.sharedInstance.reportProcess(report?.id.description, dutyOwner: appDelegate.currentUser?.username, dutyDescription: "开始处理疫情", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { [weak self](success, error) in
+                DataService.sharedInstance.reportProcess(report["id"].string, dutyDescription: "开始处理疫情", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { [weak self](success, error) in
                     if success {
                         OPLoadingHUD.show(UIImage.init(named: "success"), title: "开始处理", animated: false, delay: 2)
                         self?.refeshDataAll()
@@ -190,14 +199,14 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             actions?.append(start)
             let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
             actions?.append(cantdo)
             let block = UITableViewRowAction(style: .normal, title: "有困难") { [weak self](action, indexPath) in
                 self?.currentStatus = .BLOCK
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             block.backgroundColor = UIColor.init(hexString: blockRed)
@@ -205,19 +214,19 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         case DutyStatus.START.rawValue:
             let block = UITableViewRowAction(style: .normal, title: "有困难") { [weak self](action, indexPath) in
                 self?.currentStatus = .BLOCK
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             block.backgroundColor = UIColor.init(hexString: blockRed)
             let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
             let finish = UITableViewRowAction(style: .normal, title: "结束") { [weak self](action, indexPath) in
                 self?.currentStatus = .FINISH
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             finish.backgroundColor = UIColor.init(hexString: finishGreen)
@@ -226,7 +235,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             actions?.append(cantdo)
         case DutyStatus.BLOCK.rawValue:
             let start = UITableViewRowAction(style: .normal, title: "开始") { (action, indexPath) in
-                DataService.sharedInstance.reportProcess(report?.id.description, dutyOwner: appDelegate.currentUser?.username, dutyDescription: "开始处理疫情", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { [weak self](success, error) in
+                DataService.sharedInstance.reportProcess(report["id"].string, dutyDescription: "开始处理疫情", dutyStatus: DutyStatus.START.rawValue, dutyMultiMedia: nil) { [weak self](success, error) in
                     if success {
                         OPLoadingHUD.show(UIImage.init(named: "success"), title: "开始处理", animated: false, delay: 2)
                         self?.refeshDataAll()
@@ -238,7 +247,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
             start.backgroundColor = UIColor(hexString: themeBlue)
             let cantdo = UITableViewRowAction(style: .normal, title: "无法做") { [weak self](action, indexPath) in
                 self?.currentStatus = .CANTDO
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             cantdo.backgroundColor = UIColor.init(hexString: canndoGray)
@@ -247,7 +256,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         case DutyStatus.FINISH.rawValue:
             let confirm = UITableViewRowAction(style: .normal, title: "评审") { [weak self](action, indexPath) in
                 self?.currentStatus = .SUCCESS
-                self?.dutyNumber = report?.id
+                self?.dutyNumber = report["id"].int64
                 self?.showAccessPicker()
             }
             actions?.append(confirm)
@@ -285,6 +294,9 @@ extension MyMessagesTableViewController: AssetsPickerViewControllerDelegate {
             reportVc.type = currentStatus
             reportVc.assets = self.assets
             reportVc.dutyID = self.dutyNumber
+            reportVc.finishedAction = { [weak self] in
+                self?.refeshDataAll()
+            }
             present(nav, animated: true, completion: nil)
         }
     }

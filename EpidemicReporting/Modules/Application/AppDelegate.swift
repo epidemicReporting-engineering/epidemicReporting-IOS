@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                            apsForProduction: Networking.shareInstance.JPushIsInProd)
         
 //        JPUSHService.setLogOFF() //关闭日志打印
-
         return true
     }
     
@@ -133,6 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         return container
+    }()
+    
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        return persistentContainer.viewContext
     }()
 
     // MARK: - Core Data Saving support

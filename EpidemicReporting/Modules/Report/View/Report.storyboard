@@ -460,6 +460,7 @@
                         <outlet property="dutyOwner" destination="tQq-Tc-ZjA" id="BH1-d7-2R6"/>
                         <outlet property="processTime" destination="bSE-1b-8wO" id="417-lF-WAB"/>
                         <outlet property="separateView" destination="qcE-a2-Zkv" id="y3A-Uq-7Wz"/>
+                        <outlet property="statusImage" destination="NA6-Jc-38d" id="RlS-7g-Wm9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3WY-T2-BVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

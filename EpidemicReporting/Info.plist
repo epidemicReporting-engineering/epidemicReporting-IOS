@@ -30,9 +30,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string></string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>location 1</string>
+	<string>疫情应急需要获取您的位置信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>location 2</string>
+	<string>疫情应急需要获取您的位置信息</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>

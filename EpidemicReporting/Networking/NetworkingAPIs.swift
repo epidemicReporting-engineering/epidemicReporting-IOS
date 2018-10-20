@@ -24,7 +24,7 @@ extension Networking {
     }
     
     func getMyCheckIn(handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
-        _ = syncWithAppServer(WebServiceAPIMapping.GetCheckedNum.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, params: nil,  handler: handler)
+        _ = syncWithAppServer(WebServiceAPIMapping.CheckIn.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, params: nil,  handler: handler)
     }
     
     func getMyCheckInMoth(month: String, year: String, user: String,handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
@@ -62,6 +62,7 @@ extension Networking {
             "happenTime": data.happenTime,
             "company": data.company,
             "department": data.department,
+            "reportTime": Int64(data.reportTime) ?? 0,
             "patients": patients
         ]
         
@@ -99,12 +100,12 @@ extension Networking {
         _ = syncWithAppServer(WebServiceAPIMapping.DutyAssign.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["dutyId": dutyId,"dutyOwner": dutyOwner,"dutyDescription": dutyDescription,"dutyStatus": dutyStatus], handler: handler)
     }
     
-    func reportProcess(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
-        _ = syncWithAppServer(WebServiceAPIMapping.DutyProcess.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["dutyId": dutyId,"dutyOwner": dutyOwner,"dutyDescription": dutyDescription,"dutyStatus": dutyStatus, "dutyMultiMedia": dutyMultiMedia], handler: handler)
+    func reportProcess(_ dutyId: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.DutyProcess.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["dutyId": dutyId,"dutyDescription": dutyDescription,"dutyStatus": dutyStatus, "dutyMultiMedia": dutyMultiMedia], handler: handler)
     }
     
-    func reportConfirm(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, dutyMultiMedia: [String]?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
-        _ = syncWithAppServer(WebServiceAPIMapping.DutyConfirm.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["dutyId": dutyId,"dutyOwner": dutyOwner,"dutyDescription": dutyDescription,"dutyStatus": dutyStatus, "dutyMultiMedia": dutyMultiMedia], handler: handler)
+    func reportConfirm(_ dutyId: String?, leaderPoint: String?, leaderComment: String?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.DutyConfirm.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: ["dutyId": dutyId,"leaderPoint": leaderPoint, "leaderComment": leaderComment], handler: handler)
     }
     
     func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
@@ -118,4 +119,12 @@ extension Networking {
     func getStuff(handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
         _ = syncWithAppServer(WebServiceAPIMapping.GetStuff.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, handler: handler)
     }
+    func getAvailableStuff(handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.getAvailableStuff.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: nil, handler: handler)
+    }
+    
+    func dutyQuery(_ reporter: String?, userName: String? = nil, state: String? = nil, page: String? = nil, size: String? = nil, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {
+        _ = syncWithAppServer(WebServiceAPIMapping.DutyQuery.rawValue, httpMethod: .get, httpHeaders: getHeaders(), urlParams: ["reporter": reporter, "username": userName, "state": state, "page": page, "size": size], handler: handler)
+    }
+    
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17D47" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Check" representedClassName=".Check" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -23,12 +23,13 @@
         <attribute name="leaderPoint" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="multiMedia" optional="YES" attributeType="Binary" customClassName="[String]" syncable="YES"/>
+        <attribute name="medias" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="multiMedias" optional="YES" attributeType="String" valueTransformerName="MutiMediaArray" customClassName=".[String]" syncable="YES"/>
         <attribute name="processTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="reportDateString" optional="YES" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reportDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reporter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reporterName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="reportTime" optional="YES" attributeType="Date" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Processor" representedClassName=".Processor" syncable="YES">
         <attribute name="dutyNums" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -56,9 +57,9 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="DutyReport" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="Check" positionX="-54" positionY="108" width="128" height="180"/>
+        <element name="DutyReport" positionX="-63" positionY="-18" width="128" height="315"/>
         <element name="Processor" positionX="-54" positionY="108" width="128" height="120"/>
         <element name="User" positionX="-54" positionY="117" width="128" height="120"/>
-        <element name="Check" positionX="-54" positionY="108" width="128" height="180"/>
     </elements>
 </model>

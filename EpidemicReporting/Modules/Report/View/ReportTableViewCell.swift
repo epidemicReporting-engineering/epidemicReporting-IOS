@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import SwiftyJSON
 
 class ReportTableViewCell: UITableViewCell {
 
@@ -22,23 +23,26 @@ class ReportTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func updateDataSource(_ cell: DutyReport?) {
-        guard let report = cell, let timeStamp = report.reportTime else { return }
-        reporter.text = report.reporterName
-        time.text = Utils.getCurrentTimeStamp(timeStamp)
-        if cell?.dutyStatus == DutyStatus.UNASSIGN.rawValue {
-            content.text = report.reportDescription
+    func updateDataSource(_ data: JSON?) {
+        guard let data = data else { return }
+        let reportDateDouble = data["happenTime"].double
+        reporter.text = data["reporterName"].string ?? ""
+        if let reportDateDouble = reportDateDouble {
+            time.text = "\(Utils.getCurrentTimeStamp(NSDate(timeIntervalSince1970: reportDateDouble / 1000)))"
         } else {
-            content.text = report.dutyDescription
-        }
-
-        if let dutyOwner = report.dutyOwnerName {
-            processor.text = "责任人：" + dutyOwner
+            time.text = ""
         }
         
-        if let media = report.multiMedia {
-            let medias = NSKeyedUnarchiver.unarchiveObject(with: media as Data) as? [String]
-            if let urls = medias, urls.count > 0, let url = urls.first {
+        if let status = data["dutyStatus"].string, status == DutyStatus.UNASSIGN.rawValue {
+            content.text = data["description"].string ?? ""
+        } else {
+            content.text = data["dutyDescription"].string ?? ""
+        }
+        
+        processor.text = "责任人：\(data["dutyOwnerName"].string ?? "未知")"
+
+        if let urlsJson = data["multiMedia"].array {
+            if urlsJson.count > 0, let url = urlsJson.first?.string {
                 cover.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "defaultIcon"))
             }
         }

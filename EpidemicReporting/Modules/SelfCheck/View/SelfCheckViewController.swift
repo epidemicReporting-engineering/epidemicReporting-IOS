@@ -26,7 +26,14 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     fileprivate var latitude: String?
     fileprivate var longitude: String?
     fileprivate var current: MAUserLocation?
-    
+    fileprivate var checkInDays = [Int]()
+    fileprivate var isTodayCheckedIn: Bool? {
+        didSet {
+            if let isTodayCheckedIn = isTodayCheckedIn {
+                self.checkMessage.text = isTodayCheckedIn ? "今日您已签到" : "点击签到"
+            }
+        }
+    }
     
     fileprivate let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
     
@@ -45,7 +52,8 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         
         navigationController?.setStyledNavigationBar()
         navigationItem.title = "我的足迹"
-        
+        totalNum.text =  ""
+
         refreshCheckNumber()
     }
     
@@ -62,8 +70,22 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
 //                self?.getCurrentLocation()
 //            }
 //        }
-        DataService.sharedInstance.getMyCheckIn { (success, error) in
-            print("finish")
+        getCurrentLocation()
+        DataService.sharedInstance.getMyCheckIn { [weak self](success, error, json)  in
+            //            guard let number = self?.fetchedResultsController?.fetchedObjects?.count.description else { return }
+            guard let dataArray = json?["data"].array else { return }
+            self?.totalNum.text =  "本月签到次数: \(dataArray.count)"
+            self?.checkInDays = []
+            for data in dataArray {
+                if let date = data["date"].string?.split(separator: "-").last, let dayInt = Int(date) {
+                    self?.checkInDays.append(dayInt)
+                }
+            }
+            self?.calendar.reloadData()
+            let clander = Calendar(identifier: .gregorian)
+            let comps = clander.dateComponents([.year, .month, .day], from: Date())
+            let todayString = "\(comps.year ?? 0)-\(comps.month ?? 0)-\(comps.day ?? 0)"
+            self?.isTodayCheckedIn = todayString == dataArray.last?["date"].string
         }
     }
     
@@ -88,6 +110,7 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
     }
     
     @IBAction func checkinAction(_ sender: UITapGestureRecognizer) {
+        guard isTodayCheckedIn == false else { return }
         checkBut.addScaleAnimation()
         let alert = UIAlertController(title: nil, message: "请选择签到方式", preferredStyle: .actionSheet)
         let checkinAction = UIAlertAction(title: "签到 可工作状态", style: .default) { [weak self] (action) in
@@ -116,7 +139,6 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
             guard let lat = current?.coordinate.latitude.description, let long = current?.coordinate.longitude.description, let location = currentLocation else { return }
             DataService.sharedInstance.checkIn(appDelegate.currentUser?.username, latitude: lat, longitude: long, location: location, isAbsence: isAbsence, isAvailable: isAvaliable, handler: { [weak self](success, error) in
                 if success {
-                    self?.checkMessage.text = "今日您已签到"
                     self?.refreshCheckNumber()
                 } else {
                     OPLoadingHUD.show(UIImage(named: "block"), title: "签到失败", animated: false, delay: 2)
@@ -135,7 +157,7 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         mapView = MAMapView(frame: mapViewContainer.bounds)
         mapView?.setUserTrackingMode(.follow, animated: true)
         mapView?.isShowsUserLocation = true
-        mapView?.setZoomLevel(10.2, animated: false)
+        mapView?.setZoomLevel(14.2, animated: false)
         mapView?.showsScale = false
         mapView?.delegate = self
         
@@ -192,7 +214,13 @@ extension SelfCheckViewController: FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
         let day: Int! = self.gregorian.component(.day, from: date)
-        return [11,10].contains(day) ? UIImage(named: "history") : nil
+        let month: Int! = self.gregorian.component(.month, from: date)
+        let clander = Calendar(identifier: .gregorian)
+        let comps = clander.dateComponents([.month], from: Date())
+        if let cMonth = comps.month, cMonth == month {
+            return checkInDays.contains(day) ? UIImage(named: "history") : nil
+        }
+        return nil
     }
 }
 

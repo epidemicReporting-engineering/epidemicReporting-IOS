@@ -18,6 +18,7 @@ struct DutyReportDataModel {
     var happenTime = ""
     var company = ""
     var department = ""
+    var reportTime = ""
     var pataints = [DutyReportPataintDataModel]()
 }
 

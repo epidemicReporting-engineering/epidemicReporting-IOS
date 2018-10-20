@@ -91,7 +91,17 @@ class LoginViewController: UIViewController {
         let users = ((try! appDelegate.dataStack.mainContext.fetch(request)) as? [User])
         guard let coreuser = users?.first else { return }
         appDelegate.currentUser = coreuser
-        
+        var tagPreFix = "staff_"
+        if let role = coreuser.role, role == RoleType.admin.rawValue {
+            tagPreFix = "admin_"
+        }
+        JPUSHService.setTags(["\(tagPreFix)\(user)"], completion: { (resCode, tags, seq) in
+            if resCode != 0 {
+                
+                print("JPush Error: set tag faild - \(resCode)")
+            }
+        }, seq: 10)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         NotificationCenter.default.post(name: Notification.Name(rawValue: "LoginSuccess"), object: nil)
 //        guard let username = loginUsername.text else { return }
 //        UserDefaults.standard.setValue(username, forKey: "last_logined_user")

@@ -15,15 +15,43 @@ class DutyStatusViewController: UIViewController {
     @IBOutlet weak var separateView: UIView!
     @IBOutlet weak var contentDescription: UILabel!
     @IBOutlet weak var connectionView: UICollectionView!
+    @IBOutlet weak var statusImage: UIImageView!
     
-    fileprivate let mediaArray:[String] = ["http://api.warmgoal.com/media/2017-12-28/df958d33-ff48-4325-a2bc-9f80184d56e9.jpeg","http://api.warmgoal.com/media/2017-12-28/579ca994-4c1d-412b-887a-ac92ed577637.jpeg"]
+    fileprivate var mediaArray = [String]()
+        //["http://api.warmgoal.com/media/2017-12-28/df958d33-ff48-4325-a2bc-9f80184d56e9.jpeg","http://api.warmgoal.com/media/2017-12-28/579ca994-4c1d-412b-887a-ac92ed577637.jpeg"]
+    
+    var data: DutyStatusModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         connectionView.delegate = self
         connectionView.dataSource = self
-        // Do any additional setup after loading the view.
+
+        dutyOwner.text = data?.dutyOwner ?? ""
+        
+        if let rt = data?.reportTime {
+            let time = Utils.getCurrentTimeStamp(NSDate(timeIntervalSince1970: Double(rt)))
+            processTime.text = "上报时间\(time)"
+        } else {
+            processTime.text = ""
+        }
+        contentDescription.text = data?.dutyDescription
+        mediaArray = data?.multiMedia ?? []
+        connectionView.reloadData()
+        
+        if let status = data?.dutyStatus {
+            switch status {
+            case DutyStatus.UNASSIGN.rawValue:
+                statusImage.image = UIImage.init(named: "circle_unassigned")
+            case DutyStatus.BLOCK.rawValue:
+                statusImage.image = UIImage.init(named: "circle_red")
+            case DutyStatus.SUCCESS.rawValue:
+                statusImage.image = UIImage.init(named: "success")
+            default:
+                statusImage.image = UIImage.init(named: "circle_blue")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

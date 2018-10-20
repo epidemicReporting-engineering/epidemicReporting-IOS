@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MyMessageTableViewCell: UITableViewCell {
 
@@ -42,6 +43,22 @@ class MyMessageTableViewCell: UITableViewCell {
             currentOwner.text = "当前责任人：" + owner
         }
         updateImage(status)
+    }
+    
+    func updateDataSource(data: JSON?) {
+        guard let data = data, let status = data["dutyStatus"].string else { return }
+        reporter.text = "疫情上报者：" + (data["reporterName"].string ?? "")
+        if status == DutyStatus.UNASSIGN.rawValue {
+            lastMessage.text = data["description"].string
+        } else {
+            lastMessage.text = data["dutyDescription"].string
+        }
+        if let owner = data["dutyOwnerName"].string {
+            currentOwner.text = "当前责任人：" + owner
+        }
+        
+        updateImage(status)
+
     }
     
     func updateImage(_ status: String) {

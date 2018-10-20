@@ -79,6 +79,7 @@ extension DutyDetailsTableViewController {
         guard let data = dataModels?[indexPath.item] else { return }
         let storyboard = UIStoryboard.init(name: "Report", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DutyStatusViewController") as? DutyStatusViewController {
+            vc.data = data
             navigationController?.pushViewController(vc, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
