@@ -57,6 +57,8 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         refreshCheckNumber()
     }
     
+    
+    
     func refreshCheckNumber(){
 //        DataService.sharedInstance.getMyCheckIn { (success, error) in
 //
@@ -88,18 +90,12 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
             self?.isTodayCheckedIn = todayString == dataArray.last?["date"].string
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("coming")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("coming")
+
     }
     
     @objc func profilePress() {

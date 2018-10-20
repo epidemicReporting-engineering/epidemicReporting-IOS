@@ -78,8 +78,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
                     }
                 }
             }
-            
-            self?.data = jsonData
+            self?.data = result
         }
 //        DataService.sharedInstance.getAllReports(userName: userName) { [weak self] (success, error) in
 //            self?.refreshControl?.endRefreshing()
