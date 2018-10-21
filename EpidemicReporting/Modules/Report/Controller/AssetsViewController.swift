@@ -206,7 +206,15 @@ class AssetsViewController: UIViewController {
         BatchFilesUploading.sharedInstance.uploadFiles(assetsIn, handler: { [weak self] (success, result, error) in
             if success {
                 self?.uploadingComplete = true
-                self?.uploadURLs = result
+                var resultUploadURLs = [String]()
+                if let result = result {
+                    for imgUrl in result {
+                        if let imgIdWithSufix = imgUrl.components(separatedBy: "/").last, let imgId = imgIdWithSufix.components(separatedBy: ".").first {
+                            resultUploadURLs.append(imgId)
+                        }
+                    }
+                    self?.uploadURLs = resultUploadURLs.count > 0 ? resultUploadURLs : nil
+                }
             } else {
                 guard let code = error?.code else { return }
                 switch(code) {

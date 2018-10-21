@@ -31,7 +31,13 @@ class AdminCheckViewController: CoreDataTableViewController {
 
         DataService.sharedInstance.getDayChekInNumberJSON { [weak self] (success, json, error)  in
             guard let json = json, let jsonData = json["data"].array else { return }
-            self?.data = jsonData
+            var result = [JSON]()
+            for data in jsonData {
+                if let _ = data["latitude"].string {
+                    result.append(data)
+                }
+            }
+            self?.data = result
         }
     }
     

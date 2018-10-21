@@ -76,18 +76,21 @@ class SelfCheckViewController: UIViewController, MAMapViewDelegate {
         DataService.sharedInstance.getMyCheckIn { [weak self](success, error, json)  in
             //            guard let number = self?.fetchedResultsController?.fetchedObjects?.count.description else { return }
             guard let dataArray = json?["data"].array else { return }
-            self?.totalNum.text =  "本月签到次数: \(dataArray.count)"
+            var number = 0
             self?.checkInDays = []
             for data in dataArray {
-                if let date = data["date"].string?.split(separator: "-").last, let dayInt = Int(date) {
+                if let date = data["date"].string?.split(separator: "-").last, let dayInt = Int(date), let _ = data["latitude"].string {
                     self?.checkInDays.append(dayInt)
+                    number += 1
                 }
             }
+            self?.totalNum.text =  "本月签到次数: \(number)"
             self?.calendar.reloadData()
             let clander = Calendar(identifier: .gregorian)
             let comps = clander.dateComponents([.year, .month, .day], from: Date())
             let todayString = "\(comps.year ?? 0)-\(comps.month ?? 0)-\(comps.day ?? 0)"
-            self?.isTodayCheckedIn = todayString == dataArray.last?["date"].string
+            self?.isTodayCheckedIn = dataArray.last?["latitude"].string != nil
+                //todayString == dataArray.last?["date"].string
         }
     }
 
