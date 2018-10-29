@@ -228,6 +228,7 @@ class DataService: NSObject {
     
     func reportAssign(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, handler: @escaping ((_ success:Bool, _ error:NSError?)->())) {
         Networking.shareInstance.reportAssign(dutyId, dutyOwner: dutyOwner, dutyDescription: dutyDescription, dutyStatus: dutyStatus) { (success, json, error) in
+            print(json)
             if success {
                 //TODO: store the data into DB, data example
                 /*
@@ -374,17 +375,17 @@ class DataService: NSObject {
         }
     }
     
-    func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ json: [DutyStatusModel]?, _ error:NSError?)->())) {
+    func getReportAllStatus(_ dutyId: String?, handler: @escaping ((_ success:Bool, _ model: [DutyStatusModel]?, _ json: JSON?, _ error:NSError?)->())) {
         Networking.shareInstance.getReportAllStatus(dutyId) { (success, jsonData, error) in
             if success {
                 if let data = jsonData?["data"] {
                     let models = DutyStatusDataSource(statusData: data).getDutyStatus()
-                    handler(true, models, nil)
+                    handler(true, models, jsonData, nil)
                 } else {
-                    handler(false, nil, nil)
+                    handler(false, nil, jsonData, nil)
                 }
             } else {
-                handler(false, nil, error)
+                handler(false, nil, jsonData, error)
             }
         }
     }

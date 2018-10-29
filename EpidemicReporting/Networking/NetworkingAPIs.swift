@@ -67,33 +67,6 @@ extension Networking {
         ]
         
         _ = syncWithAppServer(WebServiceAPIMapping.DutyReport.rawValue, httpMethod: .post, httpHeaders: getHeaders(), params: params, handler: handler)
-//    {
-//        "location": "宁波市海曙区鄞江镇",
-//        "latitude": "29.832328",
-//        "longitude": "121.568493",
-//        "multiMedia": ["1bd86d28-ce37-4161-a09d-8d82060f91ee"],
-//        "description": "肺炎疫情",
-//        "happenTime": "1530581929574",
-//        "company": "定山桥村",
-//        "department": "3组",
-//        "patients": [{
-//        "name": "潘石屹",
-//        "sex": "男",
-//        "age": 30,
-//        "career": "老板",
-//        "symptom": "发热，头痛，名下无房",
-//        "fabing": "严重发病",
-//        "treatment": "抗生素"
-//        },{
-//        "name": "张继科",
-//        "sex": "男",
-//        "age": 30,
-//        "career": "运动员",
-//        "symptom": "发热，头痛，会打一点",
-//        "fabing": "严重发病",
-//        "treatment": "抗生素"
-//        }]
-//        }
     }
     
     func reportAssign(_ dutyId: String?, dutyOwner: String?, dutyDescription: String?, dutyStatus: String?, handler: @escaping ((_ success:Bool, _ json:JSON?, _ error:NSError?)->())) {

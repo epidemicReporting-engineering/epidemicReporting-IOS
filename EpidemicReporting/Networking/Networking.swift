@@ -31,13 +31,15 @@ class Networking {
     
     var baseURL: String! {
         get {
-            return "http://api.warmgoal.com"
+            return "http://www.warmgoal.com"
+//            return "http://47.74.151.111"
         }
     }
     
     var apiBaseURL: String! {
         get {
-            return "http://api.warmgoal.com/xsgov"
+            return "http://www.warmgoal.com/xsgov"
+//            return " http://47.74.151.111/xsgov"
         }
     }
     

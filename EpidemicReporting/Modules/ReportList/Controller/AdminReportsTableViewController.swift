@@ -126,6 +126,7 @@ extension AdminReportsTableViewController {
         let storyboard = UIStoryboard(name: "Report", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
             vc.reportId = cell["id"].int64
+            vc.dutyData = cell
             navigationController?.pushViewController(vc, animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -151,6 +152,10 @@ extension AdminReportsTableViewController {
         case DutyStatus.UNASSIGN.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    vc.duty = report
+                    vc.afterFinishAction = { [weak self] in
+                        self?.refeshDataAll()
+                    }
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -159,6 +164,10 @@ extension AdminReportsTableViewController {
         case DutyStatus.CANTDO.rawValue:
             let assign = UITableViewRowAction(style: .normal, title: "分配") { [weak self](action, indexPath) in
                 if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
+                    vc.duty = report
+                    vc.afterFinishAction = { [weak self] in
+                        self?.refeshDataAll()
+                    }
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }

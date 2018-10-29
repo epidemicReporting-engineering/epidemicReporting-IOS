@@ -128,6 +128,7 @@ class MyMessagesTableViewController: CoreDataTableViewController {
         let storyboard = UIStoryboard(name: "Report", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DutyDetailsTableViewController") as? DutyDetailsTableViewController {
             vc.reportId = thisData["id"].int64
+            vc.dutyData = thisData
             navigationController?.pushViewController(vc, animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -168,6 +169,9 @@ class MyMessagesTableViewController: CoreDataTableViewController {
                 let sb = UIStoryboard.init(name: "ReportList", bundle: nil)
                 if let vc = sb.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
                     vc.duty = report
+                    vc.afterFinishAction = { [weak self] in
+                        self?.refeshDataAll()
+                    }
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
@@ -178,6 +182,9 @@ class MyMessagesTableViewController: CoreDataTableViewController {
                 let sb = UIStoryboard.init(name: "ReportList", bundle: nil)
                 if let vc = sb.instantiateViewController(withIdentifier: "AvailableLocationsViewController") as? AvailableLocationsViewController {
                     vc.duty = report
+                    vc.afterFinishAction = { [weak self] in
+                        self?.refeshDataAll()
+                    }
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }

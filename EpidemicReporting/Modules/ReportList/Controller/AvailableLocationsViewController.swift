@@ -17,6 +17,7 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
     fileprivate var annotations: [MAAnnotation] = [MAAnnotation]()
     fileprivate var processors: [Processor]?
     var duty: JSON?
+    var afterFinishAction: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,6 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
         mapView.showsScale = false
         customCalloutView = CustomCalloutView()
         mapView.delegate = self
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
         DataService.sharedInstance.getStuff { [weak self](success, error) in
             self?.processors = DataService.sharedInstance.fetchAvailableProcessorsBy(nil)
@@ -46,6 +43,12 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
             }
         }
     }
+//    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        
+//        
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -91,11 +94,12 @@ class AvailableLocationsViewController: UIViewController, MAMapViewDelegate {
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let okAction = UIAlertAction(title: "好的", style: .default, handler: {[weak self]
             action in
-            DataService.sharedInstance.reportAssign(self?.duty?["id"].string, dutyOwner: process?.username, dutyDescription: "请立即开始处理", dutyStatus: DutyStatus.ASSIGNED.rawValue, handler: {[weak self](success, error) in
+            DataService.sharedInstance.reportAssign("\(self?.duty?["id"].int ?? -1)", dutyOwner: process?.username, dutyDescription: "请立即开始处理", dutyStatus: DutyStatus.ASSIGNED.rawValue, handler: {[weak self](success, error) in
                 if !success {
                     OPLoadingHUD.show(UIImage.init(named: "block"), title: "分配失败", animated: false, delay: 2)
                 } else {
                     //self?.navigationController?.dismiss(animated: true, completion: nil)
+                    self?.afterFinishAction?()
                     self?.navigationController?.popViewController(animated: true)
                 }
             })

@@ -29,6 +29,8 @@ class CheckTableViewCell: UITableViewCell {
         self.name.text = name
         if let date = checkTime {
             self.checkTime.text = "签到时间：" + Utils.getCurrentTimeStamp(date)
+        } else {
+            self.checkTime.text  = ""
         }
         self.checkLocation.text = checkLocation
     }

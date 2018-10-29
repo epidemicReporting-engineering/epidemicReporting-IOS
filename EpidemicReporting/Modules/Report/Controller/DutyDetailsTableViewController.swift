@@ -17,6 +17,8 @@ class DutyDetailsTableViewController: UITableViewController {
     
     var reportId: Int64?
     var dataModels: [DutyStatusModel]?
+    var dutyData: JSON?
+    var jsonData: JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class DutyDetailsTableViewController: UITableViewController {
         navigationController?.setStyledNavigationBar()
         initTableView()
         updateDataSource()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "病人详情", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showPatients))
     }
     
     func initTableView() {
@@ -42,13 +45,23 @@ class DutyDetailsTableViewController: UITableViewController {
     
     func updateDataSource() {
         OPLoadingHUD.show(UIImage(named: "loading"), title: "努力加载中", animated: true, delay: 0)
-        DataService.sharedInstance.getReportAllStatus(reportId?.description) { [weak self](success, data, error) in
+        DataService.sharedInstance.getReportAllStatus(reportId?.description) { [weak self](success, data, json, error) in
+            self?.jsonData = json
             if let statusData = data, success {
                 self?.dataModels = statusData
                 self?.tableView.reloadData()
             }
             OPLoadingHUD.hide()
         }
+    }
+    
+    @objc func showPatients() {
+        guard let patientsDataJSON = self.jsonData?["data"] else { return }
+        let patientsVC = PatientsInfoViewController()
+        patientsVC.data = patientsDataJSON
+        navigationController?.pushViewController(patientsVC, animated: true)
+//        present(patientsVC, animated: true, completion: nil)
+//        print(patientsDataJSON)
     }
 }
 
